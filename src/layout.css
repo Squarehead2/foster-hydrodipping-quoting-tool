@@ -1,0 +1,8 @@
+.navbar-text {
+  text-align: center;
+  font: italic;
+  font-size: calc(10px + 2vmin);
+}
+.navbar {
+  background-color: grey;
+}

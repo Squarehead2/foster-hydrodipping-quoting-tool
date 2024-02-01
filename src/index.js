@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Layout } from "./Layout";
-import { Calculator } from "./pages/Calculator";
+import { Calculator } from "./pages/Calculator/Calculator";
 
 export default function App() {
   return (
