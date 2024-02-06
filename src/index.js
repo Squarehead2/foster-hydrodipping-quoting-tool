@@ -16,6 +16,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="calculator" element={<Calculator />} />
+          <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
       </Routes>
     </Router>

@@ -22,14 +22,29 @@ export const Calculator = () => {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [items, setItems] = useState([]);
+  const [rate, setRate] = useState(15);
 
+  const handleRateChange = (e, index) => {
+    const newItems = [...items];
+    newItems[index].rate = parseInt(e.target.value);
+    setItems(newItems);
+  };
   const handleShapeChange = (e) => {
     setShape(e.target.value);
   };
 
   const handleConfirmItem = () => {
     let newItems = [...items];
-    newItems.push(item(name, objectAddition(objects), description));
+    newItems.push(
+      item(
+        name,
+        objectAddition(objects),
+        description,
+        objectAddition(objects) * rate,
+        // Set the default rate to 15 for each new item
+        rate
+      )
+    );
     setItems(newItems);
   };
 
@@ -117,14 +132,27 @@ export const Calculator = () => {
         />
       </form>
       {/* create a button that adds the item to the list of items */}
+
       <button onClick={handleConfirmItem}>Confirm Item</button>
       {/* display the list of items */}
       <ul>
-        {/*list object name, surface area, and description */}
-        {items.map((item) => (
-          <li>
-            {item.name}: {item.area} {item.description}
-          </li>
+        {items.map((item, index) => (
+          <ul key={index}>
+            <li>
+              {item.name}: {item.area} {item.description}{" "}
+              {"$" + (item.area * item.rate).toFixed(2)}
+            </li>
+            <li>
+              <label>Rate</label>
+              <select
+                onChange={(e) => handleRateChange(e, index)}
+                value={item.rate}
+              >
+                <option value="15">Generic Rate 1</option>
+                <option value="20">Generic Rate 2</option>
+              </select>
+            </li>
+          </ul>
         ))}
       </ul>
     </div>

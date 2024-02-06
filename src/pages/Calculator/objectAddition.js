@@ -4,5 +4,5 @@ export default function objectAddition(objects) {
   for (let i = 0; i < objects.length; i++) {
     total += objects[i].area;
   }
-  return total;
+  return total.replace(/^0+/, "");
 }
