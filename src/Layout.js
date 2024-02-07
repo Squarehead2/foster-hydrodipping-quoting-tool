@@ -15,6 +15,11 @@ export const Layout = () => {
               Calculator
             </Link>
           </li>
+          <li>
+            <Link className="navbar-text" to="login">
+              Login
+            </Link>
+          </li>
         </ul>
       </nav>
 
