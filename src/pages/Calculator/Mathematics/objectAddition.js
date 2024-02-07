@@ -2,7 +2,7 @@
 export default function objectAddition(objects) {
   let total = 0;
   for (let i = 0; i < objects.length; i++) {
-    total += objects[i].area;
+    total += parseFloat(objects[i].area);
   }
-  return total.replace(/^0+/, "");
+  return total.toFixed(2);
 }
