@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { auth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from '../../_utils/firebase'; // Import the Firebase configuration
+import {
+  auth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+} from "../../_utils/firebase"; // Import the Firebase configuration
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,9 +16,9 @@ export const Login = () => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      console.log('User signed in successfully');
+      console.log("User signed in successfully");
     } catch (error) {
-      console.error('Error signing in with Google:', error.message);
+      console.error("Error signing in with Google:", error.message);
     }
   };
 
@@ -21,9 +26,9 @@ export const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('User signed in successfully');
+      console.log("User signed in successfully");
     } catch (error) {
-      console.error('Error signing in with Email/Password:', error.message);
+      console.error("Error signing in with Email/Password:", error.message);
     }
   };
 
@@ -57,4 +62,3 @@ export const Login = () => {
     </div>
   );
 };
-
