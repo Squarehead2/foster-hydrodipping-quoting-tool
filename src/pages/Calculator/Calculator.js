@@ -1,5 +1,5 @@
 "use client";
-
+import verifySurfaceArea from "./_utils/verifySurfaceArea";
 import Cylinder from "./Mathematics/Shapes/cylinder";
 import Rectangle from "./Mathematics/Shapes/rectangle";
 import Sphere from "./Mathematics/Shapes/sphere";
@@ -28,15 +28,33 @@ export const Calculator = () => {
   const [items, setItems] = useState([]);
   const [rate, setRate] = useState(15);
 
+  //function that handles the object deletion from object list
+  const handleDeleteObject = (index) => {
+    let newObjects = [...objects];
+    newObjects.splice(index, 1);
+    setObjects(newObjects);
+  };
+
+  //function that handles the item deletion from item list
+  const handleDeleteItem = (index) => {
+    let newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
+  };
+
+  //function that handles the rate change
   const handleRateChange = (e, index) => {
     const newItems = [...items];
     newItems[index].rate = parseInt(e.target.value);
     setItems(newItems);
   };
+
+  //function that handles the shape change
   const handleShapeChange = (e) => {
     setShape(e.target.value);
   };
 
+  //function that handles the item confirmation when the user clicks the confirm item button
   const handleConfirmItem = () => {
     let newItems = [...items];
     newItems.push(
@@ -52,22 +70,45 @@ export const Calculator = () => {
     setItems(newItems);
   };
 
+  //function that handles the addition of the object to the object list
   const handleAdd = () => {
     let newObjects = [...objects];
+
+    // If the shape is a cylinder, create a new Cylinder object and add it to the newObjects array
     if (shape === "cylinder") {
-      newObjects.push(object("Cylinder", Cylinder(radius, height)));
-    } else if (shape === "rectangle") {
-      newObjects.push(object("Rectangle", Rectangle(length, width, depth)));
-    } else if (shape === "sphere") {
-      if (cutRadius > 0 && cutLength > 0) {
-        newObjects.push(
-          object("Sphere", Sphere(radius, SphereSlice(cutRadius, cutLength)))
-        );
+      if (verifySurfaceArea(radius) && verifySurfaceArea(height)) {
+        newObjects.push(object("Cylinder", Cylinder(radius, height)));
       } else {
-        newObjects.push(object("Sphere", Sphere(radius, 0)));
+        alert("Please enter a valid radius and height.");
       }
     }
-
+    // If the shape is a rectangle, create a new Rectangle object and add it to the newObjects array
+    else if (shape === "rectangle") {
+      if (
+        verifySurfaceArea(length) &&
+        verifySurfaceArea(width) &&
+        verifySurfaceArea(depth)
+      ) {
+        newObjects.push(object("Rectangle", Rectangle(length, width, depth)));
+      } else {
+        alert("Please enter a valid length, width, and depth.");
+      }
+    }
+    // If the shape is a sphere, create a new Sphere object and add it to the newObjects array
+    else if (shape === "sphere") {
+      if (verifySurfaceArea(radius)) {
+        if (cutRadius > 0 && cutLength > 0) {
+          newObjects.push(
+            object("Sphere", Sphere(radius, SphereSlice(cutRadius, cutLength)))
+          );
+        } else {
+          newObjects.push(object("Sphere", Sphere(radius, 0)));
+        }
+      } else {
+        alert("Please enter a valid radius.");
+      }
+    }
+    // Set the objects state to the newObjects array
     setObjects(newObjects);
   };
 
@@ -231,10 +272,15 @@ export const Calculator = () => {
       <button onClick={handleAdd}>Add</button>
       {/* display the list of objects */}
       <ul>
-        {objects.map((object) => (
-          <li>
-            {object.name}: {object.area}
-          </li>
+        {objects.map((object, index) => (
+          <ul key={index}>
+            <li>
+              {object.name}: {object.area}
+              <button onClick={() => handleDeleteObject(index)}>
+                <strong>X</strong>
+              </button>
+            </li>
+          </ul>
         ))}
       </ul>
       {/* create a form for adding a description and name to the item */}
@@ -261,7 +307,10 @@ export const Calculator = () => {
           <ul key={index}>
             <li>
               {item.name}: {item.area} {item.description}{" "}
-              {"$" + item.area * item.rate}
+              {"$" + (item.area * item.rate).toFixed(2)}
+              <button onClick={() => handleDeleteItem(index)}>
+                <strong>X</strong>
+              </button>
             </li>
             <li>
               <label>Rate</label>
