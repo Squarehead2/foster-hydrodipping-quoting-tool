@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>code goes here</p>
+        <p>code goes heresss</p>
       </header>
     </div>
   );
