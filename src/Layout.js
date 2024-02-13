@@ -3,7 +3,6 @@ import "./layout.css";
 export const Layout = () => {
   return (
     <>
-   
       <nav className="navbar">
         <ul className="menu">
           <li className="logo">Foster Hydro Dipping</li>
@@ -29,7 +28,7 @@ export const Layout = () => {
           </li>
           <li>
             <Link className="navbar-text" to="about">
-          BLOG
+              BLOG
             </Link>
           </li>
           <li>
