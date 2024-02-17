@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import item from "./Objects/item";
 import objectAddition from "./Mathematics/objectAddition";
-
+import sendMail from "./_utils/sendMail";
 //create a usesate hook to store the objects
 
 export const Calculator = () => {
@@ -325,6 +325,7 @@ export const Calculator = () => {
           </ul>
         ))}
       </ul>
+      <button>Accept Quote</button>
     </div>
   );
 };
