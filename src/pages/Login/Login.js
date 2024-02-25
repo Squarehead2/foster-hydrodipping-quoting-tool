@@ -1,24 +1,29 @@
 "use client";
 
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   auth,
   GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
-} from "../../_utils/firebase"; // Import the Firebase configuration
+} from "../../_utils/firebase";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); // Access to the navigate function
 
   const handleGoogleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       console.log("User signed in successfully");
+      navigate("/"); // Redirect to home page after successful login
     } catch (error) {
       console.error("Error signing in with Google:", error.message);
+      setErrorMessage("Error signing in with Google");
     }
   };
 
@@ -27,8 +32,10 @@ export const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User signed in successfully");
+      navigate("/"); // Redirect to home page after successful login
     } catch (error) {
       console.error("Error signing in with Email/Password:", error.message);
+      setErrorMessage("Incorrect email or password");
     }
   };
 
@@ -58,6 +65,14 @@ export const Login = () => {
 
       <div>
         <button onClick={handleGoogleSignIn}>Login with Google</button>
+      </div>
+
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+
+      <div>
+        <Link to="/register">
+          <button>Register</button>
+        </Link>
       </div>
     </div>
   );

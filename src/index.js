@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Layout } from "./Layout";
 import { Calculator } from "./pages/Calculator/Calculator";
 import { Login } from "./pages/Login/Login";
+import { Register } from "./pages/Register/Register";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="calculator" element={<Calculator />} />
           <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
       </Routes>
