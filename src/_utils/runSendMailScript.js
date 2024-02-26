@@ -11,3 +11,4 @@ const runSendMailScript = async () => {
 };
 
 export default runSendMailScript;
+
