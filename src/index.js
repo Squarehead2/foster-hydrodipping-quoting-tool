@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Home from "./Home";
+import Home from "./Home/Home";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Layout } from "./Layout";
+import { Layout } from "./pages/Navbar/Layout/Layout";
 import { Calculator } from "./pages/Calculator/Calculator";
 import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";

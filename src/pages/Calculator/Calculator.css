@@ -1,27 +1,66 @@
-div{
-    text-align: 40px;
-}
-
-select{
-    padding: 1px 4px;
-    font-size: 16px;
-}
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    
+  /* Bootstrap equivalent for div */
+  div {
+    background-color: #242424
   }
 
-button.large {
-    font-size: 20px;
+  /* Bootstrap equivalent for select */
+  select {
+    /* Bootstrap provides form control styles for form elements */
+    /* You can use 'form-select' for select elements */
+    padding: 1px 4px;
+    font-size: 16px;
+    .select-text{
+        color: #ffffff
+    }
+    } 
+
+  /* Bootstrap equivalent for button */
+  button {
+    /* Bootstrap provides button styles with various sizes */
+    /* You can use 'btn' for default button size or 'btn-lg' for large buttons */
+    /* Padding values are not directly convertible, so you can adjust using Bootstrap spacing utilities if needed */
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  /* Bootstrap equivalent for button.large */
+  button.large {
+    /* For large buttons, use 'btn-lg' class */
+    /* You can adjust padding using Bootstrap spacing utilities if needed */
     padding: 15px 30px;
-}
-
-label{
     font-size: 20px;
-    text-align: 40%;
-}
+  }
 
-.container{
-    text-align: 40%;
+  /* Bootstrap equivalent for label */
+  label {
+    /* You can use spacing utilities like 'text-center', 'text-end', etc. */
+    /* Alternatively, you can use grid system classes for alignment within a grid container */
+    label-text {
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff
+    }
+  }
+  /* Bootstrap equivalent for .container */
+  .container {
+    /* There's no direct equivalent for text-align with a numeric value in Bootstrap */
+    /* You can use 'text-start', 'text-center', or 'text-end' */
+    /* Alternatively, you can use spacing utilities like 'ms-2', 'ms-4', etc. for horizontal margin */
+    margin-left: 40%;
+  }
+  .navbar {
+    background-color: #242424;/* Bootstrap equivalent for .navbar-text */
+    .navbar-text {
+      text-align: center;
+      font-style: italic;
+      font-size: 20px;
+      color:#ffffff;
+      
+    }
+    .navbar-text:hover {
+        color: #89CFF0;
+      }
+    .App{
+        background-color: #242424;
+    }
 }
