@@ -1,3 +1,27 @@
 div{
-    text-align: center;
+    text-align: 40px;
+}
+
+select{
+    padding: 1px 4px;
+    font-size: 16px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    
+  }
+
+button.large {
+    font-size: 20px;
+    padding: 15px 30px;
+}
+
+label{
+    font-size: 20px;
+    text-align: 40%;
+}
+
+.container{
+    text-align: 40%;
 }

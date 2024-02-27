@@ -117,6 +117,7 @@ export const Calculator = () => {
   return (
     <div>
       {/* create a drop down that gives you the option to add a cylinder or a rectangle */}
+      <label class="container">Choose a shape for surface area estimate:</label>
       <select onChange={handleShapeChange} value={shape}>
         <option value="cylinder">Cylinder</option>
         <option value="rectangle">Rectangle</option>
@@ -125,7 +126,7 @@ export const Calculator = () => {
       {/* if the shape is a cylinder, display the radius and height inputs */}
 
       {shape === "cylinder" && (
-        <div>
+        <div class="container">
           <label>Radius (m) </label>
           <input
             type="number"
