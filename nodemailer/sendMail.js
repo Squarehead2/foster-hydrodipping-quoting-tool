@@ -1,4 +1,15 @@
 const nodemailer = require("nodemailer");
+const [, , to, subject, text, html] = process.argv;
+const mailOptions = {
+  from: {
+    name: "Foster Hydrodipping",
+    addres: "fosterhydrodippingnoreply@gmail.com",
+  },
+  to: to,
+  subject: subject,
+  text: text,
+  html: "<b>" + html + "</b>",
+};
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -10,17 +21,6 @@ const transporter = nodemailer.createTransport({
     pass: "wddzoynyezkgcgop", //xdst fags gbyg bjf
   },
 });
-
-const mailOptions = {
-  from: {
-    name: "Foster Hydrodipping",
-    addres: "fosterhydrodippingnoreply@gmail.com",
-  },
-  to: ["williamblack606@gmail.com"],
-  subject: "Test",
-  text: "Test",
-  html: "<b>Test</b>",
-};
 
 const sendMail = async (transporter, mailOptions) => {
   try {

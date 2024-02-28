@@ -4,7 +4,7 @@ import Cylinder from "./Mathematics/Shapes/cylinder";
 import Rectangle from "./Mathematics/Shapes/rectangle";
 import Sphere from "./Mathematics/Shapes/sphere";
 import SphereSlice from "./Mathematics/Shapes/sphereSlice";
-import React from "react";
+import React, { use } from "react";
 import object from "./Objects/object";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -27,6 +27,24 @@ export const Calculator = () => {
   const [name, setName] = useState("");
   const [items, setItems] = useState([]);
   const [rate, setRate] = useState(15);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    setEmail(
+      "Total Price: $" +
+        totalPrice +
+        "CAD + \n" +
+        "Items: " +
+        JSON.stringify(items)
+    );
+  }, [totalPrice, items]);
+
+  useEffect(() => {
+    setTotalPrice(
+      items.reduce((acc, item) => acc + item.area * item.rate, 0).toFixed(2)
+    );
+  }, [items]);
 
   //function that handles the object deletion from object list
   const handleDeleteObject = (index) => {
@@ -325,7 +343,13 @@ export const Calculator = () => {
           </ul>
         ))}
       </ul>
-      <button onClick={runSendMailScript}>Accept Quote</button>
+      <div>
+        <h1>Total Price</h1>
+        <h2>{totalPrice}</h2>
+      </div>
+      <button onClick={() => runSendMailScript("Surface Area: ")}>
+        Accept Quote
+      </button>
     </div>
   );
 };

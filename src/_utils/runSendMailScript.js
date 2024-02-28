@@ -1,8 +1,12 @@
 // React component code
-
-const runSendMailScript = async () => {
+const runSendMailScript = async (text) => {
   try {
-    const response = await fetch("http://localhost:3001/run-script");
+    const email = "williamblack606@gmail.com";
+
+    const response = await fetch(
+      `http://localhost:3001/run-script?email=${email}&text=${text}`
+    );
+    console.log("Response:", response);
     const result = await response.text();
     console.log(result);
   } catch (error) {
