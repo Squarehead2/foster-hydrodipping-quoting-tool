@@ -41,6 +41,11 @@ export const Layout = () => {
               LOGIN
             </Link>
           </li>
+          <li>
+            <Link className="navbar-text" to="account">
+              ACCOUNT
+            </Link>
+          </li>
         </ul>
       </nav>
 
