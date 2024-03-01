@@ -30,13 +30,28 @@ export const Calculator = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [email, setEmail] = useState("");
 
+  const [itemDetails, setItemDetails] = useState("");
+
+  useEffect(() => {
+    setItemDetails(
+      items
+        .map(
+          (item) =>
+            item.name +
+            ": " +
+            item.area +
+            " " +
+            item.description +
+            " $" +
+            (item.area * item.rate).toFixed(2)
+        )
+        .join("| ")
+    );
+  }, [items]);
+
   useEffect(() => {
     setEmail(
-      "Total Price: $" +
-        totalPrice +
-        "CAD + \n" +
-        "Items: " +
-        JSON.stringify(items)
+      "Total Price: $" + totalPrice + "CAD;" + "Items: ~" + itemDetails + ";"
     );
   }, [totalPrice, items]);
 
@@ -347,9 +362,7 @@ export const Calculator = () => {
         <h1>Total Price</h1>
         <h2>{totalPrice}</h2>
       </div>
-      <button onClick={() => runSendMailScript("Surface Area: ")}>
-        Accept Quote
-      </button>
+      <button onClick={() => runSendMailScript(email)}>Accept Quote</button>
     </div>
   );
 };

@@ -12,11 +12,12 @@ app.get("/run-script", async (req, res) => {
     const scriptPath = "../nodemailer/sendMail.js"; // Replace with the path to your script
 
     const { stdout, stderr } = exec(
-      `node ${scriptPath} " ${email}" " New Quote Generation ${Date()}" " ${text}" " test"`
+      `node ${scriptPath} " ${email}" " New Quote Generation ${Date()}" " ${text}" " ${text}"`
     );
 
     console.log(`sendMail.js output: ${stdout}`);
     console.error(`sendMail.js errors: ${stderr}`);
+    console.log(text);
 
     res.send("Script executed successfully");
   } catch (error) {

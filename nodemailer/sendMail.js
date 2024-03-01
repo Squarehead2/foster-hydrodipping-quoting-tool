@@ -1,4 +1,6 @@
+import convertStringToHTML from "./_utils/convertStringToHTML";
 const nodemailer = require("nodemailer");
+
 const [, , to, subject, text, html] = process.argv;
 const mailOptions = {
   from: {
@@ -8,7 +10,7 @@ const mailOptions = {
   to: to,
   subject: subject,
   text: text,
-  html: "<b>" + html + "</b>",
+  html: "<div>" + html + "</div>",
 };
 
 const transporter = nodemailer.createTransport({
@@ -31,4 +33,5 @@ const sendMail = async (transporter, mailOptions) => {
   }
 };
 
+// let htmlResult = convertStringToHTML(html);
 sendMail(transporter, mailOptions);
