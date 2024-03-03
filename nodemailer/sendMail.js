@@ -1,7 +1,8 @@
-import convertStringToHTML from "./_utils/convertStringToHTML";
 const nodemailer = require("nodemailer");
 
 const [, , to, subject, text, html] = process.argv;
+console.log(html);
+
 const mailOptions = {
   from: {
     name: "Foster Hydrodipping",
@@ -25,6 +26,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendMail = async (transporter, mailOptions) => {
+  console.log("test");
   try {
     await transporter.sendMail(mailOptions);
     console.log("Email sent successfully");

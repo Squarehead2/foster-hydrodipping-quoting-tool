@@ -31,30 +31,45 @@ export const Calculator = () => {
   const [email, setEmail] = useState("");
 
   const [itemDetails, setItemDetails] = useState("");
-
+  //Item details mapping and formatting
   useEffect(() => {
     setItemDetails(
-      items
-        .map(
-          (item) =>
-            item.name +
-            ": " +
-            item.area +
-            " " +
-            item.description +
-            " $" +
-            (item.area * item.rate).toFixed(2)
-        )
-        .join("| ")
+      items.map(
+        (item) =>
+          "<p><strong> " +
+          item.name +
+          "</strong></p>" +
+          "<ul>" +
+          "</li>" +
+          "<li>Area: " +
+          item.area +
+          "</li>" +
+          "<li>Description: " +
+          item.description +
+          "</li>" +
+          "<li>Price:" +
+          " $" +
+          (item.area * item.rate).toFixed(2) +
+          "</li>" +
+          "</ul>"
+      )
     );
   }, [items]);
 
+  //Email formatting for all items details
   useEffect(() => {
     setEmail(
-      "Total Price: $" + totalPrice + "CAD;" + "Items: ~" + itemDetails + ";"
+      "<h1> Total Price: </h1>" +
+        "<p>$" +
+        totalPrice +
+        "CAD</p>" +
+        "<br/>" +
+        "<h1>Items: </h1>" +
+        itemDetails
     );
   }, [totalPrice, items]);
 
+  //Total price calculation
   useEffect(() => {
     setTotalPrice(
       items.reduce((acc, item) => acc + item.area * item.rate, 0).toFixed(2)
@@ -90,6 +105,31 @@ export const Calculator = () => {
   //function that handles the item confirmation when the user clicks the confirm item button
   const handleConfirmItem = () => {
     let newItems = [...items];
+    if (name === "" && description !== "") {
+      alert("Please enter a name for the item.");
+      return;
+    } else if (description === "" && name !== "") {
+      alert("Please enter a description for the item.");
+      return;
+    } else if (description === "" && name === "") {
+      alert("Please enter a name and description for the item.");
+      return;
+    }
+
+    if (
+      items.some(
+        (item) => item.name === name && item.description === description
+      )
+    ) {
+      alert("An item with this name and description already exists.");
+      return;
+    } else if (items.some((item) => item.name === name) && items.some(item)) {
+      alert("An item with this name already exists.");
+      return;
+    } else if (items.some((item) => item.description === description)) {
+      alert("An item with this description already exists.");
+      return;
+    }
     newItems.push(
       item(
         name,

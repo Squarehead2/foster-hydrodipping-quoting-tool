@@ -11,15 +11,22 @@ app.get("/run-script", async (req, res) => {
     const { email, text } = req.query;
     const scriptPath = "../nodemailer/sendMail.js"; // Replace with the path to your script
 
-    const { stdout, stderr } = exec(
-      `node ${scriptPath} " ${email}" " New Quote Generation ${Date()}" " ${text}" " ${text}"`
+    exec(
+      `node ${scriptPath} " ${email}" " New Quote Generation ${Date()}" " ${text}" " ${text}"`,
+      (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error executing sendMail.js: ${error.message}`);
+          res.status(500).send("Internal Server Error");
+          return;
+        }
+
+        console.log(`sendMail.js output: ${stdout}`);
+        console.error(`sendMail.js errors: ${stderr}`);
+      }
     );
 
-    console.log(`sendMail.js output: ${stdout}`);
-    console.error(`sendMail.js errors: ${stderr}`);
-    console.log(text);
-
-    res.send("Script executed successfully");
+    console.log(email);
+    //console the response
   } catch (error) {
     console.error(`Error executing sendMail.js: ${error.message}`);
     res.status(500).send("Internal Server Error");
