@@ -1,17 +1,19 @@
 "use client";
+
 import verifySurfaceArea from "./_utils/verifySurfaceArea";
 import Cylinder from "./Mathematics/Shapes/cylinder";
 import Rectangle from "./Mathematics/Shapes/rectangle";
 import Sphere from "./Mathematics/Shapes/sphere";
 import SphereSlice from "./Mathematics/Shapes/sphereSlice";
 import React, { use } from "react";
+import "./Calculator.css";
 import object from "./Objects/object";
 import { useEffect } from "react";
 import { useState } from "react";
 import item from "./Objects/item";
 import objectAddition from "./Mathematics/objectAddition";
 import runSendMailScript from "../../_utils/runSendMailScript";
-//create a usesate hook to store the objects
+//create a usestate hook to store the objects
 
 export const Calculator = () => {
   const [shape, setShape] = useState("cylinder");
@@ -188,6 +190,7 @@ export const Calculator = () => {
   return (
     <div>
       {/* create a drop down that gives you the option to add a cylinder or a rectangle */}
+      <label class="container">Choose a shape for surface area estimate:</label>
       <select onChange={handleShapeChange} value={shape}>
         <option value="cylinder">Cylinder</option>
         <option value="rectangle">Rectangle</option>
@@ -196,12 +199,12 @@ export const Calculator = () => {
       {/* if the shape is a cylinder, display the radius and height inputs */}
 
       {shape === "cylinder" && (
-        <div>
-          <label>Radius</label>
+        <div class="container">
+          <label>Radius (m) </label>
           <input
             type="number"
             value={radius}
-            min="0"
+            placeholder="0"
             step="0.01" // Set step to allow two decimal places
             onChange={(e) => {
               const inputValue = parseFloat(e.target.value);
@@ -213,7 +216,7 @@ export const Calculator = () => {
               }
             }}
           />
-          <label>Height</label>
+          <label>Height (m)</label>
           <input
             type="number"
             value={height}
@@ -398,11 +401,7 @@ export const Calculator = () => {
           </ul>
         ))}
       </ul>
-      <div>
-        <h1>Total Price</h1>
-        <h2>{totalPrice}</h2>
-      </div>
-      <button onClick={() => runSendMailScript(email)}>Accept Quote</button>
+      <button onClick={runSendMailScript}>Accept Quote</button>
     </div>
   );
 };

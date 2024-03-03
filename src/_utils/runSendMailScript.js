@@ -15,3 +15,4 @@ const runSendMailScript = async (text) => {
 };
 
 export default runSendMailScript;
+

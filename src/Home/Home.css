@@ -1,0 +1,5 @@
+ /* Bootstrap equivalent for p */
+ p {
+    /* Convert text-align: left; to Bootstrap text alignment class */
+    text-align: left;
+  }

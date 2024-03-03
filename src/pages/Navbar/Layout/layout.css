@@ -1,0 +1,124 @@
+.navbar-text {
+  text-align: center;
+  font: italic;
+  font-size: 20px;
+  text-decoration: none;
+  color: #404040;
+
+}
+.navbar {
+  background-color: white;/* Bootstrap equivalent for .navbar-text */
+  .navbar-text {
+    text-align: center;
+    font-style: italic;
+    font-size: 20px;
+    color: #242424;
+  }
+
+  /* Bootstrap equivalent for .navbar */
+  .navbar {
+    background-color: white;
+    border-bottom: 20px solid #242424; /* Changed to use 'solid' */
+  }
+
+  /* Bootstrap equivalent for .navbar-text:hover */
+  .navbar-text:hover {
+    color: #242424;
+  }
+
+  /* Bootstrap equivalent for .logo */
+  .logo {
+    font-size: 80px;
+  }
+
+  /* Bootstrap equivalent for ul */
+  ul {
+    list-style-type: none;
+  }
+
+  /* Bootstrap equivalent for .menu li */
+  .menu li {
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #242424;
+  }
+
+  /* Bootstrap equivalent for .menu */
+  .menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: auto;
+  }
+
+  /* Bootstrap equivalent for .navbar li:first-child */
+  .navbar li:first-child {
+    margin-right: auto;
+    font-size: 30px;
+    color: #89CFF0;
+  }
+
+  /* The following App-header styles remain unchanged */
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  border-bottom:#242424;
+  border-bottom-width: 20px;
+  
+}
+
+.navbar-text:hover {
+  color: #242424;
+  ;
+
+}
+
+.logo{
+  font-size: 80px;
+}
+
+
+ul{
+  list-style-type: none;
+}
+
+.menu li{
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #242424;
+ 
+}
+
+.menu{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: auto;
+}
+
+.navbar li:first-child{
+  margin-right: auto;
+  font-size: 30px;
+  color: #89CFF0;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}

@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
 } from "../../_utils/firebase";
+import './Login.css';
 
 export const Login = () => {
   const [email, setEmail] = useState("");
