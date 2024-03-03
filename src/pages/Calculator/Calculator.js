@@ -401,7 +401,7 @@ export const Calculator = () => {
           </ul>
         ))}
       </ul>
-      <button onClick={runSendMailScript}>Accept Quote</button>
+      <button onClick={runSendMailScript(email)}>Accept Quote</button>
     </div>
   );
 };
