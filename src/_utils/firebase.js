@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import "firebase/auth";
 
@@ -36,5 +37,6 @@ export {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 };
 export default app;
