@@ -4,7 +4,9 @@ import {
     auth,
     onAuthStateChanged,
     sendPasswordResetEmail,
+    signOut,
 } from "../../_utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 export const AccountDetails = () => {
 
@@ -12,6 +14,8 @@ export const AccountDetails = () => {
     const [email, setEmail] = useState("");
 
     const [currentUser, setCurrentUser] = useState();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -45,6 +49,12 @@ export const AccountDetails = () => {
           });
     };
 
+    const handleLogout = () => {
+        auth.signOut();
+        navigate("/");
+        console.log("User signed out");
+    };
+
     return(
         <div>
             {currentUser ? (
@@ -52,6 +62,7 @@ export const AccountDetails = () => {
                     <p>Email: {email}</p>
                     <p>Name: {displayName}</p>
                     <button onClick={handleChangePassword} >Change Password</button>
+                    <button onClick={handleLogout} >Logout</button>
                 </div>
             ) : (
                 <p>no user</p>
