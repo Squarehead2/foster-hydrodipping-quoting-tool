@@ -5,6 +5,7 @@ import {
     onAuthStateChanged,
     sendPasswordResetEmail,
     signOut,
+    updateProfile,
 } from "../../_utils/firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -51,16 +52,24 @@ export const AccountDetails = () => {
 
     const handleLogout = () => {
         auth.signOut();
-        navigate("/");
+        navigate("/");  // Redirect to home page after successful logout
         console.log("User signed out");
     };
+
+    const handleChangeName = () => {
+        const newName = prompt("Enter new name");
+        updateProfile(auth.currentUser, {
+            displayName: newName,
+        })
+        setDisplayName(newName);
+    }
 
     return(
         <div>
             {currentUser ? (
                 <div>
-                    <p>Email: {email}</p>
-                    <p>Name: {displayName}</p>
+                    <p>Email: {email}</p> 
+                    <p>Name: {displayName}</p> <button onClick={handleChangeName} >Change Name</button>
                     <button onClick={handleChangePassword} >Change Password</button>
                     <button onClick={handleLogout} >Logout</button>
                 </div>
