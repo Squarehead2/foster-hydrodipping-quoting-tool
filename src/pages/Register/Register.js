@@ -17,6 +17,7 @@ export const Register = () => {
       navigate("/"); // Redirect to home page after successful registration
     } catch (error) {
       console.error("Error registering user:", error.message);
+      alert("Email Already In Use");
     }
   };
 
