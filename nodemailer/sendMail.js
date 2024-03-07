@@ -1,12 +1,12 @@
 const nodemailer = require("nodemailer");
-require("dotenv").config();
+
 const [, , to, subject, text, html] = process.argv;
 console.log(html);
 
 const mailOptions = {
   from: {
     name: "Foster Hydrodipping",
-    addres: process.env.EMAIL_ADDRESS,
+    addres: "fosterhydrodippingnoreply@gmail.com",
   },
   to: to,
   subject: subject,
@@ -20,8 +20,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.APP_PASSWORD,
+    user: "fosterhydrodippingnoreply@gmail.com",
+    pass: "wddzoynyezkgcgop", //xdst fags gbyg bjf
   },
 });
 

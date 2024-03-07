@@ -13,13 +13,6 @@ import { useState } from "react";
 import item from "./Objects/item";
 import objectAddition from "./Mathematics/objectAddition";
 import runSendMailScript from "../../_utils/runSendMailScript";
-import {
-  auth,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  signOut,
-  updateProfile,
-} from "../../_utils/firebase";
 //create a usestate hook to store the objects
 
 export const Calculator = () => {
@@ -38,14 +31,8 @@ export const Calculator = () => {
   const [rate, setRate] = useState(15);
   const [totalPrice, setTotalPrice] = useState(0);
   const [email, setEmail] = useState("");
-  const [currentUser, setCurrentUser] = useState();
 
   const [itemDetails, setItemDetails] = useState("");
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-    });
-  }, []);
   //Item details mapping and formatting
   useEffect(() => {
     setItemDetails(
@@ -414,11 +401,7 @@ export const Calculator = () => {
           </ul>
         ))}
       </ul>
-      {currentUser ? (
-        <button onClick={runSendMailScript(email)}>Accept Quote</button>
-      ) : (
-        <p>Please Login to Generate Quote</p>
-      )}
+      <button onClick={runSendMailScript(email)}>Accept Quote</button>
     </div>
   );
 };
