@@ -13,10 +13,12 @@ import { Calculator } from "./pages/Calculator/Calculator";
 import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
 import { AccountDetails } from "./pages/Account/AccountDetails";
+import { AuthProvider } from "./_utils/AuthContext";
 
 export default function App() {
   return (
     <Router>
+      <AuthProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -30,6 +32,7 @@ export default function App() {
           <Route path="account" element={<AccountDetails />} />
         </Route>
       </Routes>
+      </AuthProvider>
     </Router>
   );
 }

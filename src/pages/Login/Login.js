@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   auth,
@@ -8,13 +6,22 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
 } from "../../_utils/firebase";
-import './Login.css';
+import "./Login.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [user, setUser] = useState(null); // User state
   const navigate = useNavigate(); // Access to the navigate function
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe(); // Cleanup function to unsubscribe from the listener
+  }, []);
 
   const handleGoogleSignIn = async () => {
     try {
@@ -37,6 +44,15 @@ export const Login = () => {
     } catch (error) {
       console.error("Error signing in with Email/Password:", error.message);
       setErrorMessage("Incorrect email or password");
+    }
+  };
+
+  const handleExportUserData = () => {
+    if (user) {
+      // Export user data or perform actions with the user object
+      console.log("User data:", user);
+    } else {
+      console.log("User not logged in");
     }
   };
 
@@ -69,6 +85,10 @@ export const Login = () => {
       </div>
 
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+
+      <div>
+        <button onClick={handleExportUserData}>Export User Data</button>
+      </div>
 
       <div>
         <Link to="/register">
