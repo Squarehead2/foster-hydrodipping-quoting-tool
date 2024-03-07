@@ -16,8 +16,8 @@ import "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBqjQma3OaePhsaHi9HlG5qWBo0FfzKyeo",
-  authDomain: "foster-hydro-dipping-cf805.firebaseapp.com",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY.toString(),
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: "foster-hydro-dipping-cf805",
   storageBucket: "foster-hydro-dipping-cf805.appspot.com",
   messagingSenderId: "1003192700488",
