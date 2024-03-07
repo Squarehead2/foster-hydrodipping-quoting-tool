@@ -47,15 +47,6 @@ export const Login = () => {
     }
   };
 
-  const handleExportUserData = () => {
-    if (user) {
-      // Export user data or perform actions with the user object
-      console.log("User data:", user);
-    } else {
-      console.log("User not logged in");
-    }
-  };
-
   return (
     <div className="login">
       <form>
@@ -86,9 +77,7 @@ export const Login = () => {
 
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
-      <div>
-        <button onClick={handleExportUserData}>Export User Data</button>
-      </div>
+  
 
       <div>
         <Link to="/register">
