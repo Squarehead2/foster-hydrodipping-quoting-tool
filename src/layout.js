@@ -22,6 +22,7 @@ export const Layout = () => {
               <li><Link className="navbar-text" to="login">Login</Link></li>
               <li><Link className="navbar-text" to="account">Account</Link></li>
               <li><Link className="navbar-text" to="about">About</Link></li>
+              <li><Link className="navbar-text" to="admin">Admin</Link></li>
             </ul>
           </div>
         </div>

@@ -14,6 +14,7 @@ import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
 import { AccountDetails } from "./pages/Account/AccountDetails";
 import { AuthProvider } from "./_utils/AuthContext";
+import { AdminAcc } from "./pages/admin/AdminAcc";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="account" element={<AccountDetails />} />
+          <Route path="admin" element={<AdminAcc />} />
         </Route>
       </Routes>
       </AuthProvider>
