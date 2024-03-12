@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, createUserWithEmailAndPassword } from "../../_utils/firebase";
+import "./Register.css";
 
 export const Register = () => {
   const [email, setEmail] = useState("");
@@ -22,29 +23,46 @@ export const Register = () => {
   };
 
   return (
-    <div className="register">
-      <h2>Register</h2>
+    <div className="w-full flex items-center justify-center">
+        <div className="w-full text-center my-3">
+      <h2 className="text-2xl text-black font-medium">Register</h2>
+     
       <form>
-        <label>
-          Email:
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button type="submit" onClick={handleRegister}>
+      <div className="flex border-b-black border-b-2 mx-5 my-7 mr-5 py-1">
+        <input
+        type="text"
+        className="w-11/12 outline-none"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder=" Enter your email"
+        />
+        <div className="w-2/12 flex items-center justify-center">
+          <i className="fa-solid fa-envelope text-xl"></i>
+        </div>
+      </div>
+      
+      <div className="flex  border-b-black border-b-2 mx-5 my-7 mr-5 py-1">  
+        <input
+        type="password"
+        className="w-11/12 outline-none"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder=" Create password"
+        />
+        <div className="w-2/12 flex items-center justify-center">
+          <i className="fa-solid fa-lock text-xl"></i>
+        </div>
+      </div>
+
+        <button className="bg-black" type="submit" onClick={handleRegister}>
           Register
         </button>
+        <div>
+          <p className=" text-center">Already Have an account? / Login</p>
+        </div>
       </form>
+    </div>
     </div>
   );
 };
+

@@ -6,7 +6,7 @@
   color: white;
 
 }
-.navbar {
+.navbar { 
   background-color: rgb(0, 0, 0);/* Bootstrap equivalent for .navbar-text */
   .navbar-text {
     text-align: center;
