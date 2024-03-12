@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <p className="font-roboto">
+        <p className="">
           Transforming your gear from mundane to magnificent has never been
           easier with Foster Hydro Dipping! Dive into a world of endless
           possibilities as we specialize in hydrographic printing, giving your

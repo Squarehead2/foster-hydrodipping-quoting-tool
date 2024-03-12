@@ -17,6 +17,10 @@ export const Login = () => {
   const navigate = useNavigate(); // Access to the navigate function
 
   useEffect(() => {
+    console.log(email);
+  });
+
+  useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
     });
@@ -55,17 +59,15 @@ export const Login = () => {
           label="Email"
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={setEmail}
         />
 
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+        <InputField
+          label="Password"
+          type="password"
+          value={password}
+          onChange={setPassword}
+        />
         <button type="submit" onClick={handleEmailPasswordSignIn}>
           Login with Email/Password
         </button>

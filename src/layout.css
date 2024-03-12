@@ -1,29 +1,20 @@
 .navbar-text {
   text-align: center;
-  font: italic;
+
   font-size: 20px;
   text-decoration: none;
-  color: white;
-
 }
-.navbar { 
-  background-color: rgb(0, 0, 0);/* Bootstrap equivalent for .navbar-text */
+.navbar {
   .navbar-text {
     text-align: center;
-    font-style: italic;
+
     font-size: 20px;
-    color: #000000;
   }
 
   /* Bootstrap equivalent for .navbar */
   .navbar {
     background-color: rgb(0, 0, 0);
     border-bottom: 20px solid #242424; /* Changed to use 'solid' */
-  }
-
-  /* Bootstrap equivalent for .navbar-text:hover */
-  .navbar-text:hover {
-    color: #242424;
   }
 
   /* Bootstrap equivalent for .logo */
@@ -34,8 +25,6 @@
   /* Bootstrap equivalent for ul */
   ul {
     list-style-type: none;
-    background-color: #1d1919;
-    
   }
 
   /* Bootstrap equivalent for .menu li */
@@ -44,7 +33,6 @@
     margin: 10px;
     font-size: 20px;
     font-weight: bold;
-    color: #89CFF0;
   }
 
   /* Bootstrap equivalent for .menu */
@@ -59,7 +47,6 @@
   .navbar li:first-child {
     margin-right: auto;
     font-size: 30px;
-    color: #89CFF0;
   }
 
   /* The following App-header styles remain unchanged */
@@ -73,47 +60,35 @@
     font-size: calc(10px + 2vmin);
     color: rgb(0, 0, 0);
   }
-  border-bottom:#181515;
+
   border-bottom-width: 20px;
-  
 }
 
-.navbar-text:hover {
-  color: #301b1b;
-  ;
-
-}
-
-.logo{
+.logo {
   font-size: 80px;
 }
 
-
-ul{
+ul {
   list-style-type: none;
-  background-color: #000000;
 }
 
-.menu li{
+.menu li {
   padding: 10px;
   margin: 10px;
   font-size: 20px;
   font-weight: bold;
-  color: #242424;
- 
 }
 
-.menu{
+.menu {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: auto;
 }
 
-.navbar li:first-child{
+.navbar li:first-child {
   margin-right: auto;
   font-size: 30px;
-  color: #89CFF0;
 }
 .App-header {
   background-color: #282c34;
@@ -126,6 +101,6 @@ ul{
   color: rgb(0, 0, 0);
 }
 
-a{
-  color: rgb(255, 255, 255)
+a {
+  color: rgb(255, 255, 255);
 }

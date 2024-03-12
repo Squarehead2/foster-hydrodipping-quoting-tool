@@ -13,7 +13,7 @@ class InputField extends Component {
 
   handleChange = (e) => {
     const { value } = e.target;
-    this.setState({ value });
+    this.props.onChange(value); // Call the onChange prop with the new value
     this.validate(value);
   };
 
@@ -59,8 +59,8 @@ class InputField extends Component {
   };
 
   render() {
-    const { label, type, placeholder, style } = this.props;
-    const { value, isValid, errorMessage } = this.state;
+    const { label, type, placeholder, style, value } = this.props; // Get value from props instead of state
+    const { isValid, errorMessage } = this.state;
 
     return (
       <div className="mb-6">
@@ -69,9 +69,8 @@ class InputField extends Component {
         </label>
         <input
           type={type}
-          value={value}
+          value={value} // Use value from props
           onChange={this.handleChange}
-          placeholder={placeholder}
           className={`shadow appearance-none border border-gray-300 rounded-lg w-full py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
             !isValid ? "border-red-500" : ""
           } focus:bg-gray-100`}
@@ -94,6 +93,8 @@ InputField.propTypes = {
   minLength: PropTypes.number,
   pattern: PropTypes.instanceOf(RegExp),
   customValidation: PropTypes.func,
+  value: PropTypes.string.isRequired, // Add validation for 'value' prop
+  onChange: PropTypes.func.isRequired, // Add validation for 'onChange' prop
 };
 
 export default InputField;

@@ -5,7 +5,14 @@ module.exports = {
     extend: {
       fontFamily: {
         roboto: ["Roboto"],
-        IBM: ["IBM Plex Sans"],
+      },
+      colors: {
+        primary: {
+          100: "#78A083",
+          200: "#50727B",
+          300: "#344955",
+          400: "#35374B",
+        },
       },
     },
   },

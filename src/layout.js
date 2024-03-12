@@ -41,11 +41,11 @@ export const Layout = () => {
   return (
     <>
       {/* Navigation bar */}
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-primary-300">
         {/* Left side of the navbar */}
-        <div className="navbar-start">
+        <div className="navbar-start ">
           {/* Dropdown menu */}
-          <div className="dropdown">
+          <div className="dropdown ">
             <button tabIndex={0} className="btn btn-ghost btn-circle">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -65,66 +65,88 @@ export const Layout = () => {
             {/* Dropdown content */}
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-primary-400 flex border-1 border-solid border-purple-400 justify-center items-center"
             >
               {/* Navigation links */}
-              <li>
-                <Link className="navbar-text" to="/">
+              <li className="flex justify-center items-center">
+                <Link className="text-[20px] hover:text-primary-200" to="/">
                   Home
                 </Link>
               </li>
-              <li>
-                <Link className="navbar-text" to="blog">
+              <li className="flex justify-center align-center">
+                <Link className="text-[20px] hover:text-primary-200" to="blog">
                   Blog
                 </Link>
               </li>
-              <li>
-                <Link className="navbar-text" to="instockdesigns">
+              <li className="flex justify-center align-center">
+                <Link
+                  className="text-[20px] hover:text-primary-200 text-center"
+                  to="instockdesigns"
+                >
                   In Stock Designs
                 </Link>
               </li>
-              <li>
-                <Link className="navbar-text" to="newestdesigns">
+              <li className="flex justify-center items-center">
+                <Link
+                  className="text-[20px] hover:text-primary-200 text-center"
+                  to="newestdesigns"
+                >
                   Newest Designs
                 </Link>
               </li>
-              <li>
-                <Link className="navbar-text" to="recentworks">
+              <li className="flex justify-center items-center">
+                <Link
+                  className="text-[20px] hover:text-primary-200 text-center"
+                  to="recentworks"
+                >
                   Recent Works
                 </Link>
               </li>
-              <li>
-                <Link className="navbar-text" to="calculator">
+              <li className="flex justify-center align-center">
+                <Link
+                  className="text-[20px] hover:text-primary-200"
+                  to="calculator"
+                >
                   Calculator
                 </Link>
               </li>
-              <li>
-                <Link className="navbar-text" to="register">
-                  Register
-                </Link>
-              </li>
+
               {!currentUser ? (
                 <>
-                  <li>
-                    <Link className="navbar-text" to="login">
+                  <li className="flex justify-center align-center">
+                    <Link
+                      className="text-[20px] hover:text-primary-200"
+                      to="login"
+                    >
                       Login
+                    </Link>
+                  </li>
+                  <li className="flex justify-center align-center">
+                    <Link
+                      className="text-[20px] hover:text-primary-200"
+                      to="register"
+                    >
+                      Register
                     </Link>
                   </li>
                 </>
               ) : (
-                <li>
-                  <Link className="navbar-text" to="account">
+                <li className="flex justify-center align-center">
+                  <Link
+                    className="text-[20px] hover:text-primary-200"
+                    to="account"
+                  >
                     Account
                   </Link>
                 </li>
               )}
               <li>
-                <Link className="navbar-text" to="about">
+                <Link className="text-[20px] hover:text-primary-200" to="about">
                   About
                 </Link>
               </li>
-              <li>
-                <Link className="navbar-text" to="admin">
+              <li className="flex justify-center align-center">
+                <Link className="text-[20px] hover:text-primary-200" to="admin">
                   Admin
                 </Link>
               </li>
@@ -162,7 +184,7 @@ export const Layout = () => {
 
           {/* Conditional rendering based on user authentication */}
           {currentUser ? (
-            <div className="dropdown dropdown-bottom dropdown-end avatar placeholder">
+            <div className="dropdown dropdown-bottom dropdown-end avatar placeholder ">
               {/* User avatar */}
               <div
                 tabIndex={0}
@@ -172,21 +194,24 @@ export const Layout = () => {
                 <span className="text-3xs">{firstLetter}</span>
               </div>
               {/* Dropdown content for authenticated user */}
-              <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li>
-                  <Link to="account" className="navbar-text">
+              <ul className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52 bg-primary-400">
+                <li className="flex justify-center align-center">
+                  <Link
+                    to="account"
+                    className="text-[20px] hover:text-primary-200"
+                  >
                     Account
                   </Link>
                 </li>
-                <li>
+                <li className="flex justify-center align-center">
                   {/* Logout button */}
                   <button
-                    className="navbar-text"
+                    className="text-[20px] text-white hover:text-primary-200"
                     onClick={() => {
                       handleLogout();
                     }}
                   >
-                    logout
+                    Logout
                   </button>
                 </li>
               </ul>
