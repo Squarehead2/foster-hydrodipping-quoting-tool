@@ -73,16 +73,61 @@ export const Layout = () => {
                   Home
                 </Link>
               </li>
-              <li><Link className="navbar-text" to="blog">Blog</Link></li>
-              <li><Link className="navbar-text" to="instockdesigns">In Stock Designs</Link></li>
-              <li><Link className="navbar-text" to="newestdesigns">Newest Designs</Link></li>
-              <li><Link className="navbar-text" to="recentworks">Recent Works</Link></li>
-              <li><Link className="navbar-text" to="calculator">Calculator</Link></li>
-              <li><Link className="navbar-text" to="register">Register</Link></li>
-              <li><Link className="navbar-text" to="login">Login</Link></li>
-              <li><Link className="navbar-text" to="account">Account</Link></li>
-              <li><Link className="navbar-text" to="about">About</Link></li>
-              <li><Link className="navbar-text" to="admin">Admin</Link></li>
+              <li>
+                <Link className="navbar-text" to="blog">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-text" to="instockdesigns">
+                  In Stock Designs
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-text" to="newestdesigns">
+                  Newest Designs
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-text" to="recentworks">
+                  Recent Works
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-text" to="calculator">
+                  Calculator
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-text" to="register">
+                  Register
+                </Link>
+              </li>
+              {!currentUser ? (
+                <>
+                  <li>
+                    <Link className="navbar-text" to="login">
+                      Login
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <Link className="navbar-text" to="account">
+                    Account
+                  </Link>
+                </li>
+              )}
+              <li>
+                <Link className="navbar-text" to="about">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-text" to="admin">
+                  Admin
+                </Link>
+              </li>
               {/* ... (other navigation links) ... */}
             </ul>
           </div>
@@ -150,7 +195,6 @@ export const Layout = () => {
             <Link className="btn btn-ghost" to="login">
               Login
             </Link>
-            
           )}
         </div>
       </div>
