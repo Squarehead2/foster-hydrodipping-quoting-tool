@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
 } from "../../_utils/firebase";
 import "./Login.css";
+import InputField from "../../components/inputFields";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -48,17 +49,15 @@ export const Login = () => {
   };
 
   return (
-    
     <div className="login">
       <form>
-        <label>
-          Email:
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
+        <InputField
+          label="Email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
         <label>
           Password:
           <input
@@ -77,8 +76,6 @@ export const Login = () => {
       </div>
 
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-
-  
 
       <div>
         <Link to="/register">

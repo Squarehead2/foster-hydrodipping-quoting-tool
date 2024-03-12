@@ -4,8 +4,9 @@ const runSendMailScript = async (text) => {
     const email = "williamblack606@gmail.com";
 
     const response = await fetch(
-      `http://localhost:3001/run-script?email=${email}&text=${text}`
+      `http://localhost:3001/run-script?email=${email}&text=${text}&app_password=${process.env.REACT_APP_APP_PASSWORD}&email_address=${process.env.REACT_APP_EMAIL_ADDRESS}`
     );
+
     console.log("Response:", response);
     const result = await response.text();
     console.log(result);
@@ -15,4 +16,3 @@ const runSendMailScript = async (text) => {
 };
 
 export default runSendMailScript;
-

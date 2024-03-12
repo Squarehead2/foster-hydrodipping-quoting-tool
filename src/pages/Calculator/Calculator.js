@@ -13,13 +13,7 @@ import { useState } from "react";
 import item from "./Objects/item";
 import objectAddition from "./Mathematics/objectAddition";
 import runSendMailScript from "../../_utils/runSendMailScript";
-import {
-  auth,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  signOut,
-  updateProfile,
-} from "../../_utils/firebase";
+import { auth, onAuthStateChanged } from "../../_utils/firebase";
 //create a usestate hook to store the objects
 
 export const Calculator = () => {
@@ -415,7 +409,13 @@ export const Calculator = () => {
         ))}
       </ul>
       {currentUser ? (
-        <button onClick={runSendMailScript(email)}>Accept Quote</button>
+        <button
+          onClick={() => {
+            runSendMailScript(email);
+          }}
+        >
+          Accept Quote
+        </button>
       ) : (
         <p>Please Login to Generate Quote</p>
       )}

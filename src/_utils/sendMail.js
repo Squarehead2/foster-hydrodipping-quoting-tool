@@ -1,14 +1,17 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-const [, , to, subject, text, html] = process.argv;
+
+const [, , to, subject, text, html, app_password, email_address] = process.argv;
+
+console.log(email_address);
 console.log(html);
 
 const mailOptions = {
   from: {
     name: "Foster Hydrodipping",
-    addres: process.env.EMAIL_ADDRESS,
+    address: email_address,
   },
-  to: to,
+  to: "williamblack606@gmail.com",
   subject: subject,
   text: text,
   html: "<div>" + html + "</div>",
@@ -20,8 +23,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.APP_PASSWORD,
+    user: email_address,
+    pass: app_password,
   },
 });
 
@@ -31,7 +34,7 @@ const sendMail = async (transporter, mailOptions) => {
     await transporter.sendMail(mailOptions);
     console.log("Email sent successfully");
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
