@@ -12,7 +12,7 @@ export const AdminAcc = () => {
     <div className="AdminPage">
       <form> {/* Form element should wrap the conditional rendering */}
         {isAddPattern ? (
-          <div className="form-box">
+          <div className="form-box ">
             <h1> Add Pattern</h1>
             <div className="input-box">
               <div className="input-field">
