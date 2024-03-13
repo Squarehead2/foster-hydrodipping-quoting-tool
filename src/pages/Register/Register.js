@@ -25,7 +25,7 @@ export const Register = () => {
   return (
     <div className="container">
       <div className="form-container">
-        <h2 className="text-2xl text-black font-medium ">Register</h2>
+        <h2 className="text-3xl text-primary-200 font-light">Register</h2>
         <form>
           <div className="input-container">
             <input
