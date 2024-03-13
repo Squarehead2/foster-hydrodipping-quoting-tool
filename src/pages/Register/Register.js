@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, createUserWithEmailAndPassword } from "../../_utils/firebase";
-import "./Register.css";
 
 export const Register = () => {
   const [email, setEmail] = useState("");
@@ -23,29 +22,31 @@ export const Register = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <h2 className="text-2xl text-black font-medium ">Register</h2>
+    <div class="container max-w-md mx-auto absolute bg-white p-16 text-center rounded-3xl flex justify-center items-center top-1/4">
+      <div class="form-container bg-white rounded-lg p-10 shadow-md max-w-md w-full">
+        <h2 class="text-3xl text-primary-200 font-light">Register</h2>
         <form>
-          <div className="input-container">
+          <div class="input-container mb-5">
             <input
               type="text"
+              class="w-full px-4 py-3 border border-gray-300 rounded-md outline-none"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
             />
-            <i className="fa-solid fa-envelope text-xl mx "></i>
+            <i class="fa-solid fa-envelope text-xl mx ml-1"></i>
           </div>
-          <div className="input-container">
+          <div class="input-container mb-5">
             <input
               type="password"
+              class="w-full px-4 py-3 border border-gray-300 rounded-md outline-none"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Create password"
             />
-            <i className="fa-solid fa-lock text-xl"></i>
+            <i class="fa-solid fa-lock text-xl ml-1"></i>
           </div>
-          <div className="button-container">
+          <div class="w-full py-3 bg-primary-300 text-white rounded-md cursor-pointer hover:bg-primary-400">
             <button type="submit" onClick={handleRegister}>
               Register
             </button>

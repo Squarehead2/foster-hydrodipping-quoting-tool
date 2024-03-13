@@ -2,18 +2,12 @@ import React, { useState } from 'react'; // Corrected import statement
 import './AdminAcc.css';
 
 export const AdminAcc = () => {
-  // State to determine which form is shown
-  const [isAddPattern, setIsAddPattern] = useState(true);
-
-  // Toggle between "Add Pattern" and "Add Merchandise" forms
-  const toggleForm = () => setIsAddPattern(!isAddPattern);
 
   return (
-    <div className="AdminPage">
-      <form> {/* Form element should wrap the conditional rendering */}
-        {isAddPattern ? (
-          <div className="form-box ">
-            <h1> Add Pattern</h1>
+    <div className="AdminPage flex justify-center">
+  <form> {/* Form element should wrap the conditional rendering */}
+          <div className="pattern-box">
+            <h1 className="text-3xl text-primary-200 font-light"> Add Pattern</h1>
             <div className="input-box">
               <div className="input-field">
                 <input type="text" placeholder="Pattern Name" />
@@ -26,35 +20,40 @@ export const AdminAcc = () => {
                   {/* Options should be added here */}
                 </select>
               </div>
+              <div class="w-full py-3 bg-primary-300 text-white rounded-md cursor-pointer hover:bg-primary-400">
+            <button type="submit">
+              Add pattern
+            </button>
+            </div>
             </div>
           </div>
-        ) : (
-          <div className="form-box">
-            <h1> Add Merchandise</h1>
+
+          </form>
+
+            <form>
+          <div className="merchandise-box ">
+            <h1 className='text-3xl text-primary-200 font-light'> Merchandise</h1>
             <div className="input-box">
               <div className="input-field">
-                <input type="text" placeholder="Merchandise Name" />
+                <input type="text" placeholder="Merchandise name" />
               </div>
               <div className="input-field">
-                <input type="file" placeholder="Merchandise Image" />
+                <input type="file" placeholder="Merchandise image" />
               </div>
               <div className="input-field">
                 <select>
                   {/* Options should be added here */}
                 </select>
               </div>
+              <div class="w-full py-3 bg-primary-300 text-white rounded-md cursor-pointer hover:bg-primary-400">
+            <button type="submit">
+              Add Merchandise
+            </button>
+            </div>
             </div>
           </div>
-        )}
-        <div className="btns">
-          <button type="button" onClick={toggleForm}>
-            {isAddPattern ? "Switch to Add Merchandise" : "Switch to Add Pattern"}
-          </button>
-          <button type="submit">
-            {isAddPattern ? "Add Pattern" : "Add Merchandise"}
-          </button>
-        </div>
-      </form>
-    </div>
+          </form>
+  </div>
+
   );
 };
