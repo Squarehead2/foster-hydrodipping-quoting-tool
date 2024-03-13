@@ -1,13 +1,11 @@
 .navbar-text {
   text-align: center;
-
   font-size: 20px;
   text-decoration: none;
 }
 .navbar {
   .navbar-text {
     text-align: center;
-
     font-size: 20px;
   }
 
@@ -46,6 +44,7 @@
   /* Bootstrap equivalent for .navbar li:first-child */
   .navbar li:first-child {
     margin-right: auto;
+    margin-left: auto;
     font-size: 30px;
   }
 
@@ -88,7 +87,7 @@ ul {
 
 .navbar li:first-child {
   margin-right: auto;
-  font-size: 30px;
+  font-size: 40px;
 }
 .App-header {
   background-color: #282c34;

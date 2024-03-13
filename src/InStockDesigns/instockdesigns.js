@@ -1,5 +1,5 @@
-export default function InStockDesigns() {
+export default function NewestDesigns() {
     return (
-        <p>In stock designs coming soon!</p>
+        <p>Newest Designs coming soon!</p>
     )
     }
