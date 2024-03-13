@@ -3,7 +3,7 @@
 .container {
     max-width: 400px; /* Form isn't going too far to the right*/
     position: absolute;
-    background: #fff;
+    background-color: #fff;
     padding: 50px 60px 70px;
     text-align: center; 
     border-radius: 30px;
@@ -41,7 +41,7 @@
 .button-container button {
     width: 100%;
     padding: 15px; /* Increased padding */
-    background-color: #000;
+    background-color: #344955;
     color: #fff;
     border: none;
     border-radius: 4px;
