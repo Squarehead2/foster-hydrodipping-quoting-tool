@@ -17,7 +17,7 @@ export const Register = () => {
       navigate("/"); // Redirect to home page after successful registration
     } catch (error) {
       console.error("Error registering user:", error.message);
-      alert("Email Already In Use");
+      alert("Error Registering User");
     }
   };
 
@@ -28,7 +28,7 @@ export const Register = () => {
         <form>
           <div class="input-container mb-5">
             <input
-              type="text"
+              type="email"
               class="w-full px-4 py-3 border border-gray-300 rounded-md outline-none"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

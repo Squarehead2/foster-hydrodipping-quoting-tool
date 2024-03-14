@@ -8,6 +8,8 @@ import {
     updateProfile,
 } from "../../_utils/firebase";
 import { useNavigate } from "react-router-dom";
+import firstLetterEmail from "../../_utils/firstLetterEmail";
+
 
 export const AccountDetails = () => {
 
@@ -15,6 +17,9 @@ export const AccountDetails = () => {
     const [email, setEmail] = useState("");
 
     const [currentUser, setCurrentUser] = useState();
+    const [firstLetter, setFirstLetter] = useState("");
+
+    const [selectedTab, setSelectedTab] = useState("email");
 
     const navigate = useNavigate();
 
@@ -31,6 +36,11 @@ export const AccountDetails = () => {
             }
         });
     }, []);
+
+    useEffect(() => {
+        setFirstLetter(firstLetterEmail(currentUser?.email));
+        console.log(currentUser?.email);
+      }, [currentUser]);
 
     if (displayName === "") {
         setDisplayName("name");
@@ -65,16 +75,37 @@ export const AccountDetails = () => {
     }
 
     return(
-        <div>
+        <div className="p-8 bg-gray-500 mx-40 max-h-full">
             {currentUser ? (
                 <div>
-                    <p>Email: {email}</p> 
-                    <p>Name: {displayName}</p> <button onClick={handleChangeName} >Change Name</button>
-                    <button onClick={handleChangePassword} >Change Password</button>
-                    <button onClick={handleLogout} >Logout</button>
+                    <div className="flex items-center m-4 p-10">
+                        <div className="bg-neutral text-neutral-content rounded-full w-12 flex items-center justify-center p-3">
+                            <span className="text-3xs">{firstLetter}</span>
+                        </div>
+                        <p className="ml-2">display name: {displayName}</p>
+                        <button onClick={handleChangeName} >Change Name</button>
+                    </div>
+                    <div>
+                        <button onClick={() => setSelectedTab("email")}>Email</button>
+                        <button onClick={() => setSelectedTab("password")} >Password</button>
+                    </div>
+                    {selectedTab === "email" && (
+                        <div>
+                            <p>Email: {email}</p>
+                            <button>Change Email</button>
+                        </div>
+                    )}
+                    {selectedTab === "password" && (
+                        <div>
+                            <button onClick={handleChangePassword} >Change Password</button>
+                        </div>
+                    )}
                 </div>
+                    
             ) : (
-                <p>no user</p>
+                <div>
+                    <p>no user</p>
+                </div>
             )}
         </div>
     )
