@@ -1,76 +1,77 @@
-
+/* Styles the pattern form  */
 .pattern-box{
-  width: 90%;
-  max-width: 500px;
-  position: absolute;
-  top: 50%;
-  left: 35%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 50px 60px 70px;
-  text-align: center; 
-  border-radius: 30px; 
+  width: 90%; /* Width of the form */
+  max-width: 500px; /* Maximum width of the form to 500px*/
+  position: absolute; /* Position of the form */
+  top: 50%; /* Position of the top of the form */
+  left: 35%; /* Position of the left of the form */
+  transform: translate(-50%, -50%); /* Positions the box by -50% horizontally and vertically, used to center it */
+  background: #fff; /* Background color of the form */
+  padding: 50px 60px 70px; /* Padding of the form on top sides and bottom*/
+  text-align: center; /* Text alignment of the form */
+  border-radius: 30px; /* Border radius of the form */
 }
-
+/* Styles the Merchandise form */
 .merchandise-box {
-  width: 90%;
-  max-width: 500px;
-  position: absolute;
-  top: 50%;
-  left: 70%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 50px 60px 70px;
-  text-align: center; 
-  border-radius: 30px; 
+  width: 90%; /* Width of the form */
+  max-width: 500px; /* Maximum width of the form to 500px*/
+  position: absolute; /* Position of the form */
+  top: 50%; /* Position of the top of the form */
+  left: 70%; /* Position of the left of the form */
+  transform: translate(-50%, -50%); /* Positions the box by -50% horizontally and vertically, used to center it */
+  background: #fff; /* Background color of the form */
+  padding: 50px 60px 70px; /* Padding of the form on top sides and bottom*/
+  text-align: center;  /* Text alignment of the form */
+  border-radius: 30px;  /* Border radius of the form */
 }
 
+/* Styles the titles of each form */
 .form-box h1{
-  font-size: 30px;
-  font-weight: 900;
-  margin-bottom: 60px;
-  color: #344955;
-  position: relative;
+  font-size: 30px; /* Font size of the title */
+  font-weight: 900; /* Font weight of the title */
+  margin-bottom: 60px; /* Margin bottom of the title */
+  color: #344955; /* Color of the title */
+  position: relative; /* Position of the title */
 }
 
 
-
-.input-field{
-  background: #eaeaea;
-  margin: 15px 0;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  height: 20%;
-  outline: auto;
+/* Styles the input fields for Name and File box*/
+.input-field{ 
+  background: #eaeaea; /* Background color of the input field */
+  margin: 15px 0; /* Margin of the input field */
+  border-radius: 3px; /* Border radius of the input field */
+  display: flex; /* Display of the input field */
+  align-items: center; /* Aligns the input field */
+  height: 20%; /* Height of the input field */
+  outline: auto; /* Outline of the input field */
 }
-
+/* Styles the dropdown box containing the preset prices  */
 input, select{
-  width: 100%;
-  background: transparent;
+  width: 100%; /* Width of the input field */
+  background: transparent; /* Background color of the input field */
 }
-
+/* Styles the buttons of each form */
 .btns {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  height: 0;
+  width: 100%; /* Width of the button */
+  display: flex; /* Sets the display property to flex*/
+  justify-content: space-between; /* Justify the space between each button */
+  height: 0; /* Height of the button */
   
 
 }
-
+/* Styles the buttons of each form */
 .btns button{
-  flex-basis: 48%;
-  background: #344955;
-  color: #fff;
-  height: 40px;
-  border-radius: 20px;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-  width: 100%;
+  flex-basis: 48%; /* Flex basis of the button (size of the button) */
+  background: #344955; /* Background color of the button */
+  color: #fff; /* Color of the button */
+  height: 40px; /* Height of the button */
+  border-radius: 20px; /* Border radius of the button */
+  border: 0; /* Border of the button */
+  outline: 0; /* Outline of the button */
+  cursor: pointer; /* changes the pointer to a Cursor when hovering over the button */
+  width: 100%; /* Width of the button */
 }
 
 .input-box{
-  height: 200px;
+  height: 200px; /* Height of the input box */
 }
