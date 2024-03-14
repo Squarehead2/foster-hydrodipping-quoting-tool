@@ -140,11 +140,6 @@ export const Layout = () => {
                   </Link>
                 </li>
               )}
-              <li>
-                <Link className="text-[20px] hover:text-primary-200" to="about">
-                  About
-                </Link>
-              </li>
               <li className="flex justify-center align-center">
                 <Link className="text-[20px] hover:text-primary-200" to="admin">
                   Admin
@@ -164,24 +159,6 @@ export const Layout = () => {
 
         {/* Right side of the navbar */}
         <div className="navbar-end">
-          {/* Icon link */}
-          <Link className="btn btn-ghost btn-circle" to="/">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </Link>
-
           {/* Conditional rendering based on user authentication */}
           {currentUser ? (
             <div className="dropdown dropdown-bottom dropdown-end avatar placeholder ">
@@ -189,7 +166,7 @@ export const Layout = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="bg-neutral text-neutral-content rounded-full w-10 "
+                className="bg-neutral text-neutral-content rounded-full w-12 "
               >
                 <span className="text-3xs">{firstLetter}</span>
               </div>
