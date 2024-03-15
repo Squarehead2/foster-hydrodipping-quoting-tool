@@ -10,6 +10,7 @@ import {
   sendPasswordResetEmail,
   signOut,
   updateProfile,
+  updateEmail,
 } from "firebase/auth";
 import "firebase/auth";
 
@@ -42,5 +43,6 @@ export {
   sendPasswordResetEmail,
   signOut,
   updateProfile,
+  updateEmail,
 };
 export default app;
