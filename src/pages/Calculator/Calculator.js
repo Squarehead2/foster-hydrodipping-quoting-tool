@@ -195,230 +195,254 @@ export const Calculator = () => {
   };
 
   return (
-    <div>
-      {/* create a drop down that gives you the option to add a cylinder or a rectangle */}
-      <label class="container">Choose a shape for surface area estimate:</label>
-      <select onChange={handleShapeChange} value={shape}>
-        <option value="cylinder">Cylinder</option>
-        <option value="rectangle">Rectangle</option>
-        <option value="sphere">Sphere</option>
-      </select>
-      {/* if the shape is a cylinder, display the radius and height inputs */}
-
-      {shape === "cylinder" && (
-        <div class="container">
-          <label>Radius (m) </label>
-          <input
-            type="number"
-            value={radius}
-            placeholder="0"
-            step="0.01" // Set step to allow two decimal places
-            onChange={(e) => {
-              const inputValue = parseFloat(e.target.value);
-              if (
-                (!isNaN(inputValue) && inputValue >= 0) ||
-                e.target.value === ""
-              ) {
-                setRadius(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
-              }
-            }}
-          />
-          <label>Height (m)</label>
-          <input
-            type="number"
-            value={height}
-            min="0"
-            step="0.01" // Set step to allow two decimal places
-            onChange={(e) => {
-              const inputValue = parseFloat(e.target.value);
-              if (
-                (!isNaN(inputValue) && inputValue >= 0) ||
-                e.target.value === ""
-              ) {
-                setHeight(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
-              }
-            }}
-          />
-        </div>
-      )}
-      {/* if the shape is a rectangle, display the length, width, and depth inputs */}
-      {shape === "rectangle" && (
-        <div>
-          <label>Length</label>
-          <input
-            type="number"
-            value={length}
-            min="0"
-            step="0.01" // Set step to allow two decimal places
-            onChange={(e) => {
-              const inputValue = parseFloat(e.target.value);
-              if (
-                (!isNaN(inputValue) && inputValue >= 0) ||
-                e.target.value === ""
-              ) {
-                setLength(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
-              }
-            }}
-          />
-          <label>Width</label>
-          <input
-            type="number"
-            value={width}
-            min="0"
-            step="0.01" // Set step to allow two decimal places
-            onChange={(e) => {
-              const inputValue = parseFloat(e.target.value);
-              if (
-                (!isNaN(inputValue) && inputValue >= 0) ||
-                e.target.value === ""
-              ) {
-                setWidth(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
-              }
-            }}
-          />
-          <label>Depth</label>
-          <input
-            type="number"
-            value={depth}
-            min="0"
-            step="0.01" // Set step to allow two decimal places
-            onChange={(e) => {
-              const inputValue = parseFloat(e.target.value);
-              if (
-                (!isNaN(inputValue) && inputValue >= 0) ||
-                e.target.value === ""
-              ) {
-                setDepth(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
-              }
-            }}
-          />
-        </div>
-      )}
-      {shape === "sphere" && (
-        <div>
-          <label>Radius</label>
-          <input
-            type="number"
-            value={radius}
-            min="0"
-            step="0.01" // Set step to allow two decimal places
-            onChange={(e) => {
-              const inputValue = parseFloat(e.target.value);
-              if (
-                (!isNaN(inputValue) && inputValue >= 0) ||
-                e.target.value === ""
-              ) {
-                setRadius(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
-              }
-            }}
-          />
-          <label>
-            <strong>Optional: </strong>Radius of Slice to be Cut
-          </label>
-          <input
-            type="number"
-            value={cutRadius}
-            min="0"
-            step="0.01" // Set step to allow two decimal places
-            onChange={(e) => {
-              const inputValue = parseFloat(e.target.value);
-              if (
-                (!isNaN(inputValue) && inputValue >= 0) ||
-                e.target.value === ""
-              ) {
-                setCutRadius(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
-              }
-            }}
-          />
-          <label>
-            <strong>Optional: </strong>Length of Slice to be Cut
-          </label>
-          <input
-            type="number"
-            value={cutLength}
-            min="0"
-            step="0.01" // Set step to allow two decimal places
-            onChange={(e) => {
-              const inputValue = parseFloat(e.target.value);
-              if (
-                (!isNaN(inputValue) && inputValue >= 0) ||
-                e.target.value === ""
-              ) {
-                setCutLength(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
-              }
-            }}
-          />
-        </div>
-      )}
-
-      {/* create a button that adds the shape to the list of objects */}
-      <button onClick={handleAdd}>Add</button>
-      {/* display the list of objects */}
-      <ul>
-        {objects.map((object, index) => (
-          <ul key={index}>
-            <li>
-              {object.name}: {object.area}
-              <button onClick={() => handleDeleteObject(index)}>
-                <strong>X</strong>
-              </button>
-            </li>
-          </ul>
-        ))}
-      </ul>
-      {/* create a form for adding a description and name to the item */}
-      <form>
-        <label>Name</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label>Description</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </form>
-      {/* create a button that adds the item to the list of items */}
-
-      <button onClick={handleConfirmItem}>Confirm Item</button>
-      {/* display the list of items */}
-      <ul>
-        {items.map((item, index) => (
-          <ul key={index}>
-            <li>
-              {item.name}: {item.area} {item.description}{" "}
-              {"$" + (item.area * item.rate).toFixed(2)}
-              <button onClick={() => handleDeleteItem(index)}>
-                <strong>X</strong>
-              </button>
-            </li>
-            <li>
-              <label>Rate</label>
-              <select
-                onChange={(e) => handleRateChange(e, index)}
-                value={item.rate}
-              >
-                <option value="15">Generic Rate 1</option>
-                <option value="20">Generic Rate 2</option>
-              </select>
-            </li>
-          </ul>
-        ))}
-      </ul>
-      {currentUser ? (
-        <button
-          onClick={() => {
-            runSendMailScript(email);
-          }}
+    <div className="bg-white">
+      <div className="bg-white">
+        {/* create a drop down that gives you the option to add a cylinder or a rectangle */}
+        <label className="form-control w-full max-w-xs">
+          Choose a shape for surface area estimate:
+        </label>
+        <select
+          className="form-control w-full max-w-xs"
+          onChange={handleShapeChange}
+          value={shape}
         >
-          Accept Quote
+          <option value="cylinder">Cylinder</option>
+          <option value="rectangle">Rectangle</option>
+          <option value="sphere">Sphere</option>
+        </select>
+        {/* if the shape is a cylinder, display the radius and height inputs */}
+
+        {shape === "cylinder" && (
+          <div class="container bg-white">
+            <label className="form-control w-full max-w-xs">Radius (m) </label>
+
+            <input
+              className="input input-bordered w-full max-w-xs"
+              type="number"
+              value={radius}
+              placeholder="0"
+              step="0.01" // Set step to allow two decimal places
+              onChange={(e) => {
+                const inputValue = parseFloat(e.target.value);
+                if (
+                  (!isNaN(inputValue) && inputValue >= 0) ||
+                  e.target.value === ""
+                ) {
+                  setRadius(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
+                }
+              }}
+            />
+            <label className="form-control w-full max-w-xs">Height (m)</label>
+            <input
+              type="number"
+              value={height}
+              min="0"
+              step="0.01" // Set step to allow two decimal places
+              onChange={(e) => {
+                const inputValue = parseFloat(e.target.value);
+                if (
+                  (!isNaN(inputValue) && inputValue >= 0) ||
+                  e.target.value === ""
+                ) {
+                  setHeight(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
+                }
+              }}
+              className="input input-bordered w-full max-w-xs"
+            />
+          </div>
+        )}
+        {/* if the shape is a rectangle, display the length, width, and depth inputs */}
+        {shape === "rectangle" && (
+          <div>
+            <label className="form-control w-full max-w-xs">Length</label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              type="number"
+              value={length}
+              min="0"
+              step="0.01" // Set step to allow two decimal places
+              onChange={(e) => {
+                const inputValue = parseFloat(e.target.value);
+                if (
+                  (!isNaN(inputValue) && inputValue >= 0) ||
+                  e.target.value === ""
+                ) {
+                  setLength(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
+                }
+              }}
+            />
+            <label className="form-control w-full max-w-xs">Width</label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              type="number"
+              value={width}
+              min="0"
+              step="0.01" // Set step to allow two decimal places
+              onChange={(e) => {
+                const inputValue = parseFloat(e.target.value);
+                if (
+                  (!isNaN(inputValue) && inputValue >= 0) ||
+                  e.target.value === ""
+                ) {
+                  setWidth(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
+                }
+              }}
+            />
+            <label className="form-control w-full max-w-xs">Depth</label>
+            <input
+              type="number"
+              value={depth}
+              min="0"
+              step="0.01" // Set step to allow two decimal places
+              onChange={(e) => {
+                const inputValue = parseFloat(e.target.value);
+                if (
+                  (!isNaN(inputValue) && inputValue >= 0) ||
+                  e.target.value === ""
+                ) {
+                  setDepth(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
+                }
+              }}
+            />
+          </div>
+        )}
+        {shape === "sphere" && (
+          <div className="bg-white">
+            <label className="form-control w-full max-w-xs">Radius</label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              type="number"
+              value={radius}
+              min="0"
+              step="0.01" // Set step to allow two decimal places
+              onChange={(e) => {
+                const inputValue = parseFloat(e.target.value);
+                if (
+                  (!isNaN(inputValue) && inputValue >= 0) ||
+                  e.target.value === ""
+                ) {
+                  setRadius(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
+                }
+              }}
+            />
+            <label className="form-control w-full max-w-xs">
+              <strong>Optional: </strong>Radius of Slice to be Cut
+            </label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              type="number"
+              value={cutRadius}
+              min="0"
+              step="0.01" // Set step to allow two decimal places
+              onChange={(e) => {
+                const inputValue = parseFloat(e.target.value);
+                if (
+                  (!isNaN(inputValue) && inputValue >= 0) ||
+                  e.target.value === ""
+                ) {
+                  setCutRadius(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
+                }
+              }}
+            />
+            <label className="form-control w-full max-w-xs">
+              <strong>Optional: </strong>Length of Slice to be Cut
+            </label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              type="number"
+              value={cutLength}
+              min="0"
+              step="0.01" // Set step to allow two decimal places
+              onChange={(e) => {
+                const inputValue = parseFloat(e.target.value);
+                if (
+                  (!isNaN(inputValue) && inputValue >= 0) ||
+                  e.target.value === ""
+                ) {
+                  setCutLength(parseFloat(inputValue.toFixed(2))); // Limit to two decimal places
+                }
+              }}
+            />
+          </div>
+        )}
+
+        {/* create a button that adds the shape to the list of objects */}
+
+        <button onClick={handleAdd} className="btn">
+          Add
         </button>
-      ) : (
-        <p>Please Login to Generate Quote</p>
-      )}
+        {/* display the list of objects */}
+        <ul>
+          {objects.map((object, index) => (
+            <ul key={index}>
+              <li>
+                {object.name}: {object.area}
+                <button onClick={() => handleDeleteObject(index)}>
+                  <strong>X</strong>
+                </button>
+              </li>
+            </ul>
+          ))}
+        </ul>
+        {/* create a form for adding a description and name to the item */}
+        <form>
+          <label className="form-control w-full max-w-xs">Name</label>
+          <input
+            className="input input-bordered w-full max-w-xs"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label className="form-control w-full max-w-xs">Description</label>
+          <input
+            className="input input-bordered input-lg w-full max-w-xs"
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </form>
+        {/* create a button that adds the item to the list of items */}
+
+        <button className="btn" onClick={handleConfirmItem}>
+          Confirm Item
+        </button>
+        {/* display the list of items */}
+        <ul>
+          {items.map((item, index) => (
+            <ul key={index}>
+              <li>
+                {item.name}: {item.area} {item.description}{" "}
+                {"$" + (item.area * item.rate).toFixed(2)}
+                <button onClick={() => handleDeleteItem(index)}>
+                  <strong>X</strong>
+                </button>
+              </li>
+              <li>
+                <label>Rate</label>
+                <select
+                  onChange={(e) => handleRateChange(e, index)}
+                  value={item.rate}
+                >
+                  <option value="15">Generic Rate 1</option>
+                  <option value="20">Generic Rate 2</option>
+                </select>
+              </li>
+            </ul>
+          ))}
+        </ul>
+        {currentUser ? (
+          <button
+            className="btn"
+            onClick={() => {
+              runSendMailScript(email);
+            }}
+          >
+            Accept Quote
+          </button>
+        ) : (
+          <p>Please Login to Generate Quote</p>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,12 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import "./layout.css";
-import {
-  auth,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  signOut,
-  updateProfile,
-} from "../src/_utils/firebase";
+import { auth, onAuthStateChanged, signOut } from "../src/_utils/firebase";
 import firstLetterEmail from "../src/_utils/firstLetterEmail";
 import { useEffect, useState } from "react";
 
