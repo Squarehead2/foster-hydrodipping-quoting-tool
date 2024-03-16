@@ -121,6 +121,16 @@ export const Calculator = () => {
 
   //function that handles the shape change
   const handleShapeChange = (e) => {
+    setHeight(0);
+    setRadius(0);
+    setLength(0);
+    setWidth(0);
+    setDepth(0);
+    setCutRadius(0);
+    setCutLength(0);
+    setNumOfSides(0);
+    setRawArea(0);
+
     setShape(e.target.value);
   };
 
