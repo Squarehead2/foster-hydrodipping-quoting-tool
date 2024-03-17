@@ -12,7 +12,7 @@ import {
   updateProfile,
   updateEmail,
 } from "firebase/auth";
-import "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -31,6 +31,9 @@ const app = initializeApp(firebaseConfig);
 
 // Get auth instance
 const auth = getAuth(app);
+
+// Get storage instance
+export const storage = getStorage(app);
 
 // Export auth, GoogleAuthProvider, and signInWithPopup
 export {

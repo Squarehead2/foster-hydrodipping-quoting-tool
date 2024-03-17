@@ -1,79 +1,97 @@
-/* Styles the pattern form  */
-.pattern-box{
-  width: 90%; /* Width of the form */
-  max-width: 500px; /* Maximum width of the form to 500px*/
+/* Styles the pattern form */
+.pattern-box {
+  width: 45%; /* Width of the form */
+  max-width: 500px; /* Maximum width of the form to 500px */
   position: absolute; /* Position of the form */
   top: 50%; /* Position of the top of the form */
-  left: 35%; /* Position of the left of the form */
+  left: 30%; /* Position of the left of the form */
   transform: translate(-50%, -50%); /* Positions the box by -50% horizontally and vertically, used to center it */
   background: #fff; /* Background color of the form */
-  padding: 50px 60px 70px; /* Padding of the form on top sides and bottom*/
+  padding: 5vw 6vw 7vw; /* Padding of the form using vw units */
   text-align: center; /* Text alignment of the form */
-  border-radius: 30px; /* Border radius of the form */
+  border-radius: 3vw; /* Border radius of the form using vw units */
 }
+
 /* Styles the Merchandise form */
 .merchandise-box {
-  width: 90%; /* Width of the form */
-  max-width: 500px; /* Maximum width of the form to 500px*/
+  width: 45%; /* Width of the form */
+  max-width: 500px; /* Maximum width of the form to 500px */
   position: absolute; /* Position of the form */
   top: 50%; /* Position of the top of the form */
   left: 70%; /* Position of the left of the form */
   transform: translate(-50%, -50%); /* Positions the box by -50% horizontally and vertically, used to center it */
   background: #fff; /* Background color of the form */
-  padding: 50px 60px 70px; /* Padding of the form on top sides and bottom*/
-  text-align: center;  /* Text alignment of the form */
-  border-radius: 30px;  /* Border radius of the form */
+  padding: 5vw 6vw 7vw; /* Padding of the form using vw units */
+  text-align: center; /* Text alignment of the form */
+  border-radius: 3vw; /* Border radius of the form using vw units */
 }
 
 /* Styles the titles of each form */
-.form-box h1{
-  font-size: 30px; /* Font size of the title */
+.form-box h1 {
+  font-size: 3vw; /* Font size of the title using vw units */
   font-weight: 900; /* Font weight of the title */
-  margin-bottom: 60px; /* Margin bottom of the title */
+  margin-bottom: 6vw; /* Margin bottom of the title using vw units */
   color: #344955; /* Color of the title */
   position: relative; /* Position of the title */
 }
 
-
-/* Styles the input fields for Name and File box*/
-.input-field{ 
+/* Styles the input fields for Name and File box */
+.input-field { 
   background: #eaeaea; /* Background color of the input field */
-  margin: 15px 0; /* Margin of the input field */
-  border-radius: 3px; /* Border radius of the input field */
+  margin: 1.5vw 0; /* Margin of the input field using vw units */
+  border-radius: 1vw; /* Border radius of the input field using vw units */
   display: flex; /* Display of the input field */
   align-items: center; /* Aligns the input field */
-  height: 20%; /* Height of the input field */
+  height: 4vw; /* Height of the input field using vw units */
   outline: auto; /* Outline of the input field */
 }
-/* Styles the dropdown box containing the preset prices  */
-input, select{
+
+/* Styles the dropdown box containing the preset prices */
+input, select {
   width: 100%; /* Width of the input field */
   background: transparent; /* Background color of the input field */
 }
+
 /* Styles the buttons of each form */
 .btns {
-  width: 100%; /* Width of the button */
-  display: flex; /* Sets the display property to flex*/
-  justify-content: space-between; /* Justify the space between each button */
-  height: 0; /* Height of the button */
-  
-
+  width: 90%; /* Width of the button */
+  max-width: 500px; /* Maximum width of the form to 500px */
+  margin-top: 3vw; /* Margin top of the buttons using vw units */
 }
+
 /* Styles the buttons of each form */
-.btns button{
+.btns button {
   flex-basis: 48%; /* Flex basis of the button (size of the button) */
   background: #344955; /* Background color of the button */
   color: #fff; /* Color of the button */
-  height: 40px; /* Height of the button */
-  border-radius: 20px; /* Border radius of the button */
+  height: 4vw; /* Height of the button using vw units */
+  border-radius: 2vw; /* Border radius of the button using vw units */
   border: 0; /* Border of the button */
   outline: 0; /* Outline of the button */
-  cursor: pointer; /* changes the pointer to a Cursor when hovering over the button */
+  cursor: pointer; /* Changes the pointer to a Cursor when hovering over the button */
   width: 100%; /* Width of the button */
 }
 
-.input-box{
-  height: 200px; /* Height of the input box */
+.input-box {
+  height: 20vw; /* Height of the input box using vw units */
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 800px) {
+  .pattern-box,
+  .merchandise-box {
+    width: 90%; /* Adjust width for smaller screens */
+    max-width: none; /* Remove maximum width */
+    left: 50%; /* Center the form horizontally */
+    transform: translateX(-50%); /* Center the form horizontally */
+    top: auto; /* Reset top position */
+    margin-top: 5vw; /* Add margin-top to separate the forms */
+  }
+
+  /* Make the forms go on top of each other on smaller screens */
+  .merchandise-box {
+    top: 60%; /* Position the merchandise form at the left */
+  }
 }
 
 div.App-header{
