@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { listAll, ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../_utils/firebase';
+import "./InStockDesigns.css";
 
-export default function NewestDesigns() {
+export default function InStockDesigns() {
     const [imageList, setImageList] = useState([]);
 
     useEffect(() => {
@@ -32,9 +33,9 @@ export default function NewestDesigns() {
 
     return (
         <div>
-            <p>Newest Designs coming soon!</p>
             {imageList.map((url, index) => (
-                <img key={index} src={url} alt={`Image ${index}`} />
+                
+                <><img key={index} src={url} alt={`Image ${index}`} /><p></p></>
             ))}
         </div>
     );

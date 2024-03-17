@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./Home.css";
-
+import { listAll, ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../_utils/firebase';
 function Home() {
   console.log(process.env.REACT_APP_FIREBASE_API_KEY);
   return (
@@ -20,6 +21,40 @@ function Home() {
           today and elevate your belongings to new levels of visual appeal!
         </p>
       </header>
+      <div className="carousel w-full">
+  <div id="slide1" className="carousel-item relative w-full">
+    {/* Replace the image with your desired image */}
+    <img src="YOUR_IMAGE_URL_1" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide4" className="btn btn-circle">❮</a> 
+      <a href="#slide2" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide2" className="carousel-item relative w-full">
+    {/* Replace the image with your desired image */}
+    <img src="YOUR_IMAGE_URL_2" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide1" className="btn btn-circle">❮</a> 
+      <a href="#slide3" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide3" className="carousel-item relative w-full">
+    {/* Replace the image with your desired image */}
+    <img src="YOUR_IMAGE_URL_3" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide2" className="btn btn-circle">❮</a> 
+      <a href="#slide4" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide4" className="carousel-item relative w-full">
+    {/* Replace the image with your desired image */}
+    <img src="YOUR_IMAGE_URL_4" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide3" className="btn btn-circle">❮</a> 
+      <a href="#slide1" className="btn btn-circle">❯</a>
+    </div>
+  </div>
+</div>
     </div>
   );
 }

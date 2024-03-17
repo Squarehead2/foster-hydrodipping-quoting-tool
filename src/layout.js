@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import "./layout.css";
-import { auth, onAuthStateChanged, signOut } from "../src/_utils/firebase";
-import firstLetterEmail from "../src/_utils/firstLetterEmail";
+import { auth, onAuthStateChanged, signOut } from "./_utils/firebase";
+import firstLetterEmail from "./_utils/firstLetterEmail";
 import { useEffect, useState } from "react";
 
 // Define the Layout component

@@ -12,7 +12,7 @@
   /* Bootstrap equivalent for .navbar */
   .navbar {
     background-color: rgb(0, 0, 0);
-    border-bottom: 20px solid #242424; /* Changed to use 'solid' */
+    border-bottom: 20px solid #fff; /* Changed to use 'solid' */
   }
 
   /* Bootstrap equivalent for .logo */
