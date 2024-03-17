@@ -1,5 +1,18 @@
  /* Bootstrap equivalent for p */
  p {
     /* Convert text-align: left; to Bootstrap text alignment class */
-    text-align: left;
+    text-align:left;
+    text-indent: 5%;
+    color: #fff ;
+  }
+
+div.App{
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgb(0, 0, 0);
   }

@@ -89,7 +89,13 @@ ul {
   margin-right: auto;
   font-size: 40px;
 }
-.App-header {
+
+
+a {
+  color: rgb(255, 255, 255);
+}
+
+div.App{
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -98,8 +104,4 @@ ul {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: rgb(0, 0, 0);
-}
-
-a {
-  color: rgb(255, 255, 255);
 }

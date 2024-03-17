@@ -60,7 +60,7 @@ const handlePatternSubmit = (event) => {
 };
 
   return (
-    <div className="AdminPage flex justify-center">
+    <div className="AdminPage flex justify-center bg-greyish">
   <form> 
           <div className="pattern-box">
             <h1 className="text-3xl text-primary-200 font-light"> Add Pattern</h1>

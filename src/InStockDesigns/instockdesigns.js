@@ -1,5 +1,7 @@
-export default function NewestDesigns() {
+import "./InStockDesigns.css";
+export default function Instockdesigns() {
     return (
-        <p>Newest Designs coming soon!</p>
-    )
+        <div className="p">
+        <p>Coming soon!</p>
+    </div>)
     }

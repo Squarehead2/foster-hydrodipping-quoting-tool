@@ -1,3 +1,10 @@
+p {
+    /* Convert text-align: left; to Bootstrap text alignment class */
+    text-align:left;
+    text-indent: 5%;
+    color: #fff ;
+  }
+
 div.App{
     background-color: #282c34;
     min-height: 100vh;
