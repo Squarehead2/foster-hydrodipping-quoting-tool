@@ -11,6 +11,7 @@ import {
   signOut,
   updateProfile,
   updateEmail,
+  sendEmailVerification,
 } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
@@ -47,5 +48,6 @@ export {
   signOut,
   updateProfile,
   updateEmail,
+  sendEmailVerification,
 };
 export default app;

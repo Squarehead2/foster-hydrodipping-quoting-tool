@@ -72,7 +72,7 @@ export const AccountDetails = () => {
         })
         setDisplayName(newName);
     }
-
+    
     const handleChangeEmail = () => {
         const newEmail = prompt("Enter new email");
         updateEmail(auth.currentUser, newEmail)
@@ -85,16 +85,18 @@ export const AccountDetails = () => {
         setEmail(newEmail);
     }
 
+    console.log(currentUser);
+
     return(
         <div className="p-8 bg-gray-500 mx-40 max-h-full rounded">
             {currentUser ? (
                 <div className="p-1 rounded">
-                    <div className="flex items-center justify-between m-4 p-2 bg-primary-300 rounded">
+                    <div className="flex items-center justify-between m-4 p-2 bg-primary-200 rounded">
                         <div className="bg-neutral text-neutral-content rounded-full w-12 flex items-center justify-center p-3">
                             <span className="text-3xs text-white">{firstLetter}</span>
                         </div>
                         <p className="ml-2 flex-grow text-slate-50">Name: {displayName}</p>
-                        <button onClick={handleChangeName} className="border border-black rounded text-white bg-stone-600 hover:bg-primary-400 hover:text-white ">Change Name</button>
+                        <button onClick={handleChangeName} className="btn hover:bg-primary-300 bg-white">Change Name</button>
                     </div>
                     <div className="flex">
                         <div className="flex flex-col border border- m-2 border-black p-2">
@@ -104,8 +106,8 @@ export const AccountDetails = () => {
                         </div>
                         {selectedTab === "email" && (
                             <div className="border border-black m-2 flex flex-col p-2">
-                                <p className="text-3xl">Current Email:</p>
-                                <p className="text-2xl border border-black rounded p-2 m-1">{email}</p>
+                                <p className="text-3xl text-black">Current Email:</p>
+                                <p className="text-2xl border border-black rounded p-2 m-1 text-black">{email}</p>
                                 <button onClick={handleChangeEmail} className="border border-black m-2 rounded hover:bg-primary-300 hover:text-white">Change Email</button>
                             </div>
                         )}
