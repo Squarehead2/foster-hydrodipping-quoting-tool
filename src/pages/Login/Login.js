@@ -8,6 +8,7 @@ import {
 } from "../../_utils/firebase";
 import "./Login.css";
 import InputField from "../../components/inputFields";
+import { SHA256 } from "crypto-js";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -43,7 +44,11 @@ export const Login = () => {
   const handleEmailPasswordSignIn = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        SHA256(password).toString()
+      );
       console.log("User signed in successfully");
       navigate("/"); // Redirect to home page after successful login
     } catch (error) {

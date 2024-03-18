@@ -2,7 +2,13 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, createUserWithEmailAndPassword, signOut, sendEmailVerification, } from "../../_utils/firebase";
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  signOut,
+  sendEmailVerification,
+} from "../../_utils/firebase";
+import { SHA256 } from "crypto-js";
 
 export const Register = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +19,11 @@ export const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        SHA256(password).toString()
+      );
       console.log("User registered successfully");
       sendEmailVerification(auth.currentUser); // Sends Email Verification to the user
       document.getElementById("my_modal_verify").showModal(); // Show the modal
@@ -67,7 +77,10 @@ export const Register = () => {
               your account to continue.
             </p>
             <div>
-              <form method="dialog" className="flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100">
+              <form
+                method="dialog"
+                className="flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100"
+              >
                 <button>Close</button>
               </form>
             </div>
