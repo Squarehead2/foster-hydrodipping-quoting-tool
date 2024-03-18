@@ -46,6 +46,7 @@ export const Calculator = () => {
   const [currentUser, setCurrentUser] = useState();
   const [rawArea, setRawArea] = useState(0);
   const [numOfSides, setNumOfSides] = useState(0);
+  const [inputValidation, setInputValidation] = useState("");
 
   const [itemDetails, setItemDetails] = useState("");
   useEffect(() => {
@@ -53,6 +54,19 @@ export const Calculator = () => {
       setCurrentUser(user);
     });
   }, []);
+
+  //reset the object and item list
+  const reset = () => {
+    setObjects([]);
+    setItems([]);
+  };
+
+  //function that handles the rate change
+  const handleRateChange = (e, index) => {
+    const newItems = [...items];
+    newItems[index].rate = parseInt(e.target.value);
+    setItems(newItems);
+  };
   //Item details mapping and formatting
   useEffect(() => {
     setItemDetails(
@@ -112,13 +126,6 @@ export const Calculator = () => {
     setItems(newItems);
   };
 
-  //function that handles the rate change
-  const handleRateChange = (e, index) => {
-    const newItems = [...items];
-    newItems[index].rate = parseInt(e.target.value);
-    setItems(newItems);
-  };
-
   //function that handles the shape change
   const handleShapeChange = (e) => {
     setHeight(0);
@@ -138,13 +145,16 @@ export const Calculator = () => {
   const handleConfirmItem = () => {
     let newItems = [...items];
     if (name === "" && description !== "") {
-      alert("Please enter a name for the item.");
+      setInputValidation("Please enter a name for the item.");
+      document.getElementById("my_modal_input").showModal();
       return;
     } else if (description === "" && name !== "") {
-      alert("Please enter a description for the item.");
+      setInputValidation("Please enter a description for the item.");
+      document.getElementById("my_modal_input").showModal();
       return;
     } else if (description === "" && name === "") {
-      alert("Please enter a name and description for the item.");
+      setInputValidation("Please enter a name and description for the item.");
+      document.getElementById("my_modal_input").showModal();
       return;
     }
 
@@ -153,13 +163,18 @@ export const Calculator = () => {
         (item) => item.name === name && item.description === description
       )
     ) {
-      alert("An item with this name and description already exists.");
+      setInputValidation(
+        "An item with this name and description already exists."
+      );
+      document.getElementById("my_modal_input").showModal();
       return;
     } else if (items.some((item) => item.name === name) && items.some(item)) {
-      alert("An item with this name already exists.");
+      setInputValidation("An item with this name already exists.");
+      document.getElementById("my_modal_input").showModal();
       return;
     } else if (items.some((item) => item.description === description)) {
-      alert("An item with this description already exists.");
+      setInputValidation("An item with this description already exists.");
+      document.getElementById("my_modal_input").showModal();
       return;
     }
     newItems.push(
@@ -173,6 +188,8 @@ export const Calculator = () => {
       )
     );
     setItems(newItems);
+    setDescription("");
+    setName("");
   };
 
   //function that handles the addition of the object to the object list
@@ -184,7 +201,8 @@ export const Calculator = () => {
       if (verifySurfaceArea(radius) && verifySurfaceArea(height)) {
         newObjects.push(object("Cylinder", Cylinder(radius, height)));
       } else {
-        alert("Please enter a valid radius and height.");
+        setInputValidation("Please enter a valid radius and height.");
+        document.getElementById("my_modal_input").showModal();
       }
     }
     // If the shape is a rectangle, create a new Rectangle object and add it to the newObjects array
@@ -196,7 +214,8 @@ export const Calculator = () => {
       ) {
         newObjects.push(object("Rectangle", Rectangle(length, width, depth)));
       } else {
-        alert("Please enter a valid length, width, and depth.");
+        setInputValidation("Please enter a valid length, width, and depth.");
+        document.getElementById("my_modal_input").showModal();
       }
     }
     // If the shape is a sphere, create a new Sphere object and add it to the newObjects array
@@ -210,13 +229,15 @@ export const Calculator = () => {
           newObjects.push(object("Sphere", Sphere(radius, 0)));
         }
       } else {
-        alert("Please enter a valid radius.");
+        setInputValidation("Please enter a valid radius.");
+        document.getElementById("my_modal_input").showModal();
       }
     } else if (shape === "raw-surface-area") {
       if (verifySurfaceArea(rawArea)) {
         newObjects.push(object("Raw Surface Area", rawArea));
       } else {
-        alert("Please enter a valid surface area.");
+        setInputValidation("Please enter a valid surface area.");
+        document.getElementById("my_modal_input").showModal();
       }
     } else if (shape === "pyramid") {
       if (
@@ -226,13 +247,17 @@ export const Calculator = () => {
       ) {
         newObjects.push(object("Pyramid", Pyramid(height, numOfSides, length)));
       } else {
-        alert("Please enter a valid height, number of sides, and length.");
+        setInputValidation(
+          "Please enter a valid height, number of sides, and length."
+        );
+        document.getElementById("my_modal_input").showModal();
       }
     } else if (shape === "cone") {
       if (verifySurfaceArea(radius) && verifySurfaceArea(height)) {
         newObjects.push(object("Cone", Cone(radius, height)));
       } else {
-        alert("Please enter a valid radius and height.");
+        setInputValidation("Please enter a valid radius and height.");
+        document.getElementById("my_modal_input").showModal();
       }
     }
 
@@ -241,140 +266,185 @@ export const Calculator = () => {
   };
 
   return (
-    <div className="">
-      <div className="flex flex-col lg:flex-row-reverse pt-4 pr-4 pb-4 space-x-4 bg-primary-50">
-        <div className="flex flex-col w-1/2 space-y-3 p-10 shadow-lg shadow-gray bg-white h-full">
-          {/* create a drop down that gives you the option to add a cylinder or a rectangle */}
-          <div className="flex flex-col bg-white justify-center items-center">
-            <h1 className="form-control font-bold text-lg mt-[-1rem] ">
-              Add an Object to Your Item
-            </h1>
+    <>
+      <div className="">
+        <div className="flex flex-col lg:flex-row-reverse pt-4 pr-4 pb-4 space-x-4 bg-primary-50">
+          <div className="flex flex-col w-1/2 space-y-3 p-10 shadow-lg shadow-gray bg-white h-full">
+            {/* create a drop down that gives you the option to add a cylinder or a rectangle */}
+            <div className="flex flex-col bg-white justify-center items-center">
+              <h1 className="form-control font-bold text-lg mt-[-1rem] ">
+                Add an Object to Your Item
+              </h1>
+            </div>
+            <label className="form-control w-full ">
+              Choose a shape for surface area estimate:
+            </label>
+            <select
+              className="select select-bordered"
+              onChange={handleShapeChange}
+              value={shape}
+            >
+              <option value="cylinder">Cylinder</option>
+              <option value="rectangle">Rectangle</option>
+              <option value="sphere">Sphere</option>
+              <option value="raw-surface-area">Raw Surface Area</option>
+              <option value="pyramid">Pyramid</option>
+              <option value="cone">Cone</option>
+            </select>
+            {/* if the shape is a cylinder, display the radius and height inputs */}
+
+            {shape === "cylinder" && (
+              <CylinderSelected setHeight={setHeight} setRadius={setRadius} />
+            )}
+            {/* if the shape is a rectangle, display the length, width, and depth inputs */}
+
+            {/* if the shape is a rectangle, display the length, width, and depth inputs */}
+            {shape === "rectangle" && (
+              <RectangleSelected
+                setDepth={setDepth}
+                setLength={setLength}
+                setWidth={setWidth}
+              />
+            )}
+            {shape === "sphere" && (
+              <SphereSelected
+                setRadius={setRadius}
+                setCutRadius={setCutRadius}
+                setCutLength={setCutLength}
+              />
+            )}
+            {shape === "raw-surface-area" && (
+              <RawSurfaceAreaSelected setSurfaceArea={setRawArea} />
+            )}
+            {shape === "pyramid" && (
+              <PyramidSelected
+                setHeight={setHeight}
+                setNumSides={setNumOfSides}
+                setLength={setLength}
+              />
+            )}
+            {shape === "cone" && (
+              <ConeSelected setHeight={setHeight} setRadius={setRadius} />
+            )}
+
+            {/* if the shape is a rectangle, display the length, width, and depth inputs */}
+
+            {/* create a button that adds the shape to the list of objects */}
+
+            <button onClick={handleAdd} className="btn">
+              Add
+            </button>
           </div>
-          <label className="form-control w-full ">
-            Choose a shape for surface area estimate:
-          </label>
-          <select
-            className="select select-bordered"
-            onChange={handleShapeChange}
-            value={shape}
-          >
-            <option value="cylinder">Cylinder</option>
-            <option value="rectangle">Rectangle</option>
-            <option value="sphere">Sphere</option>
-            <option value="raw-surface-area">Raw Surface Area</option>
-            <option value="pyramid">Pyramid</option>
-            <option value="cone">Cone</option>
-          </select>
-          {/* if the shape is a cylinder, display the radius and height inputs */}
-
-          {shape === "cylinder" && (
-            <CylinderSelected setHeight={setHeight} setRadius={setRadius} />
-          )}
-          {/* if the shape is a rectangle, display the length, width, and depth inputs */}
-
-          {/* if the shape is a rectangle, display the length, width, and depth inputs */}
-          {shape === "rectangle" && (
-            <RectangleSelected
-              setDepth={setDepth}
-              setLength={setLength}
-              setWidth={setWidth}
+          {/* display the list of objects */}
+          <div className="flex flex-col space-y-1 bg-transparent pr-5">
+            <ObjectCollapse
+              objects={objects}
+              handleDeleteObject={handleDeleteObject}
             />
-          )}
-          {shape === "sphere" && (
-            <SphereSelected
-              setRadius={setRadius}
-              setCutRadius={setCutRadius}
-              setCutLength={setCutLength}
-            />
-          )}
-          {shape === "raw-surface-area" && (
-            <RawSurfaceAreaSelected setSurfaceArea={setRawArea} />
-          )}
-          {shape === "pyramid" && (
-            <PyramidSelected
-              setHeight={setHeight}
-              setNumSides={setNumOfSides}
-              setLength={setLength}
-            />
-          )}
-          {shape === "cone" && (
-            <ConeSelected setHeight={setHeight} setRadius={setRadius} />
-          )}
-
-          {/* if the shape is a rectangle, display the length, width, and depth inputs */}
-
-          {/* create a button that adds the shape to the list of objects */}
-
-          <button onClick={handleAdd} className="btn">
-            Add
-          </button>
-        </div>
-        {/* display the list of objects */}
-        <div className="flex flex-col space-y-1 bg-transparent pr-5">
-          <ObjectCollapse
-            objects={objects}
-            handleDeleteObject={handleDeleteObject}
-          />
-        </div>
-
-        {/* create a form for adding a description and name to the item */}
-        <div className="flex flex-col space-y-3 w-1/2 p-10 shadow-lg shadow-gray bg-white">
-          <div className="flex flex-col bg-white justify-center items-center">
-            <h1 className="form-control font-bold text-lg mt-[-1rem] pb-4">
-              Add an Item to The Quote
-            </h1>
           </div>
-          <form className="w-full">
-            <label className="form-control w-full max-w-xs">Name</label>
-            <input
-              className="input input-bordered w-full "
-              placeholder="Dirt Bike Helmet"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <label className="form-control w-full">Description</label>
-            <textarea
-              className="textarea textarea-bordered w-full"
-              placeholder="Extra details, color, style, shape, etc."
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </form>
-          {/* create a button that adds the item to the list of items */}
 
-          <button
-            className="btn"
-            disabled={objects.length === 0}
-            onClick={handleConfirmItem}
-          >
-            Confirm Item
-          </button>
-          {/* display the list of items */}
-          <ul>
-            <ItemCollapse
-              items={items}
-              rate={rate}
-              handleRateChange={handleRateChange}
-              handleDeleteItem={handleDeleteItem}
-            />
-          </ul>
-          {currentUser ? (
+          {/* create a form for adding a description and name to the item */}
+          <div className="flex flex-col space-y-3 w-1/2 p-10 shadow-lg shadow-gray bg-white">
+            <div className="flex flex-col bg-white justify-center items-center">
+              <h1 className="form-control font-bold text-lg mt-[-1rem] pb-4">
+                Add an Item to The Quote
+              </h1>
+            </div>
+            <form className="w-full">
+              <label className="form-control w-full max-w-xs">Name</label>
+              <input
+                className="input input-bordered w-full "
+                placeholder="Dirt Bike Helmet"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <label className="form-control w-full">Description</label>
+              <textarea
+                className="textarea textarea-bordered w-full"
+                placeholder="Extra details, color, style, shape, etc."
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </form>
+            {/* create a button that adds the item to the list of items */}
+
             <button
               className="btn"
-              disabled={items.length === 0}
-              onClick={() => {
-                runSendMailScript(email);
-              }}
+              disabled={objects.length === 0}
+              onClick={handleConfirmItem}
             >
-              Accept Quote
+              Confirm Item
             </button>
-          ) : (
-            <p>Please Login to Generate Quote</p>
-          )}
+            {/* display the list of items */}
+            <ul>
+              <ItemCollapse
+                items={items}
+                rate={rate}
+                handleDeleteItem={handleDeleteItem}
+              />
+            </ul>
+            {currentUser ? (
+              <button
+                className="btn"
+                disabled={items.length === 0}
+                onClick={() => {
+                  document.getElementById("my_modal_accept").showModal();
+                }}
+              >
+                Accept Quote
+              </button>
+            ) : (
+              <p>Please Login to Generate Quote</p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      <>
+        <dialog id="my_modal_input" className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Enter Valid Input</h3>
+            <p className="py-4 text-red-500 text-md">{inputValidation}</p>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </>
+      <>
+        <dialog id="my_modal_accept" className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">
+              Are you sure you want to accept?
+            </h3>
+            <p className="py-4 text-red-500 text-md">
+              Are you sure you want to accept quote?
+            </p>
+            <div className="modal-action ">
+              <form
+                method="dialog"
+                className=" flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100"
+              >
+                {/* if there is a button in form, it will close the modal */}
+                <button
+                  className="btn ml-3"
+                  onClick={() => {
+                    runSendMailScript(email);
+                    reset();
+                  }}
+                >
+                  Yes
+                </button>
+                <button className="btn bg-red-300">No</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </>
+    </>
   );
 };

@@ -26,9 +26,12 @@ export default function objectCollapse({ objects, handleDeleteObject }) {
           )}
         </div>
         <div className="collapse-content bg-white">
-          <p>
-            Surface Area: {object.area} cm<sup>2</sup>
-          </p>
+          <div className="flex flex-row w-full items-center justify-center">
+            <p className="text-black text-sm">Surface Area:</p>
+            <p className="text-black text-sm">
+              {object.area} cm<sup>2</sup>
+            </p>
+          </div>
         </div>
       </div>
     </>
