@@ -11,7 +11,7 @@
 
   /* Bootstrap equivalent for .navbar */
   .navbar {
-    background-color: rgb(0, 0, 0);
+    background-color: white;
     border-bottom: 20px solid #fff; /* Changed to use 'solid' */
   }
 
@@ -90,12 +90,11 @@ ul {
   font-size: 40px;
 }
 
-
 a {
   color: rgb(255, 255, 255);
 }
 
-div.App{
+div.App {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;

@@ -106,7 +106,8 @@ export const Login = () => {
 
             <div className="card-actions">
               <button
-                className="btn bg-primary-300 hover:bg-primary-400 text-white"
+                className="btn bg-primary-300 hover:bg-primary-400 text-white
+                "
                 onClick={handleEmailPasswordSignIn}
               >
                 Login
