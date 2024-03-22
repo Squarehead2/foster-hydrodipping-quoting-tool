@@ -37,33 +37,32 @@ export const Register = () => {
     <>
       <div class="container max-w-md mx-auto absolute bg-white p-16 text-center rounded-3xl flex justify-center items-center top-1/4">
         <div class="form-container bg-white rounded-lg p-10 shadow-md max-w-md w-full">
-          <h2 class="text-3xl text-primary-200 font-light">Register</h2>
+          <h2 class="text-3xl text-primary-200 mb-5 font-bold">Register</h2>
           <form>
             <div class="input-container mb-5">
               <input
-                type="email"
-                class="w-full px-4 py-3 border border-gray-300 rounded-md outline-none"
-                value={email}
+                type="text"
+                placeholder="Type here"
+                className="input input-bordered w-full max-w-xs"
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
               />
               <i class="fa-solid fa-envelope text-xl mx ml-1"></i>
             </div>
             <div class="input-container mb-5">
               <input
-                type="password"
-                class="w-full px-4 py-3 border border-gray-300 rounded-md outline-none"
-                value={password}
+                type="text"
+                placeholder="Type here"
+                className="input input-bordered w-full max-w-xs"
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Create password"
               />
               <i class="fa-solid fa-lock text-xl ml-1"></i>
             </div>
-            <div class="w-full py-3 bg-primary-300 text-white rounded-md cursor-pointer hover:bg-primary-400">
-              <button type="submit" onClick={handleRegister}>
-                Register
-              </button>
-            </div>
+            <button
+              className="btn w-full hover:bg-primary-400 text-white bg-primary-300"
+              onClick={handleRegister}
+            >
+              Register
+            </button>
             <p className="text-center">Already Have an account? / Login</p>
           </form>
         </div>
