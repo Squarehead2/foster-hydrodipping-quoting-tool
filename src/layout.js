@@ -141,14 +141,18 @@ export const Layout = () => {
                     </Link>
                   </li>
                 )}
-                <li className="flex justify-center align-center">
-                  <Link
-                    className="text-[20px] text-white hover:text-primary-200"
-                    to="admin"
-                  >
-                    Admin
-                  </Link>
-                </li>
+                {currentUser &&
+                currentUser.uid === "gDPPlrrzJ6QhwS9K3EkK2BNC3xM2" ? (
+                  <li className="flex justify-center align-center">
+                    <Link
+                      className="text-[20px] text-white hover:text-primary-200"
+                      to="admin"
+                    >
+                      Admin
+                    </Link>
+                  </li>
+                ) : null}
+
                 {/* ... (other navigation links) ... */}
               </ul>
             </div>
