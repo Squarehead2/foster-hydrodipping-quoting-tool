@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./AdminAcc.css";
-import { storage } from "../../_utils/firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { storage, firestore } from "../../_utils/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import { collection, addDoc } from "firebase/firestore";
 
 export const AdminAcc = () => {
   const [patternName, setPatternName] = useState("");
@@ -13,43 +14,47 @@ export const AdminAcc = () => {
   const [merchandiseType, setMerchandiseType] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [patternSubmitted, setPatternSubmitted] = useState(false); // Added state for pattern submission
+  const [patternPrice, setPatternPrice] = useState("");
 
-  const handlePatternSubmit = (event) => {
+  const handlePatternSubmit = async (event) => {
     event.preventDefault();
-    if (!patternName || !patternImage || !patternType) {
+    if (!patternName || !patternImage || !patternType || !patternPrice) {
       setErrorMessage("Please fill out all fields");
       return;
     }
-
-    let storageLocation = "";
-    switch (patternType) {
-      case "Type 1":
-        storageLocation = "patterns/type1/";
-        break;
-      case "Type 2":
-        storageLocation = "patterns/type2/";
-        break;
-      default:
-        storageLocation = "patterns/";
-        break;
-    }
-
-    const imageRef = ref(storage, `${storageLocation}${patternName + v4()}`);
-    uploadBytes(imageRef, patternImage)
-      .then(() => {
-        console.log("Pattern image uploaded successfully");
-        setErrorMessage("");
-        setPatternName("");
-        setPatternImage(null);
-        setPatternType("");
-        setPatternSubmitted(true);
-        setTimeout(() => setPatternSubmitted(false), 3000); // Reset patternSubmitted after 3 seconds
-      })
-      .catch((error) => {
-        console.error("Error uploading pattern image:", error);
-        setErrorMessage("Error uploading pattern image");
+  
+    const storageLocation = "patterns/";
+    const imageRef = ref(storage, `${storageLocation}${patternName}-${v4()}`);
+  
+    try {
+      const snapshot = await uploadBytes(imageRef, patternImage);
+      console.log("Pattern image uploaded successfully", snapshot);
+  
+      // After successful upload, get the URL of the uploaded image
+      const imageUrl = await getDownloadURL(imageRef);
+  
+      // Add pattern details to Firestore
+      const docRef = await addDoc(collection(firestore, "patterns"), {
+        name: patternName,
+        type: patternType,
+        price: patternPrice,
+        imageUrl: imageUrl, // Store the URL of the uploaded image
       });
+  
+      console.log("Document written with ID: ", docRef.id);
+      setErrorMessage("");
+      setPatternName("");
+      setPatternImage(null);
+      setPatternType("");
+      setPatternPrice("");
+      setPatternSubmitted(true);
+      setTimeout(() => setPatternSubmitted(false), 3000); // Reset patternSubmitted after 3 seconds
+    } catch (error) {
+      console.error("Error uploading pattern image or adding document to Firestore:", error);
+      setErrorMessage("Error uploading pattern image or adding document to Firestore");
+    }
   };
+  
 
   const handleMerchandiseSubmit = (event) => {
     event.preventDefault();
@@ -99,6 +104,15 @@ export const AdminAcc = () => {
                 <option value="Type 2">Type 2</option>
               </select>
             </div>
+            <div className="input-field">
+  <input
+    type="text"
+    placeholder="Pattern Price"
+    value={patternPrice}
+    onChange={(e) => setPatternPrice(e.target.value)}
+  />
+</div>
+
             <div className="w-full py-3 bg-primary-300 text-white rounded-md cursor-pointer hover:bg-primary-400">
               <button type="submit" onClick={handlePatternSubmit}>
                 Add pattern

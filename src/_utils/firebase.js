@@ -1,5 +1,7 @@
-// Import the functions you need from the SDKs you need
+// Import the core Firebase functionalities and initialize the app
 import { initializeApp } from "firebase/app";
+
+// Import the necessary authentication functionalities
 import {
   getAuth,
   GoogleAuthProvider,
@@ -13,10 +15,14 @@ import {
   updateEmail,
   sendEmailVerification,
 } from "firebase/auth";
+
+// Import the storage functionality for file uploads
 import { getStorage } from "firebase/storage";
 
+// Import Firestore functionalities for database operations
+import { getFirestore } from "firebase/firestore";
+
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY.toString(),
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -30,13 +36,16 @@ const firebaseConfig = {
 // Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 
-// Get auth instance
+// Get an instance of the Firebase Authentication service
 const auth = getAuth(app);
 
-// Get storage instance
-export const storage = getStorage(app);
+// Get an instance of the Firebase Storage service
+const storage = getStorage(app);
 
-// Export auth, GoogleAuthProvider, and signInWithPopup
+// Get an instance of the Firebase Firestore service
+const firestore = getFirestore(app);
+
+// Export all the necessary instances and functions for authentication, storage, and firestore
 export {
   auth,
   GoogleAuthProvider,
@@ -49,5 +58,8 @@ export {
   updateProfile,
   updateEmail,
   sendEmailVerification,
+  storage,
+  firestore, // Exporting the firestore instance for use in your project
 };
+
 export default app;
