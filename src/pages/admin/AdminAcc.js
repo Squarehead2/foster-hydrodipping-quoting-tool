@@ -100,8 +100,14 @@ export const AdminAcc = () => {
                 onChange={(e) => setPatternType(e.target.value)}
               >
                 <option value="">Select Pattern Type</option>
-                <option value="Type 1">Type 1</option>
-                <option value="Type 2">Type 2</option>
+                <option value="Animal Prints">Animal Prints</option>
+                <option value="Camouflage">Camouflage</option>
+                <option value="Carbon Fiber">Carbon Fiber</option>
+                <option value="Metal">Metal</option>
+                <option value="Wood">Wood</option>
+                <option value="Stone">Skulls</option>
+                <option value="Flames">Flames</option>
+                <option value="Random">Random</option>
               </select>
             </div>
             <div className="input-field">
