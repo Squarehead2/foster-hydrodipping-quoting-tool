@@ -65,7 +65,7 @@ export const Register = () => {
 
   return (
     <>
-      <div className="container max-w-md mx-auto absolute bg-white p-16 text-center rounded-3xl flex justify-center items-center top-1/4">
+      <div className="container max-w-md mx-auto absolute bg-white p-16 text-center rounded-3xl flex justify-center items-center ">
         <div className="form-container bg-white rounded-lg p-10 shadow-md max-w-md w-full">
           <h2 className="text-3xl text-primary-200 mb-5 font-bold">Register</h2>
           <form>
