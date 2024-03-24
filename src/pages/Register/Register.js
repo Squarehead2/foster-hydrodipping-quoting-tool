@@ -13,7 +13,14 @@ export const Register = () => {
   const [captchaLetters, setCaptchaLetters] = useState([]);
   const [enteredCaptcha, setEnteredCaptcha] = useState("");
   const navigate = useNavigate(); // Access to the navigate function
-  const fonts = ["cursive", "fantasy", "monospace", "sans-serif", "serif", "system-ui"];
+  const fonts = [
+    "cursive",
+    "fantasy",
+    "monospace",
+    "sans-serif",
+    "serif",
+    "system-ui",
+  ];
 
   useEffect(() => {
     generateCaptcha();
@@ -21,17 +28,19 @@ export const Register = () => {
 
   const generateCaptcha = () => {
     const randomText = Math.random().toString(36).substr(2, 6); // Generate a random string
-    const captchaLetters = randomText.split('').map((letter) => ({
+    const captchaLetters = randomText.split("").map((letter) => ({
       value: letter,
       rotation: generateRandomRotation(),
-      font: generateRandomFont()
+      font: generateRandomFont(),
     }));
     setCaptchaLetters(captchaLetters);
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const enteredCaptchaText = captchaLetters.map((letter) => letter.value).join('');
+    const enteredCaptchaText = captchaLetters
+      .map((letter) => letter.value)
+      .join("");
     if (enteredCaptcha !== enteredCaptchaText) {
       alert("Please enter the correct captcha text");
       return;
@@ -98,7 +107,7 @@ export const Register = () => {
                     key={index}
                     style={{
                       transform: `rotate(${letter.rotation}deg)`,
-                      fontFamily: letter.font
+                      fontFamily: letter.font,
                     }}
                   >
                     {letter.value}
@@ -114,7 +123,7 @@ export const Register = () => {
                   onChange={handleCaptchaInputChange}
                 />
                 <button
-                  className="hover:bg-primary-400 text-white bg-primary-300 rounded-xl"
+                  className="hover:bg-primary-400 text-white bg-primary-300 rounded-xl mt-2"
                   onClick={generateCaptcha}
                 >
                   <i className="fa-solid fa-refresh"></i>

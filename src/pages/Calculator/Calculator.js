@@ -24,6 +24,7 @@ import ConeSelected from "./components/coneSelected";
 import Cone from "./Mathematics/Shapes/cone";
 import ObjectCollapse from "./components/objectCollapse";
 import ItemCollapse from "./components/item-collapse/itemCollapse";
+import sendEmail from "../../_utils/resendExecute";
 
 //create a usestate hook to store the objects
 
@@ -47,11 +48,13 @@ export const Calculator = () => {
   const [rawArea, setRawArea] = useState(0);
   const [numOfSides, setNumOfSides] = useState(0);
   const [inputValidation, setInputValidation] = useState("");
+  const [currentEmail, setCurrentEmail] = useState("");
 
   const [itemDetails, setItemDetails] = useState("");
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      setCurrentEmail(user.email);
     });
   }, []);
 
@@ -101,7 +104,10 @@ export const Calculator = () => {
         "CAD</p>" +
         "<br/>" +
         "<h1>Items: </h1>" +
-        itemDetails
+        itemDetails +
+        "<br/>" +
+        "<p>From: </p>" +
+        currentEmail
     );
   }, [totalPrice, items]);
 

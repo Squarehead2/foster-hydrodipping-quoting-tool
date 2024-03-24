@@ -1,5 +1,8 @@
 // React component code
 const runSendMailScript = async (text) => {
+  alert(
+    "Quote has been sent to business owner, and will respond as soon as possible."
+  );
   try {
     const email = "williamblack606@gmail.com";
 
