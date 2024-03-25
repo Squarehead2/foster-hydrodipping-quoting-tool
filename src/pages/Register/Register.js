@@ -80,7 +80,7 @@ export const Register = () => {
           <form>
             <div className="input-container mb-5">
               <input
-                type="text"
+                type="email"
                 placeholder="Type here"
                 className="input input-bordered w-full max-w-xs text-white"
                 onChange={(e) => setEmail(e.target.value)}
@@ -89,7 +89,7 @@ export const Register = () => {
             </div>
             <div className="input-container mb-5">
               <input
-                type="text"
+                type="password"
                 placeholder="Type here"
                 className="input input-bordered w-full max-w-xs text-white"
                 onChange={(e) => setPassword(e.target.value)}
@@ -130,13 +130,27 @@ export const Register = () => {
                 </button>
               </div>
             </div>
+            <div className="flex flex-row">
+              <div className="p-2 text-sm">
+                <label>
+                  <input type="checkbox" />
+                </label>
+                <p className="text-black">Unsubscribe to our newsletter</p>
+              </div>
+              <div className="p-2 text-sm">
+                <label>
+                  <input type="checkbox" />
+                </label>
+                <p className="text-black">I accept the <span className="underline hover:bold " onClick={() => document.getElementById("my_modal_privacyPolicy").showModal()}>Privacy Policy</span> </p>
+              </div>
+            </div>
             <button
               className="btn w-full hover:bg-primary-400 text-white bg-primary-300 "
               onClick={handleRegister}
             >
               Register
             </button>
-            <p className="text-center">Already Have an account? / Login</p>
+            <p className="text-center text-black">Already Have an account? / Login</p>
           </form>
         </div>
       </div>
@@ -153,6 +167,29 @@ export const Register = () => {
                 method="dialog"
                 className="flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100"
               >
+                <button>Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </>
+      <>
+        <dialog id="my_modal_privacyPolicy" className="modal" >
+          <div className="modal-box">
+            <h2 className="text-white">Privacy Policy</h2>
+            <p className="text-sm">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              nec elit sit amet arcu dapibus fermentum. In hac habitasse platea
+              dictumst. Sed et purus nec libero fermentum tincidunt. Ut
+              malesuada, turpis sit amet vehicula tincidunt, mi orci lacinia
+              justo, nec tincidunt libero purus sit amet turpis. Nulla facilisi.
+              Nullam nec elit sit amet arcu dapibus fermentum. In hac habitasse
+              platea dictumst. Sed et purus nec libero fermentum tincidunt. Ut
+              malesuada, turpis sit amet vehicula tincidunt, mi orci lacinia
+              justo, nec tincidunt libero purus sit amet turpis. Nulla facilisi.
+            </p>
+            <div>
+              <form method="dialog">
                 <button>Close</button>
               </form>
             </div>
