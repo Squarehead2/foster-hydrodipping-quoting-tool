@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   auth,
   createUserWithEmailAndPassword,
@@ -12,6 +12,7 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [captchaLetters, setCaptchaLetters] = useState([]);
   const [enteredCaptcha, setEnteredCaptcha] = useState("");
+  const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false);
   const navigate = useNavigate(); // Access to the navigate function
   const fonts = [
     "cursive",
@@ -45,6 +46,10 @@ export const Register = () => {
       alert("Please enter the correct captcha text");
       return;
     }
+    if (!privacyPolicyChecked) {
+      alert("Please accept the privacy policy");
+      return;
+    }
     try {
       await createUserWithEmailAndPassword(
         auth,
@@ -70,6 +75,10 @@ export const Register = () => {
 
   const generateRandomFont = () => {
     return fonts[Math.floor(Math.random() * fonts.length)]; // Randomly select a font from the available fonts
+  };
+
+  const handlePrivacyPolicy = (e) => {
+    setPrivacyPolicyChecked(e.target.checked);
   };
 
   return (
@@ -130,18 +139,19 @@ export const Register = () => {
                 </button>
               </div>
             </div>
+            {/* Div for Unsubscribe & Privacy Policy */}
             <div className="flex flex-row">
+              {/* Checkbox for Unsubscribe */}
               <div className="p-2 text-sm">
                 <label>
                   <input type="checkbox" />
                 </label>
                 <p className="text-black">Unsubscribe to our newsletter</p>
               </div>
+              {/* Checkbox for privacy policy */}
               <div className="p-2 text-sm">
-                <label>
-                  <input type="checkbox" />
-                </label>
-                <p className="text-black">I accept the <span className="underline hover:bold " onClick={() => document.getElementById("my_modal_privacyPolicy").showModal()}>Privacy Policy</span> </p>
+                <input type="checkbox" onChange={handlePrivacyPolicy} />
+                <p className="text-black">I accept the <span className="underline hover:font-bold " onClick={() => document.getElementById("my_modal_privacyPolicy").showModal()}>Privacy Policy</span></p>
               </div>
             </div>
             <button
@@ -150,7 +160,7 @@ export const Register = () => {
             >
               Register
             </button>
-            <p className="text-center text-black">Already Have an account? / Login</p>
+            <p className="text-center text-black">Already Have an account? / <Link to="/login" className="font-bold" >Login</Link></p>
           </form>
         </div>
       </div>
@@ -190,7 +200,7 @@ export const Register = () => {
             </p>
             <div>
               <form method="dialog">
-                <button>Close</button>
+                <button >Close</button>
               </form>
             </div>
           </div>
