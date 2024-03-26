@@ -4,6 +4,7 @@ import {
   auth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  signOut,
 } from "../../_utils/firebase";
 import { SHA256 } from "crypto-js";
 
@@ -59,11 +60,14 @@ export const Register = () => {
       console.log("User registered successfully");
       sendEmailVerification(auth.currentUser); // Sends Email Verification to the user
       document.getElementById("my_modal_verify").showModal(); // Show the modal
+      signOut(auth); // Sign out the user after registration
     } catch (error) {
       console.error("Error registering user:", error.message);
       alert(error.message);
     }
   };
+
+  console.log(auth.currentUser);
 
   const handleCaptchaInputChange = (e) => {
     setEnteredCaptcha(e.target.value);
@@ -200,7 +204,7 @@ export const Register = () => {
             </p>
             <div>
               <form method="dialog">
-                <button >Close</button>
+                <button>Close</button>
               </form>
             </div>
           </div>

@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut,
 } from "../../_utils/firebase";
 import "./Login.css";
 import InputField from "../../components/inputFields";
@@ -44,13 +45,22 @@ export const Login = () => {
   const handleEmailPasswordSignIn = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(
+      const userDetails = await signInWithEmailAndPassword(
         auth,
         email,
         SHA256(password).toString()
       );
-      console.log("User signed in successfully");
-      navigate("/"); // Redirect to home page after successful login
+
+      const user = userDetails.user;
+
+      if(!user.emailVerified) {
+        signOut(auth); // Sign out the user
+        alert("Please verify your email address");
+        return;
+      } else {
+        console.log("User signed in successfully");
+        navigate("/"); // Redirect to home page after successful login
+      }
     } catch (error) {
       console.error("Error signing in with Email/Password:", error.message);
       setErrorMessage("Incorrect email or password");
