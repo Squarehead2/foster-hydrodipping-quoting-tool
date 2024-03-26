@@ -1,23 +1,56 @@
 import React from "react";
 import ItemStat from "./itemStat";
 import { useState, useEffect } from "react";
-import getAllPatternPrices from "./_utils/getAllPatternPrices";
-export default function ItemCollapse({
-  items,
-
-  handleDeleteItem,
-}) {
-  const [rate, setRate] = useState(15);
-  const [patternList, setPatternList] = useState([]);
+import { storage } from "../../../../_utils/firebase";
+import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
+import Select from "react-select";
+import "./itemCollapse.css";
+export default function ItemCollapse({ items, setItems, handleDeleteItem }) {
+  const [rate, setRate] = useState(0);
+  const [patternList, setPatterns] = useState([]);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const [imgSrc, setImgSrc] = useState(""); //added this line
+  const options = patternList.map((pattern, index) => ({
+    value: pattern.price,
+    label: `${pattern.name}: ${pattern.price} / cm`,
+    image: { uri: pattern.imageUrl },
+  }));
 
   useEffect(() => {
-    setPatternList(getAllPatternPrices());
+    const fetchPatterns = async () => {
+      const storageRef = ref(storage, "patterns/");
+      const patternsList = await listAll(storageRef);
+      const patternsData = await Promise.all(
+        patternsList.items.map(async (itemRef) => {
+          const imageUrl = await getDownloadURL(itemRef);
+          const metadata = await getMetadata(itemRef);
+          return {
+            imageUrl,
+            name: metadata.customMetadata?.name,
+            type: metadata.customMetadata?.type,
+            price: metadata.customMetadata?.price,
+          };
+        })
+      );
+      setPatterns(patternsData);
+    };
+
+    fetchPatterns();
   }, []);
   //handle rate change
-  const handleRateChange = (e) => {
-    setRate(e.target.value);
+  const handleRateChange = (selectedOption, index) => {
+    setRate(selectedOption.value);
+    setImgSrc(selectedOption.image.uri); //added this line
+    const newItems = [...items];
+    newItems[index].rate = parseInt(selectedOption.value);
+    newItems[index].price = (
+      (newItems[index].area * parseInt(selectedOption.value)) /
+      100
+    ).toFixed(2);
+    newItems[index].pattern = selectedOption.label;
+    newItems[index].patternUrl = selectedOption.image.uri;
+    setItems(newItems);
   };
-
   return items.map((item, index) => (
     <div className="flex flex-col py-2 bg-white">
       <div className="card shadow-xl w-full bg-primary-50" key={index}>
@@ -34,12 +67,37 @@ export default function ItemCollapse({
           </div>
           <ItemStat item={item} rate={rate} />
           <label className="form-control w-full max-w-xs">Rate</label>
-          {patternList.length}
-          <select
-            className="select select-bordered select-xs w-full"
-            onChange={handleRateChange}
-            value={rate}
-          ></select>
+
+          <Select
+            className="w-full"
+            onChange={(selectedOption) =>
+              handleRateChange(selectedOption, index)
+            }
+            onMenuOpen={() => setIsSelectOpen(true)}
+            onMenuClose={() => setIsSelectOpen(false)}
+            options={options}
+            formatOptionLabel={(option) => (
+              <div className="flex items-center bg-transparent ">
+                <img
+                  className={
+                    "w-7 h-7 rounded-full css-2b097c-container" +
+                    (isSelectOpen ? " animate-pulse" : "")
+                  }
+                  src={option.image.uri}
+                  alt="pattern"
+                />
+                <span
+                  className={`ml-2 text-sm css-2b097c-container ${
+                    isSelectOpen ? " animate-pulse" : ""
+                  }`}
+                >
+                  {option.label}
+                  <sup>2</sup>
+                </span>
+              </div>
+            )}
+          />
+
           <div className="card-actions justify-end bg-primary-50">
             <button
               className="btn btn-primary"

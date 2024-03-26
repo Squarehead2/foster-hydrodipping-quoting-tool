@@ -1,0 +1,3 @@
+.css-2b097c-container {
+  z-index: 9999 !important; /* Use a high value to ensure it's above other elements */
+}

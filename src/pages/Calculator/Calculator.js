@@ -40,7 +40,7 @@ export const Calculator = () => {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [items, setItems] = useState([]);
-  const [rate, setRate] = useState(15);
+  const [rate, setRate] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [email, setEmail] = useState("");
   const [currentUser, setCurrentUser] = useState();
@@ -69,11 +69,7 @@ export const Calculator = () => {
   };
 
   //function that handles the rate change
-  const handleRateChange = (e, index) => {
-    const newItems = [...items];
-    newItems[index].rate = parseInt(e.target.value);
-    setItems(newItems);
-  };
+
   //Item details mapping and formatting
   useEffect(() => {
     setItemDetails(
@@ -92,8 +88,14 @@ export const Calculator = () => {
           "</li>" +
           "<li>Price:" +
           " $" +
-          (item.area * item.rate).toFixed(2) +
+          item.price +
           "</li>" +
+          "<li>" +
+          item.pattern +
+          "</li>" +
+          "<img src=" +
+          item.patternUrl +
+          " />" +
           "</ul>"
       )
     );
@@ -118,7 +120,9 @@ export const Calculator = () => {
   //Total price calculation
   useEffect(() => {
     setTotalPrice(
-      items.reduce((acc, item) => acc + item.area * item.rate, 0).toFixed(2)
+      items
+        .reduce((acc, item) => acc + (item.area * item.rate) / 100, 0)
+        .toFixed(2)
     );
   }, [items]);
 
@@ -410,16 +414,33 @@ export const Calculator = () => {
             <ul>
               <ItemCollapse
                 items={items}
-                rate={rate}
+                setItems={setItems}
                 handleDeleteItem={handleDeleteItem}
               />
             </ul>
+            <div className="flex flex-col bg-white justify-center items-center">
+              {items.map((item) => (
+                <div className="flex flex-col bg-white justify-center items-center">
+                  <h1 className="form-control font-bold text-lg mt-[-1rem] pb-4">
+                    {item.name} + {item.description} + {item.area} + {item.rate}{" "}
+                    + {item.price}
+                  </h1>
+                </div>
+              ))}
+            </div>
             {currentUser ? (
               <button
                 className="btn"
                 disabled={items.length === 0}
                 onClick={() => {
-                  document.getElementById("my_modal_accept").showModal();
+                  if (items.some((item) => item.price <= 0)) {
+                    setInputValidation(
+                      "Please enter a rate for all items before accepting the quote."
+                    );
+                    document.getElementById("my_modal_input").showModal();
+                  } else {
+                    document.getElementById("my_modal_accept").showModal();
+                  }
                 }}
               >
                 Accept Quote
