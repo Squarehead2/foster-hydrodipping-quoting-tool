@@ -53,9 +53,14 @@ export const Calculator = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      setCurrentEmail(user.email);
     });
   }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      setCurrentEmail(currentUser.email);
+    }
+  }, [currentUser]);
 
   //reset the object and item list
   const reset = () => {
@@ -197,6 +202,10 @@ export const Calculator = () => {
     setName("");
   };
 
+  const handleOpenHelp = () => {
+    document.getElementById("my_modal_help").showModal();
+  };
+
   //function that handles the addition of the object to the object list
   const handleAdd = () => {
     let newObjects = [...objects];
@@ -274,10 +283,24 @@ export const Calculator = () => {
     <>
       <div className="">
         <div className="flex flex-col lg:flex-row-reverse pt-4 pr-4 pb-4 space-x-4 bg-primary-50">
-          <div className="flex flex-col w-1/2 space-y-3 p-10 shadow-lg shadow-gray bg-white h-full">
+          <div className="flex flex-col w-1/2 space-y-3 p-10 shadow-lg shadow-gray bg-white h-full indicator">
+            <button className="group" onClick={handleOpenHelp}>
+              <span
+                className="indicator-item indicator-bottom badge bg-primary-300 text-white group-hover:bg-primary-400"
+                data-tip="hello"
+              >
+                <div
+                  className="tooltip group-hover:tooltip-open group-hover:bg-primary-400 tbg-primary-300 h-full w-full bg-primary-300 text-white text-sm"
+                  data-tip="Need Help?"
+                >
+                  ?
+                </div>
+              </span>
+            </button>
+
             {/* create a drop down that gives you the option to add a cylinder or a rectangle */}
             <div className="flex flex-col bg-white justify-center items-center">
-              <h1 className="form-control font-bold text-lg mt-[-1rem] ">
+              <h1 className="form-control font-bold text-lg mt-[-4rem] ">
                 Add an Object to Your Item
               </h1>
             </div>
@@ -340,6 +363,7 @@ export const Calculator = () => {
               Add
             </button>
           </div>
+
           {/* display the list of objects */}
           <div className="flex flex-col space-y-1 bg-transparent pr-5">
             <ObjectCollapse
@@ -401,7 +425,15 @@ export const Calculator = () => {
                 Accept Quote
               </button>
             ) : (
-              <p>Please Login to Generate Quote</p>
+              <button
+                className="btn"
+                disabled={true}
+                onClick={() => {
+                  document.getElementById("my_modal_accept").showModal();
+                }}
+              >
+                Please Login to Accept Quote
+              </button>
             )}
           </div>
         </div>
@@ -411,10 +443,18 @@ export const Calculator = () => {
           <div className="modal-box">
             <h3 className="font-bold text-lg">Enter Valid Input</h3>
             <p className="py-4 text-red-500 text-md">{inputValidation}</p>
-            <div className="modal-action">
-              <form method="dialog">
+            <div className="modal-action bg-white">
+              <form method="dialog bg-white">
                 {/* if there is a button in form, it will close the modal */}
-                <button className="btn">Close</button>
+                <button
+                  className="btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("my_modal_input").close();
+                  }}
+                >
+                  Close
+                </button>
               </form>
             </div>
           </div>
@@ -429,10 +469,10 @@ export const Calculator = () => {
             <p className="py-4 text-red-500 text-md">
               Are you sure you want to accept quote?
             </p>
-            <div className="modal-action ">
+            <div className="modal-action bg-white">
               <form
                 method="dialog"
-                className=" flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100"
+                className=" flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100 bg-white"
               >
                 {/* if there is a button in form, it will close the modal */}
                 <button
@@ -445,6 +485,48 @@ export const Calculator = () => {
                   Yes
                 </button>
                 <button className="btn bg-red-300">No</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+        <dialog id="my_modal_help" className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">How to Generate Quote</h3>
+
+            {/* create step by step list of instructions */}
+            <ol className="list-decimal bg-white text-sm">
+              <li>
+                Add an object to the item by selecting the shape and entering
+                the required dimensions.
+              </li>
+              <p className="text-xs text-black">
+                <br />
+                <strong>Note:</strong> you can add multiple objects together to
+                create a polymorphic object. <br />
+                <strong>Example: </strong> Microphone is a cylinder + sphere
+              </p>
+              <br />
+              <li>
+                Add a description and name to the item and click confirm item.
+              </li>
+              <li>Repeat steps 1 and 2 to add multiple items to the quote.</li>
+              <li>
+                Click accept quote to send the quote to your business owner to
+                review your request.
+              </li>
+            </ol>
+            <div className="modal-action ">
+              <form
+                method="dialog"
+                className=" flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100 bg-white border-none"
+              >
+                {/* if there is a button in form, it will close the modal */}
+                <button
+                  className="btn ml-3 bg-white border-none"
+                  onClick={() => {}}
+                >
+                  Close
+                </button>
               </form>
             </div>
           </div>

@@ -1,6 +1,6 @@
 /* Bootstrap equivalent for div */
 div {
-  background-color: #242424;
+  background-color: white;
 }
 
 /* Bootstrap equivalent for select */
@@ -49,7 +49,7 @@ label {
   margin-left: 40%;
 }
 .navbar {
-  background-color: #242424; /* Bootstrap equivalent for .navbar-text */
+  background-color: white; /* Bootstrap equivalent for .navbar-text */
   .navbar-text {
     text-align: center;
 
@@ -60,6 +60,6 @@ label {
     color: #89cff0;
   }
   .App {
-    background-color: #242424;
+    background-color: white;
   }
 }
