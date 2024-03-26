@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./AdminAcc.css";
-import { storage, firestore } from "../../_utils/firebase";
+import { storage } from "../../_utils/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
-import { collection, addDoc } from "firebase/firestore";
+
 
 export const AdminAcc = () => {
   const [patternName, setPatternName] = useState("");
@@ -26,22 +26,27 @@ export const AdminAcc = () => {
     const storageLocation = "patterns/";
     const imageRef = ref(storage, `${storageLocation}${patternName}-${v4()}`);
   
+    // Prepare custom metadata including Firestore data
+    const customMetadata = {
+      name: patternName,
+      type: patternType,
+      price: patternPrice.toString(), // Make sure price is a string if it's not already
+    };
+  
+    // Metadata options including custom metadata
+    const metadata = {
+      contentType: patternImage.type, // Assuming patternImage has a type property
+      customMetadata: customMetadata
+    };
+  
     try {
-      const snapshot = await uploadBytes(imageRef, patternImage);
+      // Upload the file with metadata
+      const snapshot = await uploadBytes(imageRef, patternImage, metadata);
       console.log("Pattern image uploaded successfully", snapshot);
   
       // After successful upload, get the URL of the uploaded image
       const imageUrl = await getDownloadURL(imageRef);
-  
-      // Add pattern details to Firestore
-      const docRef = await addDoc(collection(firestore, "patterns"), {
-        name: patternName,
-        type: patternType,
-        price: patternPrice,
-        imageUrl: imageUrl, // Store the URL of the uploaded image
-      });
-  
-      console.log("Document written with ID: ", docRef.id);
+
       setErrorMessage("");
       setPatternName("");
       setPatternImage(null);
@@ -54,6 +59,7 @@ export const AdminAcc = () => {
       setErrorMessage("Error uploading pattern image or adding document to Firestore");
     }
   };
+  
   
 
   const handleMerchandiseSubmit = (event) => {

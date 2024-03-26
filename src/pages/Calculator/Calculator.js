@@ -24,7 +24,6 @@ import ConeSelected from "./components/coneSelected";
 import Cone from "./Mathematics/Shapes/cone";
 import ObjectCollapse from "./components/objectCollapse";
 import ItemCollapse from "./components/item-collapse/itemCollapse";
-import sendEmail from "../../_utils/resendExecute";
 
 //create a usestate hook to store the objects
 

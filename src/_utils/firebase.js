@@ -19,9 +19,6 @@ import {
 // Import the storage functionality for file uploads
 import { getStorage } from "firebase/storage";
 
-// Import Firestore functionalities for database operations
-import { getFirestore } from "firebase/firestore";
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY.toString(),
@@ -42,9 +39,6 @@ const auth = getAuth(app);
 // Get an instance of the Firebase Storage service
 const storage = getStorage(app);
 
-// Get an instance of the Firebase Firestore service
-const firestore = getFirestore(app);
-
 // Export all the necessary instances and functions for authentication, storage, and firestore
 export {
   auth,
@@ -59,7 +53,7 @@ export {
   updateEmail,
   sendEmailVerification,
   storage,
-  firestore, // Exporting the firestore instance for use in your project
+
 };
 
 export default app;
