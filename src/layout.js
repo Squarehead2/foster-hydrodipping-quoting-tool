@@ -34,13 +34,13 @@ export const Layout = () => {
   // JSX for the layout
   return (
     <>
-      <div className="bg-white">
+      <div className="">
         {/* Navigation bar */}
-        <div className="navbar bg-white">
+        <div className="navbar bg-primary-50 rounded-xl border-none">
           {/* Left side of the navbar */}
-          <div className="navbar-start bg-white">
+          <div className="navbar-start bg-primary-50">
             {/* Dropdown menu */}
-            <div className="dropdown ">
+            <div className="dropdown bg-primary-50">
               <button tabIndex={0} className="btn btn-ghost btn-circle">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,14 +71,7 @@ export const Layout = () => {
                     Home
                   </Link>
                 </li>
-                <li className="flex justify-center align-center">
-                  <Link
-                    className="text-[20px] text-white hover:text-primary-200"
-                    to="blog"
-                  >
-                    Blog
-                  </Link>
-                </li>
+
                 <li className="flex justify-center align-center">
                   <Link
                     className="text-[20px] text-white hover:text-primary-200 text-center"
@@ -105,10 +98,10 @@ export const Layout = () => {
                 </li>
                 <li className="flex justify-center align-center">
                   <Link
-                    className="text-[20px] text-white hover:text-primary-200"
+                    className="text-[20px] text-white hover:text-primary-200 text-center"
                     to="calculator"
                   >
-                    Calculator
+                    Create Quote
                   </Link>
                 </li>
 
@@ -159,17 +152,17 @@ export const Layout = () => {
           </div>
 
           {/* Center of the navbar */}
-          <div className="navbar-center bg-white">
+          <div className="navbar-center bg-primary-50">
             <Link className="btn btn-ghost text-xl" to="/">
               Foster Hydro Dipping
             </Link>
           </div>
 
           {/* Right side of the navbar */}
-          <div className="navbar-end bg-white">
+          <div className="navbar-end bg-primary-50">
             {/* Conditional rendering based on user authentication */}
             {currentUser ? (
-              <div className="dropdown dropdown-bottom dropdown-end avatar placeholder p-1">
+              <div className="dropdown dropdown-bottom dropdown-end avatar placeholder p-1 bg-primary-50">
                 {/* User avatar */}
                 <div
                   tabIndex={0}
