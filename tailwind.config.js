@@ -19,6 +19,8 @@ module.exports = {
         },
         greyish: "#282c34",
       },
+
+      backgroundColor: ["group-hover"],
     },
   },
   plugins: [require("daisyui")],

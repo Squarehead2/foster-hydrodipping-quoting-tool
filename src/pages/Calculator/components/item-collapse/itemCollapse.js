@@ -1,13 +1,18 @@
 import React from "react";
 import ItemStat from "./itemStat";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import getAllPatternPrices from "./_utils/getAllPatternPrices";
 export default function ItemCollapse({
   items,
 
   handleDeleteItem,
 }) {
   const [rate, setRate] = useState(15);
+  const [patternList, setPatternList] = useState([]);
+
+  useEffect(() => {
+    setPatternList(getAllPatternPrices());
+  }, []);
   //handle rate change
   const handleRateChange = (e) => {
     setRate(e.target.value);
@@ -29,14 +34,12 @@ export default function ItemCollapse({
           </div>
           <ItemStat item={item} rate={rate} />
           <label className="form-control w-full max-w-xs">Rate</label>
+          {patternList.length}
           <select
             className="select select-bordered select-xs w-full"
             onChange={handleRateChange}
             value={rate}
-          >
-            <option value="15">Generic Rate 1</option>
-            <option value="20">Generic Rate 2</option>
-          </select>
+          ></select>
           <div className="card-actions justify-end bg-primary-50">
             <button
               className="btn btn-primary"

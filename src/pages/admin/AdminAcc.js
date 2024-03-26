@@ -22,17 +22,17 @@ export const AdminAcc = () => {
       setErrorMessage("Please fill out all fields");
       return;
     }
-  
+
     const storageLocation = "patterns/";
     const imageRef = ref(storage, `${storageLocation}${patternName}-${v4()}`);
-  
+
     try {
       const snapshot = await uploadBytes(imageRef, patternImage);
       console.log("Pattern image uploaded successfully", snapshot);
-  
+
       // After successful upload, get the URL of the uploaded image
       const imageUrl = await getDownloadURL(imageRef);
-  
+
       // Add pattern details to Firestore
       const docRef = await addDoc(collection(firestore, "patterns"), {
         name: patternName,
@@ -40,7 +40,7 @@ export const AdminAcc = () => {
         price: patternPrice,
         imageUrl: imageUrl, // Store the URL of the uploaded image
       });
-  
+
       console.log("Document written with ID: ", docRef.id);
       setErrorMessage("");
       setPatternName("");
@@ -50,11 +50,15 @@ export const AdminAcc = () => {
       setPatternSubmitted(true);
       setTimeout(() => setPatternSubmitted(false), 3000); // Reset patternSubmitted after 3 seconds
     } catch (error) {
-      console.error("Error uploading pattern image or adding document to Firestore:", error);
-      setErrorMessage("Error uploading pattern image or adding document to Firestore");
+      console.error(
+        "Error uploading pattern image or adding document to Firestore:",
+        error
+      );
+      setErrorMessage(
+        "Error uploading pattern image or adding document to Firestore"
+      );
     }
   };
-  
 
   const handleMerchandiseSubmit = (event) => {
     event.preventDefault();
@@ -111,13 +115,13 @@ export const AdminAcc = () => {
               </select>
             </div>
             <div className="input-field">
-  <input
-    type="text"
-    placeholder="Pattern Price"
-    value={patternPrice}
-    onChange={(e) => setPatternPrice(e.target.value)}
-  />
-</div>
+              <input
+                type="text"
+                placeholder="Pattern Price"
+                value={patternPrice}
+                onChange={(e) => setPatternPrice(e.target.value)}
+              />
+            </div>
 
             <div className="w-full py-3 bg-primary-300 text-white rounded-md cursor-pointer hover:bg-primary-400">
               <button type="submit" onClick={handlePatternSubmit}>

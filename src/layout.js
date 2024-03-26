@@ -34,7 +34,7 @@ export const Layout = () => {
   // JSX for the layout
   return (
     <>
-      <div className="bg-white  ">
+      <div className="bg-white">
         {/* Navigation bar */}
         <div className="navbar bg-white">
           {/* Left side of the navbar */}

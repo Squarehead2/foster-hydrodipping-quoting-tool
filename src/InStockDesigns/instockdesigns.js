@@ -35,7 +35,6 @@ export default function InStockDesigns() {
                   className="w-96 h-96"
                   key={index}
                   src={url}
-                  
                   alt={`Image ${index}`}
                 />
               </figure>
