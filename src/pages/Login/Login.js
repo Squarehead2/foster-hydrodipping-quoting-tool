@@ -6,6 +6,8 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
+  sendEmailVerification,
 } from "../../_utils/firebase";
 import "./Login.css";
 import InputField from "../../components/inputFields";
@@ -17,10 +19,6 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState(null); // User state
   const navigate = useNavigate(); // Access to the navigate function
-
-  useEffect(() => {
-    console.log(email);
-  });
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -35,6 +33,11 @@ export const Login = () => {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       console.log("User signed in successfully");
+
+      updateProfile(auth.currentUser, { // Auto Verify users who sign in through google
+        emailVerified: true,
+      });
+
       navigate("/"); // Redirect to home page after successful login
     } catch (error) {
       console.error("Error signing in with Google:", error.message);
@@ -53,7 +56,7 @@ export const Login = () => {
 
       const user = userDetails.user;
 
-      if(!user.emailVerified) {
+      if(!user.emailVerified) { 
         signOut(auth); // Sign out the user
         alert("Please verify your email address");
         return;
@@ -74,7 +77,7 @@ export const Login = () => {
           <div className="card-body items-center text-center">
             <h2 className="card-title">Login With Email</h2>
 
-            <label className="input input-bordered flex items-center gap-2">
+            <label className="input input-bordered flex items-center gap-2 text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -93,7 +96,7 @@ export const Login = () => {
               />
             </label>
 
-            <label className="input input-bordered flex items-center gap-2">
+            <label className="input input-bordered flex items-center gap-2 text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -109,6 +112,7 @@ export const Login = () => {
               <input
                 type="password"
                 className="grow"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -155,7 +159,7 @@ export const Login = () => {
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
       <div className="flex justify-start">
-        <p className="text-black text-sm ">
+        <p className="text-black text-sm text-center">
           {" "}
           Don't have an account? Don't worry signup{" "}
           <Link to="/register" className="text-primary-400 font-bold text-sm">

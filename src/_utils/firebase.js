@@ -14,6 +14,8 @@ import {
   updateProfile,
   updateEmail,
   sendEmailVerification,
+  verifyBeforeUpdateEmail,
+  reauthenticateWithCredential,
 } from "firebase/auth";
 
 // Import the storage functionality for file uploads
@@ -53,7 +55,8 @@ export {
   updateEmail,
   sendEmailVerification,
   storage,
-
+  verifyBeforeUpdateEmail,
+  reauthenticateWithCredential,
 };
 
 export default app;

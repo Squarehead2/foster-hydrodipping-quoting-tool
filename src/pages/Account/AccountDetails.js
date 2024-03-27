@@ -2,14 +2,16 @@ import React, { use, useEffect, useState } from "react";
 import "./AccountDetails.css";
 import {
   auth,
-  onAuthStateChanged,
   sendPasswordResetEmail,
   signOut,
   updateProfile,
-  updateEmail,
+  verifyBeforeUpdateEmail,
+  reauthenticateWithCredential,
 } from "../../_utils/firebase";
 import { useNavigate } from "react-router-dom";
 import firstLetterEmail from "../../_utils/firstLetterEmail";
+import { EmailAuthProvider } from "firebase/auth";
+import { SHA256 } from "crypto-js";
 
 export const AccountDetails = () => {
   const [displayName, setDisplayName] = useState("");
@@ -68,11 +70,6 @@ export const AccountDetails = () => {
   const handleChangeName = () => {
     setModalType("Change Name");
     document.getElementById("my_modal_5").showModal();
-
-    // updateProfile(auth.currentUser, {
-    //   displayName: newName,
-    // });
-    // setDisplayName(newName);
   };
 
   const handleNewName = () => {
@@ -87,20 +84,36 @@ export const AccountDetails = () => {
 
   const handleChangeEmail = () => {
     setModalType("Change Email");
-
     document.getElementById("my_modal_5").showModal();
   };
+
   const handleNewEmail = () => {
     if (newEmail === "") {
       return;
     }
-    updateEmail(auth.currentUser, newEmail)
+
+    const password = prompt("Please enter your password to continue");
+    const hashedPassword = SHA256(password).toString();
+
+    const credential = EmailAuthProvider.credential(email, hashedPassword);
+
+    reauthenticateWithCredential(auth.currentUser, credential)
       .then(() => {
-        console.log("Email updated");
-      })
-      .catch((error) => {
-        console.error("Error updating email:", error.message);
-      });
+        console.log("User reauthenticated");
+
+        verifyBeforeUpdateEmail(auth.currentUser, newEmail)
+          .then(() => {
+            console.log("Email verification sent");
+            alert("Email verification sent");
+          }).catch((error) => {
+            console.error("Error sending email verification:", error.message);
+            alert("Error sending email verification");
+          });
+
+      }).catch((error) => {
+        console.error("Error reauthenticating:", error.message);
+        alert("Error reauthenticating");
+    });
     setEmail(newEmail);
   };
 
@@ -188,7 +201,7 @@ export const AccountDetails = () => {
                       <div className="flex flex-row items-center justify-center">
                         <div className="m-2 p-2">
                           {message && (
-                            <p className="text-sm text-center text-primary-300">
+                            <p className="text-base text-center text-primary-300">
                               {message}
                             </p>
                           )}
@@ -219,25 +232,27 @@ export const AccountDetails = () => {
           </div>
         )}
       </div>
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+      <dialog id="my_modal_5" className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">{modalType}</h3>
-          <div className="mt-10">
+          <h3 className="font-bold text-lg text-white">{modalType}</h3>
+          <div className="mt-6">
             <input
               type={modalType === "Change Email" ? "email" : "text"}
               placeholder={`${
                 modalType === "Change Name" ? "New Name" : "New Email"
               }`} // if modalType is Change Name, placeholder is New Name, else New Email
-              className="input input-bordered w-full"
-              onChange={(e) => {
-                setNewName(e.target.value);
-              }}
+              className="input input-bordered w-full bg-white"
+              onChange={(e) =>
+                modalType === "Change Name"
+                  ? setNewName(e.target.value)
+                  : setNewEmail(e.target.value)
+              } // if modalType is Change Name, setNewName, else setNewEmail
             />
           </div>
-          <div className="modal-action">
-            <form method="dialog ">
+          <div className="modal-action bg-inherit">
+            <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn hover:bg-red-500 hover:text-white">
+              <button className="btn hover:bg-red-500 bg-primary-200 text-white">
                 Close
               </button>
               <button
