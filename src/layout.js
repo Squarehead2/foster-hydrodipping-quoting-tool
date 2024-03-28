@@ -135,7 +135,7 @@ export const Layout = () => {
                   </li>
                 )}
                 {currentUser &&
-                currentUser.uid === "gDPPlrrzJ6QhwS9K3EkK2BNC3xM2" ? (
+                currentUser.uid === "cA7w1LsXV4f7wdDbIDXCPngQLG42" ? (
                   <li className="flex justify-center align-center">
                     <Link
                       className="text-[20px] text-white hover:text-primary-200"
