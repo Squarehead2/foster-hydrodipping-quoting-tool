@@ -7,25 +7,36 @@ const DisplayPatterns = () => {
 
   useEffect(() => {
     const fetchPatterns = async () => {
-      const storageRef = ref(storage, 'patterns/');
-      const patternsList = await listAll(storageRef);
-      const patternsData = await Promise.all(
-        patternsList.items.map(async (itemRef) => {
-          const imageUrl = await getDownloadURL(itemRef);
-          const metadata = await getMetadata(itemRef);
-          return {
-            imageUrl,
-            name: metadata.customMetadata?.name,
-            type: metadata.customMetadata?.type,
-            price: metadata.customMetadata?.price,
-          };
-        })
-      );
-      setPatterns(patternsData);
+      try {
+        const storageRef = ref(storage, 'patterns/');
+        const patternsList = await listAll(storageRef);
+        const patternsData = await Promise.all(
+          patternsList.items.map(async (itemRef) => {
+            const imageUrl = await getDownloadURL(itemRef);
+            const metadata = await getMetadata(itemRef);
+            return {
+              imageUrl,
+              name: metadata.customMetadata?.name,
+              type: metadata.customMetadata?.type,
+              price: metadata.customMetadata?.price,
+            };
+          })
+        );
+        setPatterns(patternsData);
+      } catch (error) {
+        console.error("Error fetching patterns:", error);
+        // Further error handling
+      }
     };
-
-    fetchPatterns();
+  
+    fetchPatterns().catch(error => {
+      console.error("Failed to list files:", error);
+      if (error.serverResponse){
+        console.error("Server response:", error.serverResponse);
+      }
+    });
   }, []);
+
 
   return (
 

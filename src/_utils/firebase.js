@@ -39,7 +39,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Get an instance of the Firebase Storage service
-const storage = getStorage(app);
+const storage = getStorage(app, 'gs://foster-hydro-dipping-cf805.appspot.com');
 
 // Export all the necessary instances and functions for authentication, storage, and firestore
 export {
