@@ -4,6 +4,9 @@ import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
 
 const DisplayPatterns = () => {
   const [patterns, setPatterns] = useState([]);
+  const [filteredPatterns, setFilteredPatterns] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedType, setSelectedType] = useState("");
 
   useEffect(() => {
     const fetchPatterns = async () => {
@@ -23,55 +26,59 @@ const DisplayPatterns = () => {
           })
         );
         setPatterns(patternsData);
+        setFilteredPatterns(patternsData); // Initialize filteredPatterns
       } catch (error) {
         console.error("Error fetching patterns:", error);
-        // Further error handling
       }
     };
-  
-    fetchPatterns().catch(error => {
-      console.error("Failed to list files:", error);
-      if (error.serverResponse){
-        console.error("Server response:", error.serverResponse);
-      }
-    });
+
+    fetchPatterns();
   }, []);
 
+  useEffect(() => {
+    // Filter patterns based on search term and selected type
+    const filtered = patterns.filter(pattern => {
+      return pattern.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (selectedType ? pattern.type === selectedType : true);
+    });
+    setFilteredPatterns(filtered);
+  }, [searchTerm, selectedType, patterns]);
 
   return (
-
-    <div>
-      <div className="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 gap-y-5 bg-white">
-  {patterns.map((pattern, index) => (
-    <div key={index} className="card w-96 h-[32rem] shadow-xl"> {/* Key is added here */}
-      <figure className="shadow-xl">
-        <img
-          className="w-96 h-96"
-          src={pattern.imageUrl}
-          alt={`Pattern ${index}`}
+    <div className="p-5 bg-white">
+      <div className="flex flex-col md:flex-row justify-between mb-5">
+        <input
+          type="text"
+          placeholder="Search by name..."
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="mb-4 md:mb-0 border p-2"
         />
-      </figure>
-      <div className="card-body bg-primary-50">
-        <h2 className="card-title">Name: {pattern.name}</h2>
-        <p className="text-black text-sm">
-          Description of the product. This is a placeholder description
-        </p>
-        <div className="card-actions justify-end bg-primary-50 rounded-xl">
-          <div className="stats shadow bg-white w-full h-30">
-            <div className="stat bg-white w-full">
-              <div className="stat-title bg-white w-full">Price: {pattern.price}</div>
-              <div className="stat-value bg-white w-full">
-                $XX.XX / cm<sup>2</sup>
-              </div>
+        <select
+          onChange={(e) => setSelectedType(e.target.value)}
+          className="border p-2"
+        >
+          <option value="">All Types</option>
+          {/* Dynamically generate type options based on available types or hardcode them */}
+          <option value="Animal Prints">Animal Prints</option>
+          <option value="Camouflage">Camouflage</option>
+          <option value="Carbon Fiber">Carbon Fiber</option>
+          {/* Add other types as needed */}
+        </select>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {filteredPatterns.map((pattern, index) => (
+          <div key={index} className="card w-full h-auto shadow-xl">
+            <figure className="shadow-xl">
+              <img className="w-full" src={pattern.imageUrl} alt={`Pattern ${pattern.name}`} />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">Name: {pattern.name}</h2>
+              <p>Type: {pattern.type}</p>
+              <p>Price: {pattern.price}</p>
             </div>
           </div>
-          <div className="badge badge-outline">Type: {pattern.type}</div>
-        </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-
     </div>
   );
 };
