@@ -1,106 +1,34 @@
-/* Styles the pattern form */
-.pattern-box {
-  width: 45%; /* Width of the form */
-  max-width: 500px; /* Maximum width of the form to 500px */
-  position: absolute; /* Position of the form */
-  top: 50%; /* Position of the top of the form */
-  left: 30%; /* Position of the left of the form */
-  transform: translate(-50%, -50%); /* Positions the box by -50% horizontally and vertically, used to center it */
-  background: #fff; /* Background color of the form */
-  padding: 5vw 6vw 7vw; /* Padding of the form using vw units */
-  text-align: center; /* Text alignment of the form */
-  border-radius: 3vw; /* Border radius of the form using vw units */
+/* Adjust the positioning of the forms to ensure they don't overlap the pattern display section */
+.pattern-box, .merchandise-box {
+  position: relative; /* Change position to relative */
+  margin: 0 auto; /* Center the boxes horizontally */
+  margin-bottom: 2rem; /* Add space below the forms */
 }
 
-/* Styles the Merchandise form */
-.merchandise-box {
-  width: 45%; /* Width of the form */
-  max-width: 500px; /* Maximum width of the form to 500px */
-  position: absolute; /* Position of the form */
-  top: 50%; /* Position of the top of the form */
-  left: 70%; /* Position of the left of the form */
-  transform: translate(-50%, -50%); /* Positions the box by -50% horizontally and vertically, used to center it */
-  background: #fff; /* Background color of the form */
-  padding: 5vw 6vw 7vw; /* Padding of the form using vw units */
-  text-align: center; /* Text alignment of the form */
-  border-radius: 3vw; /* Border radius of the form using vw units */
+/* Style for pattern display section */
+.patterns-display {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Adjust number of columns as needed */
+  gap: 1rem;
+  padding: 1rem;
 }
 
-/* Styles the titles of each form */
-.form-box h1 {
-  font-size: 3vw; /* Font size of the title using vw units */
-  font-weight: 900; /* Font weight of the title */
-  margin-bottom: 6vw; /* Margin bottom of the title using vw units */
-  color: #344955; /* Color of the title */
-  position: relative; /* Position of the title */
+.pattern-card img {
+  width: 100%; /* Ensure image takes up entire width of its container */
+  height: auto; /* Maintain aspect ratio */
 }
 
-/* Styles the input fields for Name and File box */
-.input-field { 
-  background: #eaeaea; /* Background color of the input field */
-  margin: 1.5vw 0; /* Margin of the input field using vw units */
-  border-radius: 1vw; /* Border radius of the input field using vw units */
-  display: flex; /* Display of the input field */
-  align-items: center; /* Aligns the input field */
-  height: 4vw; /* Height of the input field using vw units */
-  outline: auto; /* Outline of the input field */
+.pattern-card {
+  text-align: center; /* Center the text within each pattern card */
 }
 
-/* Styles the dropdown box containing the preset prices */
-input, select {
-  width: 100%; /* Width of the input field */
-  background: transparent; /* Background color of the input field */
-}
-
-/* Styles the buttons of each form */
-.btns {
-  width: 90%; /* Width of the button */
-  max-width: 500px; /* Maximum width of the form to 500px */
-  margin-top: 3vw; /* Margin top of the buttons using vw units */
-}
-
-/* Styles the buttons of each form */
-.btns button {
-  flex-basis: 48%; /* Flex basis of the button (size of the button) */
-  background: #344955; /* Background color of the button */
-  color: #fff; /* Color of the button */
-  height: 4vw; /* Height of the button using vw units */
-  border-radius: 2vw; /* Border radius of the button using vw units */
-  border: 0; /* Border of the button */
-  outline: 0; /* Outline of the button */
-  cursor: pointer; /* Changes the pointer to a Cursor when hovering over the button */
-  width: 100%; /* Width of the button */
-}
-
-.input-box {
-  height: 20vw; /* Height of the input box using vw units */
-}
-
-/* Media query for smaller screens */
+/* Adjustments for smaller screens */
 @media only screen and (max-width: 800px) {
-  .pattern-box,
-  .merchandise-box {
-    width: 90%; /* Adjust width for smaller screens */
-    max-width: none; /* Remove maximum width */
-    left: 50%; /* Center the form horizontally */
-    transform: translateX(-50%); /* Center the form horizontally */
-    top: auto; /* Reset top position */
-    margin-top: 5vw; /* Add margin-top to separate the forms */
+  .patterns-display {
+    grid-template-columns: repeat(2, 1fr); /* Display 2 images per row on smaller screens */
   }
 
-  /* Make the forms go on top of each other on smaller screens */
-  .merchandise-box {
-    top: 60%; /* Position the merchandise form at the left */
+  .pattern-box, .merchandise-box {
+    /* Inherits the margin-top from the media query to ensure space between forms and pattern display */
   }
-}
-
-div.App-header{
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(0, 0, 0);
 }
