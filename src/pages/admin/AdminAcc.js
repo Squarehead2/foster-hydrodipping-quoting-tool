@@ -78,40 +78,44 @@ export const AdminAcc = () => {
   };
 
   return (
-    <div className="AdminPage space-x-4 justify-center bg-greyish">
+    <div className="AdminPage justify-center bg-greyish">
       <div className="pattern-box shadow-lg">
-        <h1 className="text-3xl text-primary-200 font-light">Add Pattern</h1>
+        <h1 className="text-3xl text-primary-200 font-normal text-center">Add Pattern</h1>
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <form onSubmit={handlePatternSubmit}>
-          <div className="input-box">
-            <input type="text" placeholder="Pattern Name" value={patternName} onChange={(e) => setPatternName(e.target.value)} />
-            <input type="file" onChange={(e) => setPatternImage(e.target.files[0])} />
-            <select value={patternType} onChange={(e) => setPatternType(e.target.value)}>
-              <option value="">Select Pattern Type</option>
-              <option value="Animal Prints">Animal Prints</option>
-              <option value="Animal Prints">Animal Prints</option>
-                <option value="Camouflage">Camouflage</option>
-                <option value="Carbon Fiber">Carbon Fiber</option>
-                <option value="Metal">Metal</option>
-                <option value="Wood">Wood</option>
-                <option value="Stone">Skulls</option>
-                <option value="Flames">Flames</option>
-                <option value="Random">Random</option>
-            </select>
-            <input type="text" placeholder="Pattern Price" value={patternPrice} onChange={(e) => setPatternPrice(e.target.value)} />
-            <button type="submit">Add pattern</button>
-          </div>
+        <div className="input-box flex justify-between space-x-5 items-center">
+  <input className=" ml-4" type="text" placeholder="Pattern Name" value={patternName} onChange={(e) => setPatternName(e.target.value)} />
+  <input className="" type="file" onChange={(e) => setPatternImage(e.target.files[0])} />
+  <select className="" value={patternType} onChange={(e) => setPatternType(e.target.value)}>
+    <option value="">Select Pattern Type</option>
+    <option value="Animal Prints">Animal Prints</option>
+    <option value="Animal Prints">Animal Prints</option>
+    <option value="Camouflage">Camouflage</option>
+    <option value="Carbon Fiber">Carbon Fiber</option>
+    <option value="Metal">Metal</option>
+    <option value="Wood">Wood</option>
+    <option value="Stone">Skulls</option>
+    <option value="Flames">Flames</option>
+    <option value="Random">Random</option>
+  </select>
+  <input type="text" placeholder="Pattern Price" value={patternPrice} onChange={(e) => setPatternPrice(e.target.value)} />
+  <button className=" bg-primary-300 text-white" type="submit">Add pattern</button>
+</div>
         </form>
-      </div>
+          </div>
 
       <div>
-        <input type="text" placeholder="Search Patterns" onChange={(e) => setSearchTerm(e.target.value)} className="search-bar" />
+        <input type="text" placeholder="Search Patterns" onChange={(e) => setSearchTerm(e.target.value)} className="search-bar bg-white text-black border border-black mt-4 ml-4" />
         <div className="patterns-display grid grid-cols-4 gap-4">
           {patterns.filter(pattern => pattern.name.toLowerCase().includes(searchTerm.toLowerCase())).map((pattern, index) => (
             <div key={index} className="pattern-card">
+              <div className="pattern-image">
               <img src={pattern.url} alt={pattern.name} style={{width: '100%', height: 'auto'}} />
+              </div> 
+              <div className="pattern-info">
               <div>{pattern.name}</div>
               <button onClick={() => handleRemovePattern(pattern.fullPath)}>Remove</button>
+              </div>
             </div>
           ))}
         </div>
