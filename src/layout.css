@@ -11,7 +11,7 @@
 
   /* Bootstrap equivalent for .navbar */
   .navbar {
-    background-color: white;
+    background-color: #282c34;
     border-bottom: 20px solid #fff; /* Changed to use 'solid' */
   }
 
@@ -31,6 +31,7 @@
     margin: 10px;
     font-size: 20px;
     font-weight: bold;
+    color: #282c34
   }
 
   /* Bootstrap equivalent for .menu */
@@ -39,6 +40,8 @@
     justify-content: flex-end;
     align-items: center;
     width: auto;
+    color: #282c34;
+    background-color: #282c34;
   }
 
   /* Bootstrap equivalent for .navbar li:first-child */
@@ -50,7 +53,7 @@
 
   /* The following App-header styles remain unchanged */
   .App-header {
-    background-color: white;
+    background-color:  #282c34;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -82,6 +85,7 @@ ul {
   justify-content: flex-end;
   align-items: center;
   width: auto;
+  color: #282c34
 }
 
 .navbar li:first-child {
@@ -94,7 +98,7 @@ a {
 }
 
 div.App {
-  background-color: "ffff";
+  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

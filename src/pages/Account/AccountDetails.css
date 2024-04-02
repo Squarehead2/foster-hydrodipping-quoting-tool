@@ -1,5 +1,5 @@
 div.App{
-    background-color: #282c34;
+    background-color: #fff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -7,4 +7,8 @@ div.App{
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: rgb(0, 0, 0);
+  }
+
+  p{
+    color: black;
   }
