@@ -34,7 +34,8 @@ export const Login = () => {
       await signInWithPopup(auth, provider);
       console.log("User signed in successfully");
 
-      updateProfile(auth.currentUser, { // Auto Verify users who sign in through google
+      updateProfile(auth.currentUser, {
+        // Auto Verify users who sign in through google
         emailVerified: true,
       });
 
@@ -56,7 +57,7 @@ export const Login = () => {
 
       const user = userDetails.user;
 
-      if(!user.emailVerified) { 
+      if (!user.emailVerified) {
         signOut(auth); // Sign out the user
         alert("Please verify your email address");
         return;
@@ -70,7 +71,7 @@ export const Login = () => {
     }
   };
 
-  return (
+  return !user ? (
     <div className="login flex flex-col justify-center items-center">
       <form>
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -89,7 +90,7 @@ export const Login = () => {
               </svg>
               <input
                 type="text"
-                className="grow"
+                className="grow text-black"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -111,7 +112,7 @@ export const Login = () => {
               </svg>
               <input
                 type="password"
-                className="grow"
+                className="grow text-black"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -168,5 +169,7 @@ export const Login = () => {
         </p>
       </div>
     </div>
+  ) : (
+    <div>Already logged in</div>
   );
 };

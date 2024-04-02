@@ -60,7 +60,7 @@ export const Layout = () => {
               {/* Dropdown content */}
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-primary-400 flex border-1 border-solid border-purple-400 justify-center items-center"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 flex justify-center items-center"
               >
                 {/* Navigation links */}
                 <li className="flex justify-center items-center">
@@ -88,14 +88,7 @@ export const Layout = () => {
                     Newest Designs
                   </Link>
                 </li>
-                <li className="flex justify-center items-center">
-                  <Link
-                    className="text-[20px] text-white hover:text-primary-200 text-center"
-                    to="recentworks"
-                  >
-                    Recent Works
-                  </Link>
-                </li>
+
                 <li className="flex justify-center align-center">
                   <Link
                     className="text-[20px] text-white hover:text-primary-200 text-center"

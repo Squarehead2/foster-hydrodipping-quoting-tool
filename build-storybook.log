@@ -1,0 +1,34 @@
+
+> foster-hydrodipping-quoting-tool@0.1.0 build-storybook
+> storybook build --output-dir C:\Users\willi\AppData\Local\Temp\chromatic--8048-9O6fHKWPoYVu
+
+@storybook/cli v8.0.4
+
+info => Cleaning outputDir: ..\..\..\..\..\..\..\AppData\Local\Temp\chromatic--8048-9O6fHKWPoYVu
+info => Loading presets
+info => Building manager..
+info => Manager built (356 ms)
+info => Building preview..
+info Addon-docs: using MDX3
+info => Using implicit CSS loaders
+WARN Storybook support for Create React App is now a separate preset.
+WARN To use the new preset, install `@storybook/preset-create-react-app` and add it to the list of `addons` in your `.storybook/main.js` config file.
+WARN The built-in preset has been disabled in Storybook 6.0.
+info => Copying static files: public at ..\..\..\..\..\..\..\AppData\Local\Temp\chromatic--8048-9O6fHKWPoYVu
+info => Using SWC as compiler
+info => Using default Webpack5 setup
+WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+WARN This can impact web performance.
+WARN Assets: 
+WARN   static/media/addon-library.7d60eaf1.png (456 KiB)
+WARN   349.5135730c.iframe.bundle.js (627 KiB)
+WARN   844.b0117aef.iframe.bundle.js (1.77 MiB)
+WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+WARN Entrypoints:
+WARN   main (1.78 MiB)
+WARN       runtime~main.4d87d63a.iframe.bundle.js
+WARN       844.b0117aef.iframe.bundle.js
+WARN       main.92e0b44b.iframe.bundle.js
+WARN 
+info => Preview built (15 s)
+info => Output directory: C:\Users\willi\AppData\Local\Temp\chromatic--8048-9O6fHKWPoYVu

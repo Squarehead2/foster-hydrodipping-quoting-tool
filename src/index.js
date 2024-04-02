@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import InStockDesigns from "./InStockDesigns/instockdesigns";
 import NewestDesigns from "./NewestDesigns/newestdesigns";
-import RecentWorks from "./RecentWorks/recentworks";
+
 import { Calculator } from "./pages/Calculator/Calculator";
 import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
@@ -26,7 +26,7 @@ export default function App() {
 
             <Route path="instockdesigns" element={<InStockDesigns />} />
             <Route path="newestdesigns" element={<NewestDesigns />} />
-            <Route path="recentworks" element={<RecentWorks />} />
+
             <Route path="calculator" element={<Calculator />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />

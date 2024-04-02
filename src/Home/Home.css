@@ -1,53 +1,45 @@
- /* Bootstrap equivalent for p */
- p {
-    /* Convert text-align: left; to Bootstrap text alignment class */
-    text-align:left;
-    text-indent: 5%;
-    color: #fff;
-    font-size: small;
-    
-  }
+/* Bootstrap equivalent for p */
+p {
+  /* Convert text-align: left; to Bootstrap text alignment class */
+  text-align: left;
+  text-indent: 5%;
+  color: #fff;
+}
 
-div.App{
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: rgb(0, 0, 0);
-    opacity: 100%;
-  }
-div{
-  background-color: #282c34;
-  font-size: smaller;
+div.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(0, 0, 0);
+  opacity: 100%;
+}
+div {
   color: rgb(0, 0, 0);
   opacity: 100%;
 }
 
+.rounded-box {
+  border-radius: flex;
+  background-color: #fff;
+  padding: flex-grow;
+  width: 75%;
+  text-align: left;
+}
 
-  .rounded-box {
-    border-radius: flex;
-    background-color: #fff;
-    padding: flex-grow;
-    width: 75%;
-    text-align: left;
+.carousel {
+  max-width: 45%; /* Adjust the maximum width as needed */
+  max-height: 100%; /* Adjust the maximum height as needed */
+  margin: 0 auto; /* Center the carousel horizontally */
+}
 
-  }
+.carousel-item img {
+  max-width: 45%; /* Ensure the images resize responsively */
+  max-height: 100%; /* Ensure the images resize responsively */
+}
 
-  .carousel {
-    max-width: 45%; /* Adjust the maximum width as needed */
-    max-height: 100%; /* Adjust the maximum height as needed */
-    margin: 0 auto; /* Center the carousel horizontally */
-  }
-  
-  .carousel-item img {
-    max-width: 45%; /* Ensure the images resize responsively */
-    max-height:100%; /* Ensure the images resize responsively */
-  }
-  
-  .carousel .btn {
-    font-size: 1rem; /* Adjust the button font size if necessary */
-  }
-  
+.carousel .btn {
+  font-size: 1rem; /* Adjust the button font size if necessary */
+}
