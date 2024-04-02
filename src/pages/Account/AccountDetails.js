@@ -121,28 +121,28 @@ export const AccountDetails = () => {
 
   return (
     <>
-      <div className="p-8 bg-gray-500 mx-40 max-h-full rounded">
+      <div className="p-8 bg-primary-400 mx-40 max-h-full rounded">
         {currentUser ? (
-          <div className="p-1 rounded">
+          <div className="p-1 rounded bg-primary-300">
             <div className="flex items-center justify-between m-4 p-4 bg-primary-200 rounded">
               <div className="avatar flex items-center justify-center bg-primary-200">
-                <div className="w-24 h-24 rounded-full relative text-white bg-primary-400 shadow-2xl">
-                  <p className="text-center text-6xl absolute mt-[1.30rem] ml-[1.25rem]">
+                <div className="w-24 h-24 rounded-full relative text-white bg-primary-400 shadow-2xl text-center content-center ">
+                  <p className="text-center text-6xl">
                     {firstLetter}
                   </p>
                 </div>
               </div>
-              <p className="ml-2 flex-grow text-slate-50">
+              <p className="ml-2 flex-grow text-slate-50 text-2xl font-bold">
                 Name: {displayName}
               </p>
               <button
                 onClick={handleChangeName}
-                className="btn hover:bg-primary-300 bg-white border-none mr-4"
+                className="btn hover:bg-primary-400 bg-white border-none mr-4"
               >
                 Change Name
               </button>
             </div>
-            <div className="flex">
+            <div className="flex bg-primary-300 p-2 ">
               <div className="card flex flex-col shadow-xl m-2 p-2">
                 <button
                   onClick={() => setSelectedTab("email")}
@@ -169,7 +169,7 @@ export const AccountDetails = () => {
                   Logout
                 </button>
               </div>
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center rounded">
                 {selectedTab === "email" && (
                   <div className="card w-full bg-base-100 shadow-xl">
                     <div className="card-body">
