@@ -420,12 +420,7 @@ export const Calculator = () => {
             </ul>
             <div className="flex flex-col bg-white justify-center items-center">
               {items.map((item) => (
-                <div className="flex flex-col bg-white justify-center items-center">
-                  <h1 className="form-control font-bold text-lg mt-[-1rem] pb-4">
-                    {item.name} + {item.description} + {item.area} + {item.rate}{" "}
-                    + {item.price}
-                  </h1>
-                </div>
+                <div className="flex flex-col bg-white justify-center items-center"></div>
               ))}
             </div>
             {currentUser ? (
