@@ -37,9 +37,9 @@ export const Calculator = () => {
   const [width, setWidth] = useState(0);
   const [depth, setDepth] = useState(0);
   const [objects, setObjects] = useState([]);
+  const [items, setItems] = useState([]);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
-  const [items, setItems] = useState([]);
   const [rate, setRate] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [email, setEmail] = useState("");

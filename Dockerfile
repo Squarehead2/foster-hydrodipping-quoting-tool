@@ -1,5 +1,5 @@
 # Use a base image that supports Node.js
-FROM node:14
+FROM node:18.18.0
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
@@ -18,4 +18,4 @@ EXPOSE 3000
 EXPOSE 3001
 
 # Command to start both frontend and backend servers concurrently
-CMD ["npm", "run", "start:all"]
+CMD ["./start.sh"]

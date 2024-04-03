@@ -12,7 +12,7 @@ app.get("/run-script", async (req, res) => {
     const scriptPath = "../src/_utils/sendMail.js"; // Replace with the path to your script
 
     exec(
-      `node ${scriptPath} " ${email}" " New Quote Generation ${Date()}" " ${text}" " ${text}" " ${app_password}" " ${email_address}"
+      `node ./src/_utils/sendMail.js " ${email}" " New Quote Generation ${Date()}" " ${text}" " ${text}" " ${app_password}" " ${email_address}"
       `,
       (error, stdout, stderr) => {
         if (error) {

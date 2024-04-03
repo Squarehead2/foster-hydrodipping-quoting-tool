@@ -1,5 +1,6 @@
-import ObjectAddition from "../pages/Calculator/Mathematics/objectAddition";
-import object from "../pages/Calculator/Objects/object";
+import objectAddition from "../../../pages/Calculator/Mathematics/objectAddition";
+import ObjectAddition from "../../../pages/Calculator/Mathematics/objectAddition";
+import object from "../../../pages/Calculator/Objects/object";
 import { use, useState } from "react";
 import { useEffect } from "react";
 
@@ -21,12 +22,18 @@ const Template = (args) => {
     ]);
   }, []);
 
+  const [objectSum, setObjectSum] = useState(0);
+
+  useEffect(() => {
+    setObjectSum(objectAddition(objects));
+  }, [objects]);
+
   return (
     <>
       <h1>Object Addition</h1>
       <p>Objects: {JSON.stringify(objects)}</p>
       <br />
-      <ObjectAddition {...args} objects={objects} />
+      objectSum: {objectSum}
     </>
   );
 };

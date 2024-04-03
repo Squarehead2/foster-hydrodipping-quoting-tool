@@ -3,7 +3,6 @@ require("dotenv").config();
 
 const [, , to, subject, text, html, app_password, email_address] = process.argv;
 
-
 console.log(html);
 
 const mailOptions = {
