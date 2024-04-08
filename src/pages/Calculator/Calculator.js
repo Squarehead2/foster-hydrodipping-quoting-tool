@@ -506,31 +506,32 @@ export const Calculator = () => {
           </div>
         </dialog>
         <dialog id="my_modal_help" className="modal">
-          <div className="modal-box">
+          <div className="modal-box bg-white">
             <h3 className="font-bold text-lg">How to Generate Quote</h3>
-
             {/* create step by step list of instructions */}
-            <ol className="list-decimal bg-white text-sm">
-              <li>
-                Add an object to the item by selecting the shape and entering
-                the required dimensions.
-              </li>
-              <p className="text-xs text-black">
+            <div className="p-5 bg-primary-300 rounded">
+              <ol className="list-decimal bg-primary-300 text-sm text-white">
+                <li>
+                  Add an object to the item by selecting the shape and entering
+                  the required dimensions.
+                </li>
+                <p className="text-xs text-white">
+                  <br />
+                  <strong className="text-black">Note:</strong> you can add multiple objects together to
+                  create a polymorphic object. <br />
+                  <strong className="text-black">Example: </strong> Microphone is a cylinder + sphere
+                </p>
                 <br />
-                <strong>Note:</strong> you can add multiple objects together to
-                create a polymorphic object. <br />
-                <strong>Example: </strong> Microphone is a cylinder + sphere
-              </p>
-              <br />
-              <li>
-                Add a description and name to the item and click confirm item.
-              </li>
-              <li>Repeat steps 1 and 2 to add multiple items to the quote.</li>
-              <li>
-                Click accept quote to send the quote to your business owner to
-                review your request.
-              </li>
-            </ol>
+                <li>
+                  Add a description and name to the item and click confirm item.
+                </li>
+                <li>Repeat steps 1 and 2 to add multiple items to the quote.</li>
+                <li>
+                  Click accept quote to send the quote to your business owner to
+                  review your request.
+                </li>
+              </ol>
+            </div>
             <div className="modal-action ">
               <form
                 method="dialog"
@@ -538,7 +539,7 @@ export const Calculator = () => {
               >
                 {/* if there is a button in form, it will close the modal */}
                 <button
-                  className="btn ml-3 bg-white border-none"
+                  className="btn ml-3 bg-primary-200 border-none"
                   onClick={() => {}}
                 >
                   Close
