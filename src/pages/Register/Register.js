@@ -14,6 +14,7 @@ export const Register = () => {
   const [captchaLetters, setCaptchaLetters] = useState([]);
   const [enteredCaptcha, setEnteredCaptcha] = useState("");
   const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false);
+  const [unsubscribeChecked, setUnsubscribeChecked] = useState(false);
   const navigate = useNavigate(); // Access to the navigate function
   const fonts = [
     "cursive",
@@ -51,6 +52,9 @@ export const Register = () => {
       alert("Please accept the privacy policy");
       return;
     }
+    if (unsubscribeChecked) {
+      console.log("User has opted out of the newsletter");
+    }
     try {
       await createUserWithEmailAndPassword(
         auth,
@@ -83,6 +87,10 @@ export const Register = () => {
 
   const handlePrivacyPolicy = (e) => {
     setPrivacyPolicyChecked(e.target.checked);
+  };
+
+  const handleUnsubscribe = (e) => {
+    setUnsubscribeChecked(e.target.checked);
   };
 
   return (
@@ -148,7 +156,7 @@ export const Register = () => {
               {/* Checkbox for Unsubscribe */}
               <div className="p-2 text-sm">
                 <label>
-                  <input type="checkbox" />
+                  <input type="checkbox" onChange={handleUnsubscribe} />
                 </label>
                 <p className="text-black">Unsubscribe to our newsletter</p>
               </div>
@@ -170,11 +178,11 @@ export const Register = () => {
       </div>
       <>
         <dialog id="my_modal_verify" className="modal">
-          <div className="modal-box">
+          <div className="modal-box bg-white">
             <h2>Please Verify Your Email</h2>
             <p>
               We have sent you an email to verify your account. Please verify
-              your account to continue.
+              your account to continue and generate quotes.
             </p>
             <div>
               <form

@@ -90,7 +90,7 @@ export const Login = () => {
               </svg>
               <input
                 type="text"
-                className="grow text-black"
+                className="grow text-white"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -112,7 +112,7 @@ export const Login = () => {
               </svg>
               <input
                 type="password"
-                className="grow text-black"
+                className="grow text-white"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
