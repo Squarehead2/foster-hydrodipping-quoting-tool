@@ -10,6 +10,7 @@ export default function itemCard({ item, rate, imgSrc }) {
 
       <div className="stat bg-white">
         <div className="stat-title bg-white">Pattern</div>
+
         <div className="stat-value bg-white flex justify-center items-center">
           {item.patternUrl ? (
             <img

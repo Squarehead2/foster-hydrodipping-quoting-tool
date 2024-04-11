@@ -91,7 +91,11 @@ export default function ItemCollapse({ items, setItems, handleDeleteItem }) {
                     isSelectOpen ? " animate-pulse" : ""
                   }`}
                 >
-                  {option.label}
+                  {option.label
+                    ? option.label.split(":")[0] +
+                      ": $" +
+                      option.label.split(":")[1].substring(1)
+                    : ""}
                   <sup>2</sup>
                 </span>
               </div>
