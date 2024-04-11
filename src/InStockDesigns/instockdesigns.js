@@ -8,10 +8,13 @@ const DisplayPatterns = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("");
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchPatterns = async () => {
       try {
-        const storageRef = ref(storage, 'patterns/');
+        setIsLoading(true);
+        const storageRef = ref(storage, "patterns/");
         const patternsList = await listAll(storageRef);
         const patternsData = await Promise.all(
           patternsList.items.map(async (itemRef) => {
@@ -27,23 +30,33 @@ const DisplayPatterns = () => {
         );
         setPatterns(patternsData);
         setFilteredPatterns(patternsData); // Initialize filteredPatterns
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching patterns:", error);
+        setIsLoading(false);
       }
     };
-
     fetchPatterns();
   }, []);
 
   useEffect(() => {
     // Filter patterns based on search term and selected type
-    const filtered = patterns.filter(pattern => {
-      return pattern.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (selectedType ? pattern.type === selectedType : true);
+    const filtered = patterns.filter((pattern) => {
+      return (
+        pattern.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (selectedType ? pattern.type === selectedType : true)
+      );
     });
     setFilteredPatterns(filtered);
   }, [searchTerm, selectedType, patterns]);
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="p-5 bg-white">
       <div className="flex flex-col md:flex-row justify-between mb-5">
@@ -60,8 +73,14 @@ const DisplayPatterns = () => {
           <option value="">All Types</option>
           {/* Dynamically generate type options based on available types or hardcode them */}
           <option value="Animal Prints">Animal Prints</option>
+          <option value="Animal Prints">Animal Prints</option>
           <option value="Camouflage">Camouflage</option>
           <option value="Carbon Fiber">Carbon Fiber</option>
+          <option value="Metal">Metal</option>
+          <option value="Wood">Wood</option>
+          <option value="Stone">Skulls</option>
+          <option value="Flames">Flames</option>
+          <option value="Random">Random</option>
           {/* Add other types as needed */}
         </select>
       </div>
@@ -69,12 +88,23 @@ const DisplayPatterns = () => {
         {filteredPatterns.map((pattern, index) => (
           <div key={index} className="card w-full h-auto shadow-xl">
             <figure className="shadow-xl">
-              <img className="w-full" src={pattern.imageUrl} alt={`Pattern ${pattern.name}`} />
+              <img
+                className="w-full h-80"
+                src={pattern.imageUrl}
+                alt={`Pattern ${pattern.name}`}
+              />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">Name: {pattern.name}</h2>
-              <p>Type: {pattern.type}</p>
-              <p>Price: {pattern.price}</p>
+              <div className="stat place-items-center">
+                <div className="stat-title">{pattern.type}</div>
+                <div className="stat-value">{pattern.name}</div>
+                <div className="stat-desc">
+                  {pattern.price
+                    ? `Price: $${pattern.price} / m`
+                    : "Price not available"}
+                  <sup>2</sup>
+                </div>
+              </div>
             </div>
           </div>
         ))}

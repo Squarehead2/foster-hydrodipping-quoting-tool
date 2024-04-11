@@ -1,5 +1,6 @@
 /* Adjust the positioning of the forms to ensure they don't overlap the pattern display section */
-.pattern-box, .merchandise-box {
+.pattern-box,
+.merchandise-box {
   position: relative; /* Change position to relative */
   margin: 0 auto; /* Center the boxes horizontally */
   margin-bottom: 2rem; /* Add space below the forms */
@@ -8,14 +9,14 @@
 .input-box select {
   background-color: white;
   color: black;
-  border: 1px solid black; /* Add border to input fields */
+
   padding: 8px; /* Adjust padding as needed */
   margin-right: 10px; /* Adjust margin as needed */
 }
 .input-box input[type="file"] {
   background-color: white; /* Change background color */
   color: black; /* Change text color */
-  border: 1px solid black; /* Add border */
+
   padding: 8px; /* Adjust padding as needed */
   margin-right: 10px; /* Adjust margin as needed */
   width: 20%;
@@ -25,7 +26,10 @@
 /* Style for pattern display section */
 .patterns-display {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Adjust number of columns as needed */
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); /* Adjust number of columns as needed */
   grid-gap: 20px;
   padding: 1rem;
 }
@@ -38,8 +42,6 @@
 .pattern-card {
   position: relative;
   text-align: center; /* Center the text within each pattern card */
-  border: 1px solid black;
-
 }
 
 .pattern-info {
@@ -50,15 +52,17 @@
   padding: 10px;
 }
 
-
-
 /* Adjustments for smaller screens */
 @media only screen and (max-width: 800px) {
   .patterns-display {
-    grid-template-columns: repeat(2, 1fr); /* Display 2 images per row on smaller screens */
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Display 2 images per row on smaller screens */
   }
 
-  .pattern-box, .merchandise-box {
+  .pattern-box,
+  .merchandise-box {
     /* Inherits the margin-top from the media query to ensure space between forms and pattern display */
   }
 }

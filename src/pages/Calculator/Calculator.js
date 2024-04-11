@@ -517,15 +517,19 @@ export const Calculator = () => {
                 </li>
                 <p className="text-xs text-white">
                   <br />
-                  <strong className="text-black">Note:</strong> you can add multiple objects together to
-                  create a polymorphic object. <br />
-                  <strong className="text-black">Example: </strong> Microphone is a cylinder + sphere
+                  <strong className="text-black">Note:</strong> you can add
+                  multiple objects together to create a polymorphic object.{" "}
+                  <br />
+                  <strong className="text-black">Example: </strong> Microphone
+                  is a cylinder + sphere
                 </p>
                 <br />
                 <li>
                   Add a description and name to the item and click confirm item.
                 </li>
-                <li>Repeat steps 1 and 2 to add multiple items to the quote.</li>
+                <li>
+                  Repeat steps 1 and 2 to add multiple items to the quote.
+                </li>
                 <li>
                   Click accept quote to send the quote to your business owner to
                   review your request.
