@@ -88,23 +88,28 @@ const DisplayPatterns = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredPatterns.map((pattern, index) => (
-          <div key={index} className="card w-full h-auto shadow-xl">
-            <figure className="shadow-xl">
-              <img
-                className="w-full h-80"
-                src={pattern.imageUrl}
-                alt={`Pattern ${pattern.name}`}
-              />
-            </figure>
-            <div className="card-body">
-              <div className="stat place-items-center">
-                <div className="stat-title">{pattern.type}</div>
-                <div className="stat-value">{pattern.name}</div>
-                <div className="stat-desc">
-                  {pattern.price
-                    ? `Price: $${pattern.price} / m`
-                    : "Price not available"}
-                  <sup>2</sup>
+          <div className="indicator">
+            <span className="indicator-item badge bg-primary-300 border-primary-300 text-white translate-x-2">
+              new
+            </span>
+            <div key={index} className="card w-full h-auto shadow-xl">
+              <figure className="shadow-xl">
+                <img
+                  className="w-full h-80"
+                  src={pattern.imageUrl}
+                  alt={`Pattern ${pattern.name}`}
+                />
+              </figure>
+              <div className="card-body">
+                <div className="stat place-items-center">
+                  <div className="stat-title">{pattern.type}</div>
+                  <div className="stat-value">{pattern.name}</div>
+                  <div className="stat-desc">
+                    {pattern.price
+                      ? `Price: $${pattern.price} / m`
+                      : "Price not available"}
+                    <sup>2</sup>
+                  </div>
                 </div>
               </div>
             </div>

@@ -33,6 +33,8 @@ export const AdminAcc = () => {
         const metadata = await getMetadata(itemRef);
         return {
           name: metadata.customMetadata?.name,
+          type: metadata.customMetadata?.type,
+          price: metadata.customMetadata?.price,
           url,
           fullPath: itemRef.fullPath,
         };
@@ -89,21 +91,21 @@ export const AdminAcc = () => {
       <div className="pattern-box shadow-lg">
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <form onSubmit={handlePatternSubmit}>
-          <div className="input-box flex justify-between space-x-5 items-center mr-8">
+          <div className="input-box flex justify-between space-x-5 items-center pb-2 mr-8">
             <input
-              className=" h-12 ml-4 rounded-lg shadow-sm"
+              className=" h-12 ml-4 border-[1px] border-solid border-gray-400 rounded-lg shadow-sm"
               type="text"
               placeholder="Pattern Name"
               value={patternName}
               onChange={(e) => setPatternName(e.target.value)}
             />
             <input
-              className=" h-12 rounded-lg shadow-sm"
+              className=" h-12 border-[1px] mt-1 border-solid border-gray-400 rounded-lg shadow-sm"
               type="file"
               onChange={(e) => setPatternImage(e.target.files[0])}
             />
             <select
-              className=" h-12 rounded-lg shadow-lg"
+              className=" h-12 border-[1px] border-solid border-gray-400 rounded-lg shadow-sm"
               value={patternType}
               onChange={(e) => setPatternType(e.target.value)}
             >
@@ -119,16 +121,13 @@ export const AdminAcc = () => {
               <option value="Random">Random</option>
             </select>
             <input
-              className=" h-12 rounded-lg shadow-sm border-black "
+              className=" h-12 rounded-lg border-[1px] border-solid border-gray-400 shadow-sm border-black "
               type="text"
               placeholder="Pattern Price"
               value={patternPrice}
               onChange={(e) => setPatternPrice(e.target.value)}
             />
-            <button
-              className=" h-12 bg-primary-300 text-white rounded-lg"
-              type="submit"
-            >
+            <button className=" h-12 btn text-black rounded-lg" type="submit">
               Add pattern
             </button>
           </div>
@@ -140,7 +139,7 @@ export const AdminAcc = () => {
           type="text"
           placeholder="Search Patterns"
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-bar bg-white text-black rounded-lg border-black border-solid shadow-sm mt-4 ml-4"
+          className="search-bar bg-white text-black rounded-lg border-black border-solid p-2 border-[1px] border-solid border-gray-400 shadow-sm mt-4 ml-4"
         />
         <div className="patterns-display grid grid-cols-4 gap-4">
           {patterns
@@ -157,8 +156,19 @@ export const AdminAcc = () => {
                   />
                 </div>
                 <div className="pattern-info">
-                  <div className="text-lg font-semibold mb-4">
+                  <div className="text-lg font-semibold mb-2">
                     {pattern.name}
+                  </div>
+                  <div className="stat-desc">
+                    {pattern.type
+                      ? `Type: ${pattern.type}`
+                      : "Type not available"}
+                  </div>
+                  <div className="stat-desc pb-4">
+                    {pattern.price
+                      ? `Price: $${pattern.price} / m`
+                      : "Price not available"}
+                    <sup>2</sup>
                   </div>
                   <button
                     className="btn"

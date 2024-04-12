@@ -287,7 +287,7 @@ export const Calculator = () => {
     <>
       <div className="">
         <div className="flex flex-col lg:flex-row-reverse pt-4 pr-4 pb-4 space-x-4 bg-primary-50">
-          <div className="flex flex-col w-1/2 space-y-3 p-10 shadow-lg shadow-gray bg-white h-full indicator">
+          <div className="flex flex-col w-1/2 space-y-3 p-10 shadow-lg shadow-gray bg-white  min-h-[28rem] h-full  indicator">
             <button className="group" onClick={handleOpenHelp}>
               <span
                 className="indicator-item indicator-bottom badge bg-primary-300 text-white group-hover:bg-primary-400"
@@ -509,13 +509,13 @@ export const Calculator = () => {
           <div className="modal-box bg-white">
             <h3 className="font-bold text-lg">How to Generate Quote</h3>
             {/* create step by step list of instructions */}
-            <div className="p-5 bg-primary-300 rounded">
-              <ol className="list-decimal bg-primary-300 text-sm text-white">
+            <div className="p-5 bg-white rounded">
+              <ol className="list-decimal bg-white text-sm text-black">
                 <li>
                   Add an object to the item by selecting the shape and entering
                   the required dimensions.
                 </li>
-                <p className="text-xs text-white">
+                <p className="text-xs text-gray-400">
                   <br />
                   <strong className="text-black">Note:</strong> you can add
                   multiple objects together to create a polymorphic object.{" "}
@@ -542,10 +542,7 @@ export const Calculator = () => {
                 className=" flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100 bg-white border-none"
               >
                 {/* if there is a button in form, it will close the modal */}
-                <button
-                  className="btn ml-3 bg-primary-200 border-none"
-                  onClick={() => {}}
-                >
+                <button className="btn ml-3 border-none" onClick={() => {}}>
                   Close
                 </button>
               </form>
