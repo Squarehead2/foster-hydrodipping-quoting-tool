@@ -121,8 +121,8 @@ export const AdminAcc = () => {
               <option value="Random">Random</option>
             </select>
             <input
-              className=" h-12 rounded-lg border-[1px] border-solid border-gray-400 shadow-sm border-black "
-              type="text"
+              className=" h-12 rounded-lg p-2 border-[1px] border-solid border-gray-400 shadow-sm border-black "
+              type="number"
               placeholder="Pattern Price"
               value={patternPrice}
               onChange={(e) => setPatternPrice(e.target.value)}
