@@ -63,6 +63,7 @@ export const AdminAcc = () => {
       setPatternImage(null);
       setPatternType("");
       setPatternPrice("");
+      console.log("Pattern uploaded successfully");
     } catch (error) {
       console.error("Error uploading pattern image:", error);
       setErrorMessage("Error uploading pattern image");
@@ -74,6 +75,7 @@ export const AdminAcc = () => {
       const fileRef = ref(storage, fullPath);
       await deleteObject(fileRef);
       fetchPatterns(); // Refresh the list after deletion
+      console.log("Pattern deleted successfully");
     }
   };
 
