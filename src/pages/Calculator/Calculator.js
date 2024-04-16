@@ -287,7 +287,7 @@ export const Calculator = () => {
     <>
       <div className="">
         <div className="flex flex-col lg:flex-row-reverse pt-4 pr-4 pb-4 space-x-4 bg-primary-50">
-          <div className="flex flex-col w-1/2 space-y-3 p-10 shadow-lg shadow-gray bg-white h-full indicator">
+          <div className="flex flex-col w-1/2 space-y-3 p-10 shadow-lg shadow-gray bg-white  min-h-[28rem] h-full  indicator">
             <button className="group" onClick={handleOpenHelp}>
               <span
                 className="indicator-item indicator-bottom badge bg-primary-300 text-white group-hover:bg-primary-400"
@@ -420,12 +420,7 @@ export const Calculator = () => {
             </ul>
             <div className="flex flex-col bg-white justify-center items-center">
               {items.map((item) => (
-                <div className="flex flex-col bg-white justify-center items-center">
-                  <h1 className="form-control font-bold text-lg mt-[-1rem] pb-4">
-                    {item.name} + {item.description} + {item.area} + {item.rate}{" "}
-                    + {item.price}
-                  </h1>
-                </div>
+                <div className="flex flex-col bg-white justify-center items-center"></div>
               ))}
             </div>
             {currentUser ? (
@@ -511,41 +506,43 @@ export const Calculator = () => {
           </div>
         </dialog>
         <dialog id="my_modal_help" className="modal">
-          <div className="modal-box">
+          <div className="modal-box bg-white">
             <h3 className="font-bold text-lg">How to Generate Quote</h3>
-
             {/* create step by step list of instructions */}
-            <ol className="list-decimal bg-white text-sm">
-              <li>
-                Add an object to the item by selecting the shape and entering
-                the required dimensions.
-              </li>
-              <p className="text-xs text-black">
+            <div className="p-5 bg-white rounded">
+              <ol className="list-decimal bg-white text-sm text-black">
+                <li>
+                  Add an object to the item by selecting the shape and entering
+                  the required dimensions.
+                </li>
+                <p className="text-xs text-gray-400">
+                  <br />
+                  <strong className="text-black">Note:</strong> you can add
+                  multiple objects together to create a polymorphic object.{" "}
+                  <br />
+                  <strong className="text-black">Example: </strong> Microphone
+                  is a cylinder + sphere
+                </p>
                 <br />
-                <strong>Note:</strong> you can add multiple objects together to
-                create a polymorphic object. <br />
-                <strong>Example: </strong> Microphone is a cylinder + sphere
-              </p>
-              <br />
-              <li>
-                Add a description and name to the item and click confirm item.
-              </li>
-              <li>Repeat steps 1 and 2 to add multiple items to the quote.</li>
-              <li>
-                Click accept quote to send the quote to your business owner to
-                review your request.
-              </li>
-            </ol>
+                <li>
+                  Add a description and name to the item and click confirm item.
+                </li>
+                <li>
+                  Repeat steps 1 and 2 to add multiple items to the quote.
+                </li>
+                <li>
+                  Click accept quote to send the quote to your business owner to
+                  review your request.
+                </li>
+              </ol>
+            </div>
             <div className="modal-action ">
               <form
                 method="dialog"
                 className=" flex w-full space-x-3 flex-row-reverse border-3 border-solid border-purple-100 bg-white border-none"
               >
                 {/* if there is a button in form, it will close the modal */}
-                <button
-                  className="btn ml-3 bg-white border-none"
-                  onClick={() => {}}
-                >
+                <button className="btn ml-3 border-none" onClick={() => {}}>
                   Close
                 </button>
               </form>

@@ -160,7 +160,7 @@ export const Layout = () => {
                 <div
                   tabIndex={0}
                   role="button"
-                  className="bg-neutral text-neutral-content rounded-full w-10 shadow-2xl shadow-black hover:shadow-2xl hover:shadow-black hover:bg-primary-400 hover:text-primary-50 flex justify-center items-center"
+                  className="bg-neutral text-neutral-content rounded-full w-10 hover:shadow-sm hover:shadow-primary-100 hover:bg-primary-400 hover:text-primary-50 flex justify-center items-center"
                 >
                   <span className="text-xs">{firstLetter}</span>
                 </div>

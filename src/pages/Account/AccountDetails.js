@@ -105,15 +105,16 @@ export const AccountDetails = () => {
           .then(() => {
             console.log("Email verification sent");
             alert("Email verification sent");
-          }).catch((error) => {
+          })
+          .catch((error) => {
             console.error("Error sending email verification:", error.message);
             alert("Error sending email verification");
           });
-
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.error("Error reauthenticating:", error.message);
         alert("Error reauthenticating");
-    });
+      });
     setEmail(newEmail);
   };
 
@@ -121,17 +122,16 @@ export const AccountDetails = () => {
 
   return (
     <>
-      <div className="p-8 bg-primary-400 mx-40 max-h-full rounded">
+      <div className="p-8 bg-primary-50 mx-40 max-h-full rounded">
         {currentUser ? (
-          <div className="p-1 rounded bg-primary-300">
+          <div className="p-1 rounded ">
             <div className="flex items-center justify-between m-4 p-4 bg-primary-200 rounded">
               <div className="avatar flex items-center justify-center bg-primary-200">
-                <div className="w-24 h-24 rounded-full relative text-white bg-primary-400 shadow-2xl text-center content-center ">
-                  <p className="text-center text-6xl">
-                    {firstLetter}
-                  </p>
+                <div className="w-24 h-24 rounded-full relative text-white bg-primary-50 shadow-2xl text-center content-center ">
+                  <p className="text-center text-6xl">{firstLetter}</p>
                 </div>
               </div>
+
               <p className="ml-2 flex-grow text-slate-50 text-2xl font-bold">
                 Name: {displayName}
               </p>
@@ -142,8 +142,8 @@ export const AccountDetails = () => {
                 Change Name
               </button>
             </div>
-            <div className="flex bg-primary-300 p-2 ">
-              <div className="card flex flex-col shadow-xl m-2 p-2">
+            <div className="flex p-2 items-center justify-center ">
+              <div className="card flex flex-col shadow-xl m-2 p-2 border-solid border-primary-50 ">
                 <button
                   onClick={() => setSelectedTab("email")}
                   className={`btn my-2 ${
@@ -169,7 +169,7 @@ export const AccountDetails = () => {
                   Logout
                 </button>
               </div>
-              <div className="flex justify-center items-center rounded">
+              <div className="flex justify-center items-center rounded border-solid border-primary-50">
                 {selectedTab === "email" && (
                   <div className="card w-full bg-base-100 shadow-xl">
                     <div className="card-body">
