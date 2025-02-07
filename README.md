@@ -27,3 +27,37 @@ Deployment: Vercel, Netlify, or Heroku
 **📧 Quote Submission – Users can submit their quote for follow-up.**
 
 **📜 Responsive Design – Works seamlessly across all devices.**
+
+#📜Structure
+```
+hydrodipping-quote-app/
+│── .storybook/
+│── .vscode/
+│── public/
+│── server/
+│── src/
+│   │── App/
+│   │── Home/
+│   │── InStockDesigns/
+│   │── NewestDesigns/
+│   │── _utils/
+│   │── components/
+│   │── pages/
+│── Layout.html
+│── index.css
+│── index.js
+│── layout.css
+│── layout.js
+│── logo.svg
+│── reportWebVitals.js
+│── setupTests.js
+│── .gitignore
+│── Dockerfile
+│── README.md
+│── build-storybook.log
+│── package-lock.json
+│── package.json
+│── start.sh
+│── tailwind.config.js
+```
+
